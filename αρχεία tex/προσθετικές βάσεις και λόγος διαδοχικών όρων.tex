@@ -1,0 +1,328 @@
+\documentclass[10pt,a4paper,leqno,twoside]{book}
+%----------------------------------------------------
+% Set the Languages you want to use. (The last one is set to be the default)
+\usepackage[greek,english]{babel}  %This one if you want Greek by default
+\usepackage[iso-8859-7]{inputenc}
+\usepackage[greek]{babel}
+\usepackage[iso-8859-7]{inputenc}
+\usepackage[active]{srcltx}
+
+\RequirePackage{latexsym} \RequirePackage{amsthm}
+\RequirePackage{amsmath}
+
+\RequirePackage{amssymb} \RequirePackage{makeidx}
+\pagestyle{myheadings}
+%\usepackage{grmath} %If you want Greek names for functions (Example \sin x will look like ημ x)
+%----------------------------------------------------
+% Greek Keyboard Shortcuts
+\newcommand {\gt}{\greektext} %Set the language from now on
+\newcommand {\lt}{\latintext}
+\newcommand {\tg}{\textgreek} %Next argument will be the language you set.
+\newcommand {\tl}{\textlatin}
+%----------------------------------------------------
+\newcommand{\Lip}{\mathrm{Lip}}
+\newcommand{\vol }{{\rm vol}}
+
+
+\newcommand{\bbar}{{\rm bar}}
+\newcommand{\Cov}{{\rm Cov}}
+\newcommand{\conv}{{\rm conv}}
+
+
+%%%hyperref%%%%
+\usepackage{hyperref}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%%%%diagrams%%%%
+\usepackage{tikz-cd}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing,positioning,calc}
+
+\usepackage{dsfont}
+\usepackage{wrapfig}
+
+%-----------------------------------------------------
+%Set the printable area
+%\pagestyle{headings}
+\topmargin=1in \oddsidemargin=0.3in \evensidemargin=0.3in
+\textwidth=5.3in \textheight=7in \footskip=0.7in \headsep=0.3in
+%-----------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%% Fancy Headers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{fancyhdr} \pagestyle{fancy}
+\renewcommand{\headrulewidth}{\iftopfloat{0pt}{0.6pt}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{} \fancyhead[LE]{\scshape\thepage\ $\cdot$\
+\nouppercase{\leftmark}}
+\fancyhead[RO]{\scshape\nouppercase{\rightmark}\ $\cdot$\
+\thepage}
+\fancypagestyle{plain}{%
+    \fancyhead{} %
+    \renewcommand{\headrulewidth}{0pt}}
+    \fancyhfoffset[L]{0.0001cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------
+%Enumerate lists the way I like!
+%\renewcommand{\labelenumi}{\roman{enumi)}}
+\setcounter{section}{0}
+%----------------------------------------------------
+
+%%%%%%%%% enumerate customization %%%%%%%%%%%%%%%%%
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{{\rm(\theenumi)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%% Clear empty pages from headers %%%%%%%%%%%
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}
+  \vspace*{\fill}
+  \begin{center}
+  %  \textlatin{This page intentionally contains only this sentence.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%bibliography in toc%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[nottoc]{tocbibind}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% subsection customization %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\thesubsection}{\thesection\alph{subsection}}              %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% enumerate customization %%%%%%%%%%%%%%%%%
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{{\rm(\theenumi)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%% Clear empty pages from headers %%%%%%%%%%%
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}
+  \vspace*{\fill}
+  \begin{center}
+  %  \textlatin{This page intentionally contains only this sentence.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% number equations as (*.*.*) %%%%%
+\numberwithin{equation}{section}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ls}{\leqslant}
+\newcommand{\gr}{\geqslant}
+\newcommand{\rank}{\mathop{\operator@font rank}}
+%\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\set}[1]{\left\lbrace#1\right\rbrace}
+%\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\tr}[1]{\trace\left(#1\right)}
+\newcommand{\dt}[1]{\determinant\left(#1\right)}
+\newcommand{\diag}[1]{\diagonal\left(#1\right)}
+\newcommand{\prend}{$\quad \hfill \Box$}
+\newcommand{\stend}{$\quad\hfill \diamond$ \medskip}
+\newcommand{\e}{{\varepsilon}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%% New theorems %%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{Θεώρημα}[section]
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{application}[theorem]{Εφαρμογή}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{exercise}[theorem]{’σκηση}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{examples}[theorem]{Παραδείγματα}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem{remark}[theorem]{Παρατήρηση}
+\newtheorem{note}[theorem]{Σημείωση}
+\newtheorem{remarks}[theorem]{Παρατηρήσεις}
+\newtheorem{claim}[theorem]{Ισχυρισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem{comment}[theorem]{Σχόλιο}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{dsfont}
+\usepackage{mathrsfs} %%kalligrafika
+
+%%%%%%%%%%%%%%xrwmata%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+%%%hyperref%%%%
+\usepackage{hyperref}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.3mm}}
+
+%%%%%%%%eikones%%%%%%%%%%%%%%%
+%\usepackage{wrapfig}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{sidecap}
+
+%%%%%%%%%%%%%epikefalides%%%%%%%%%%%%%%
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\bfseries\Huge}
+  {\filright\MakeUppercase{\Large\chaptertitlename} \Huge\thechapter}
+  {1ex}
+  {\titlerule\vspace{1ex}\filleft}
+  [\vspace{1ex}\titlerule]
+
+%%%%%%%%%%%%%%%%%index%%%%%%%%%%%%%%%%%%%%
+\usepackage{makeidx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Turchi preamble Beta %%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage{cleveref}
+\usepackage{bbm}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+%
+\DeclarePairedDelimiter{\fences}{(}{)}
+\newcommand{\V}{V_n\fences}
+\renewcommand{\Pr}{\operatorname{\mathbb{P}}\fences}
+\DeclareMathOperator{\Ex}{\mathbb{E} }
+\newcommand{\Exval}{\Ex\fences}
+%
+%\newcommand{\ls}{\leqslant}
+%\newcommand{\gr}{\grslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+%
+\newcommand*{\numberset}{\mathbb}
+\newcommand*{\N}{\numberset{N}}
+\newcommand*{\R}{\numberset{R}}
+\newcommand*\de{\mathop{}\!\mathrm{d}}
+\newcommand*{\rec}[1]{\frac{1}{#1}}
+\newcommand*{\indic}[1]{\mathbbm{1}_{#1}}
+\newcommand{\cdf}{\mathrm{F}}
+\newcommand{\B}{B}
+%
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\theta}{\vartheta}
+\renewcommand{\phi}{\varphi}
+\newcommand{\vball}{\kappa}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% smaller size section titles %%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\bfseries}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\endinput
+%%%%%%%%%%%%%%%%%%%%%%%% File ends %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% Make index %%%%%%%%%%%%%%%%%%%
+\makeindex
+\usepackage[nottoc]{tocbibind}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-----------------------------------------------------
+\linespread{1.15} %(changes linespacing. Default 1, one and a half 1.3, double 1.6)
+%-----------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%% Document starts %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Document starts %%%%%%%%%%%%
+\begin{document}
+\selectlanguage{greek}
+
+
+
+\begin{definition}
+Ένα  $A\subseteq\N$ ονομάζεται προσθετική βάση των φυσικών αριθμών αν υπάρχει φυσικός $s$ τέτοιος ώστε κάθε φυσικός αριθμός μπορεί να γραφτεί ως άθροισμα $s$ το πολύ στοιχείων του συνόλου $A$.
+\end{definition}
+
+Παραδείγματα:
+
+1.Το σύνολο των άρτιων φυσικών αριθμών δεν είναι προσθετική βάση του $\N$ καθώς ένας περιττος δεν μπορεί να φραγτεί ως άθροισμα άρτιων.
+
+2.Το σύνολο των περιττών φυσικών αριθμών ειναι προσθετική βάση των φυσικών για $s=2$.
+
+3.Το θεώρημα του $Lagrange$ λέει ότι το σύνολο των τέλειων τετραγώνων είναι προσθετική βάση του $\N$ για $s=4$ και η γενίκευση αυτού από τον $Hilbert$ λέει ότι το σύνολο των $k$-οστών δυνάμεων είναι προσθετική βάση του $\N$ για κάθε $k$.
+
+4.Το σύνολο των πρώτων αριθμών είναι προσθετική βάση του $\N$ όπως απέδειξε ο $Schnirelmann$.
+
+5.Το σύνολο $Β=\{2^k:k \in \N\cup\{0\}\}$ δεν είναι προσθετική βάση των φυσικών αριθμών καθώς κάθε αριθμός της μορφής $2^k-1$ είναι άθροισμα το λιγότερο $k$ αριθμών του συνόλου $B$. 
+
+\begin{proposition}
+Έστω $A=\{a_1,a_2,\dots\}$ ένα σύνολο φυσικών αριθμών με $a_n<a_{n+1}$ για κάθε $n$ στο $\N$. Αν υπάρχει πραγματικός αριθμός $b>1$ τέτοιος ώστε τελικά να ισχύει $\frac{a_{n+1}}{a_n} \geq b$ ,τότε το σύνολο $A$ δεν είναι προσθετική βάση των φυσικών αριθμών.
+\end{proposition}
+
+\begin{proof}
+
+Έστω πρός άτοπο ότι είναι προσθετική βάση των φυσικών. Από την υπόθεση υπαρχει $n_0$ τέτοιος ώστε για κάθε $n \geq n_0$ να ισχύει  $\frac{a_{n+1}}{a_n} \geq b$ και συνεπώς έχουμε $a_{n+1} \geq ba_n$ για κάθε $n \geq n_0$. Έστω $P_k=\{n\in\N:a_k \leq n <a_{k+1}\}$. Για $k\geq n_0$ έχουμε 
+$$|P_k|=a_{k+1}-a_k \geq (b-1)a_k \geq (b-1)ba_{k-1} \geq \dots
+\geq (b-1)b^{k-n_0}a_{n_0}=f(k)$$
+Καθώς το σύνολο $Α$ έχει υποτεθεί προσθετική βάση των φυσικών υπάρχει κάποιος $s$  τέτοιος ώστε κάθε φυσικός αριθμός μπορεί να γραφτεί ως άθροισμα $s$ το πολύ στοιχείων του συνόλου $A$.
+Άρα κάθε στοιχείο του συνόλου $P_k$ γράφεται ως άθροισμα $s$ το πολύ στοιχείων του $A$ και μάλιστα μικρότερων του $a_{k+1}$. Έπεται ότι
+$$|P_k| \leq \binom{k+s-1}{s}=\frac{(k+s-1)!}{(k-1)!s!}=\frac{(k+s-1)(k+s-2)\cdots(k+1)k}{s!} \leq \frac{(k+s)^s}{s!}=
+p(k)$$
+όπου $p(k)$ πολυώνυμο του $k$ βαθμού $s$.
+Παρατηρούμε ότι 
+$$\lim_{k \to \infty}\frac{f(k)}{p(k)}=+\infty$$
+και άρα μπορούμε να βρούμε $l$ τέτοιον ώστε
+$$|P_l| \leq p(l) < f(l) \leq |P_l|$$
+το οποίο είναι αντίφαση.
+
+\begin{proposition}
+Έστω ένα σύνολο $A=(a_n)_{n \in \N} \subseteq \N$ όπου $a_{n+1}>a_n$ για κάθε φυσικό αριθμό $n$. Αν το $A$ είναι προσθετική βάση του $\N$ τότε υπάρχει θετικός πραγματικός αριθμός $M$ τέτοιος ώστε 
+$$\bigg| \frac{a_{n+1}}{a_n}\bigg| \leq M$$
+για κάθε $n$ φυσικό.
+\end{proposition}
+
+\begin{proof}
+Καθώς το $A$ είναι προσθετική βάση υπάρχει φυσικός αριθμός $s$ τέτοιος ώστε $sA=\N$. Έστω προς άτοπο ότι η ακολουθία 
+$\frac{a_{n+1}}{a_n}$ δεν είναι φραγμένη. Έπεται ότι μπορούμε να βρούμε $n_0$ τέτοιον ώστε 
+$$\frac{a_{n_0+1}}{a_{n_0}}>s+1$$
+ή ισοδύναμα
+$$a_{n_0+1}>(s+1)a_{n_0}.$$
+Από υπόθεση υπάρχουν φυσικοί αριθμοί $n_1,n_2,\dots,n_s$ τέτοιοι ώστε 
+$$a_{n_0+1}-1=a_{n_1}+a_{n_2}+\cdots+a_{n_s}$$ 
+με $a_{n_i}\in A$ για κάθε $i=1,2,\dots,s$ και προφανώς $n_i\leq n_0$ για κάθε $i=1,2,\dots,s$. Έτσι έχουμε
+$$a_{n_0+1}=1+a_{n_1}+a_{n_2}+\cdots+a_{n_s} \leq 1+sa_{n_0}\leq (s+1)a_{n_0},$$ 
+άτοπο.
+
+
+
+
+\end{proof}
+
+
+
+
+\end{proof}
+
+\end{document}

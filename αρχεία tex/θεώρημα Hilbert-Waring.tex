@@ -1,0 +1,451 @@
+\documentclass[10pt,a4paper,leqno,twoside]{book}
+%----------------------------------------------------
+% Set the Languages you want to use. (The last one is set to be the default)
+\usepackage[greek,english]{babel}  %This one if you want Greek by default
+\usepackage[iso-8859-7]{inputenc}
+\usepackage[greek]{babel}
+\usepackage[iso-8859-7]{inputenc}
+\usepackage[active]{srcltx}
+
+\RequirePackage{latexsym} \RequirePackage{amsthm}
+\RequirePackage{amsmath}
+
+\RequirePackage{amssymb} \RequirePackage{makeidx}
+\pagestyle{myheadings}
+%\usepackage{grmath} %If you want Greek names for functions (Example \sin x will look like ημ x)
+%----------------------------------------------------
+% Greek Keyboard Shortcuts
+\newcommand {\gt}{\greektext} %Set the language from now on
+\newcommand {\lt}{\latintext}
+\newcommand {\tg}{\textgreek} %Next argument will be the language you set.
+\newcommand {\tl}{\textlatin}
+%----------------------------------------------------
+\newcommand{\Lip}{\mathrm{Lip}}
+\newcommand{\vol }{{\rm vol}}
+
+
+\newcommand{\bbar}{{\rm bar}}
+\newcommand{\Cov}{{\rm Cov}}
+\newcommand{\conv}{{\rm conv}}
+
+
+%%%hyperref%%%%
+\usepackage{hyperref}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%%%%diagrams%%%%
+\usepackage{tikz-cd}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing,positioning,calc}
+
+\usepackage{dsfont}
+\usepackage{wrapfig}
+
+%-----------------------------------------------------
+%Set the printable area
+%\pagestyle{headings}
+\topmargin=1in \oddsidemargin=0.3in \evensidemargin=0.3in
+\textwidth=5.3in \textheight=7in \footskip=0.7in \headsep=0.3in
+%-----------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%% Fancy Headers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{fancyhdr} \pagestyle{fancy}
+\renewcommand{\headrulewidth}{\iftopfloat{0pt}{0.6pt}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{} \fancyhead[LE]{\scshape\thepage\ $\cdot$\
+\nouppercase{\leftmark}}
+\fancyhead[RO]{\scshape\nouppercase{\rightmark}\ $\cdot$\
+\thepage}
+\fancypagestyle{plain}{%
+    \fancyhead{} %
+    \renewcommand{\headrulewidth}{0pt}}
+    \fancyhfoffset[L]{0.0001cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------
+%Enumerate lists the way I like!
+%\renewcommand{\labelenumi}{\roman{enumi)}}
+\setcounter{section}{0}
+%----------------------------------------------------
+
+%%%%%%%%% enumerate customization %%%%%%%%%%%%%%%%%
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{{\rm(\theenumi)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%% Clear empty pages from headers %%%%%%%%%%%
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}
+  \vspace*{\fill}
+  \begin{center}
+  %  \textlatin{This page intentionally contains only this sentence.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%bibliography in toc%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[nottoc]{tocbibind}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% subsection customization %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\thesubsection}{\thesection\alph{subsection}}              %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% enumerate customization %%%%%%%%%%%%%%%%%
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{{\rm(\theenumi)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%% Clear empty pages from headers %%%%%%%%%%%
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}
+  \vspace*{\fill}
+  \begin{center}
+  %  \textlatin{This page intentionally contains only this sentence.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% number equations as (*.*.*) %%%%%
+\numberwithin{equation}{section}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ls}{\leqslant}
+\newcommand{\gr}{\geqslant}
+\newcommand{\rank}{\mathop{\operator@font rank}}
+%\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\set}[1]{\left\lbrace#1\right\rbrace}
+%\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\tr}[1]{\trace\left(#1\right)}
+\newcommand{\dt}[1]{\determinant\left(#1\right)}
+\newcommand{\diag}[1]{\diagonal\left(#1\right)}
+\newcommand{\prend}{$\quad \hfill \Box$}
+\newcommand{\stend}{$\quad\hfill \diamond$ \medskip}
+\newcommand{\e}{{\varepsilon}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%% New theorems %%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{Θεώρημα}[section]
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{application}[theorem]{Εφαρμογή}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{exercise}[theorem]{’σκηση}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{examples}[theorem]{Παραδείγματα}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem{remark}[theorem]{Παρατήρηση}
+\newtheorem{note}[theorem]{Σημείωση}
+\newtheorem{remarks}[theorem]{Παρατηρήσεις}
+\newtheorem{claim}[theorem]{Ισχυρισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem{comment}[theorem]{Σχόλιο}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{dsfont}
+\usepackage{mathrsfs} %%kalligrafika
+
+%%%%%%%%%%%%%%xrwmata%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+%%%hyperref%%%%
+\usepackage{hyperref}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.3mm}}
+
+%%%%%%%%eikones%%%%%%%%%%%%%%%
+%\usepackage{wrapfig}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{sidecap}
+
+%%%%%%%%%%%%%epikefalides%%%%%%%%%%%%%%
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\bfseries\Huge}
+  {\filright\MakeUppercase{\Large\chaptertitlename} \Huge\thechapter}
+  {1ex}
+  {\titlerule\vspace{1ex}\filleft}
+  [\vspace{1ex}\titlerule]
+
+%%%%%%%%%%%%%%%%%index%%%%%%%%%%%%%%%%%%%%
+\usepackage{makeidx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Turchi preamble Beta %%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage{cleveref}
+\usepackage{bbm}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+%
+\DeclarePairedDelimiter{\fences}{(}{)}
+\newcommand{\V}{V_n\fences}
+\renewcommand{\Pr}{\operatorname{\mathbb{P}}\fences}
+\DeclareMathOperator{\Ex}{\mathbb{E} }
+\newcommand{\Exval}{\Ex\fences}
+%
+%\newcommand{\ls}{\leqslant}
+%\newcommand{\gr}{\grslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+%
+\newcommand*{\numberset}{\mathbb}
+\newcommand*{\N}{\numberset{N}}
+\newcommand*{\R}{\numberset{R}}
+\newcommand*\de{\mathop{}\!\mathrm{d}}
+\newcommand*{\rec}[1]{\frac{1}{#1}}
+\newcommand*{\indic}[1]{\mathbbm{1}_{#1}}
+\newcommand{\cdf}{\mathrm{F}}
+\newcommand{\B}{B}
+%
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\theta}{\vartheta}
+\renewcommand{\phi}{\varphi}
+\newcommand{\vball}{\kappa}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% smaller size section titles %%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\bfseries}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\endinput
+%%%%%%%%%%%%%%%%%%%%%%%% File ends %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% Make index %%%%%%%%%%%%%%%%%%%
+\makeindex
+\usepackage[nottoc]{tocbibind}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-----------------------------------------------------
+\linespread{1.15} %(changes linespacing. Default 1, one and a half 1.3, double 1.6)
+%-----------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%% Document starts %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Document starts %%%%%%%%%%%%
+\begin{document}
+\selectlanguage{greek}
+\begin{theorem}[\tl{Hilbert-Waring}]\label{th:3-6}Το σύνολο των μη αρνητικών $k$-δυνάμεων είναι βάση πεπερασμένης τάξης για κάθε
+θετικό ακέραιο $k$.
+\end{theorem}
+
+
+\begin{proof}
+Με επαγωγή ως προς $k$. Η περίπτωση $k=1$ είναι προφανής, και η περίπτωση $k=2$ είναι το Θεώρημα ~\ref{th:1.1} του 
+\tl{Lagrange}. Έστω λοιπόν $k\geq 3$, και υποθέτουμε ότι
+το σύνολο των $\ell$-δυνάμεων έιναι βάση πεπερασμένης τάξης για κάθε $\ell<k$. Από το Θεώρημα ~\ref{th:3.5},
+το σύνολο των $2\ell$-δυνάμεων είναι βάση πεπερασμένης τάξης για $\ell=1,2,\dots,k-1$. Έτσι, υπάρχει ένας ακέραιος $r$ τέτοιος ώστε, για κάθε μη αρνητικό ακέραιο
+$n$ και για $\ell=1,2,\dots,k-1$, η εξίσωση
+$$n=x_1^{2\ell}+\cdots+x_r^{2\ell}$$
+έχει λύση στους μη αρνητικούς ακεραίους $x_{1,\ell},\dots,x_{r,\ell}$. (Για παράδειγμα μπορούμε να θέσουμε $r=\max\{g(2\ell):\ell=1,2,\dots,k-1\}$.)
+
+Έστω $T\geq 2$. Διαλέγουμε ακέραιους $C_1,\dots,C_{k-1}$
+τέτοιους ώστε
+$$0\leq C_{\ell}<T$$ για $\ell=1,2,\dots,k-1$.
+Υπάρχουν μη αρνητικοί ακέραιοι $x_{j,\ell}$ για $j=1,\dots,r$ και $\ell=1,\dots,k-1$ τέτοιοι ώστε 
+\begin{equation}\label{eq:3.10} x_{1,\ell}^{2\ell}+\cdots+x_{r,\ell}^{2\ell}=C_{k-\ell}. \end{equation}
+Τότε 
+$$x_{j,\ell}^2 \leq \sum_{j=1}^{r}x_{j,\ell}^{2i} \leq C_{k-\ell} < T$$
+για $j=1,\dots,r$,$\ell=1,\dots,k-1$, και $i=1,\dots,\ell$. Από το λήμμα ~\ref{lem:3.10}, υπάρχουν θετικοί ακέραιοι $B_{i,\ell}$ που εξαρτώνται μόνο από τους $k$ και $\ell$ ώστε να ισχύει
+\begin{equation}\label{eq:3.11} x_{j,\ell}^{2\ell}T^{k-\ell}+\sum_{i=0}^{\ell-1}B_{i,\ell}x_{j,\ell}^{2i}T^{k-i}=\sum(2k)=\sum(k) \end{equation}
+Αθροίζοντας την ~\eqref{eq:3.11} για $j=1,\dots,r$ 
+και χρησιμοποιώντας την ~\eqref{eq:3.10}, έχουμε
+\begin{align*}
+& C_{k-\ell}T^{k-\ell}+\sum_{i=0}^{\ell-1}B_{i,\ell}T^{k-i}\sum_{j=1}^{r}x_{j,\ell}^{2i}\\
+& = C_{k-\ell}T^{k-\ell}+T^{k-\ell+1}\sum_{i=0}^{\ell-1}B_{i,\ell}T^{\ell-1-i}\sum_{j=1}^{r}x_{j,\ell}^{2i}\\
+& = C_{k-\ell}T^{k-\ell}+D_{k-\ell+1}T^{k-\ell+1}\\
+& = \sum(k),
+\end{align*}
+όπου 
+$$D_{k-\ell+1} = \sum_{i=0}^{\ell-1}B_{i,\ell}T^{\ell-1-i}\sum_{j=1}^{r}x_{j,\ell}^{2i}$$
+για $\ell=1,\dots,k-1$.
+Ο ακέραιος $D_{k-\ell+1}$ καθορίζεται πλήρως από τους 
+$k,\ell,T$ και $C_{k-\ell}$ και είναι ανεξάρτητος του
+$C_{k-i}$ για $i\neq \ell$.
+Έστω $$B^{*}= \max\{B_{i,\ell}:\ell=1,\dots,k-1 , i=0,1,\dots,\ell-1\}.$$
+Έπεται ότι
+\begin{align*}
+0 &\leq  C_{k-\ell}T^{k-\ell}+D_{k-\ell+1}T^{k-\ell+1}\\
+& = C_{k-\ell}T^{k-\ell}+ \sum_{i=0}^{\ell-1}B_{i,\ell}T^{k-i}\sum_{j=1}^{r}x_{j,\ell}^{2i}\\
+& < B^{*}\bigg(T^{k-\ell+1}+rT^{k}+\sum_{i=1}^{\ell-1}T^{k-i+1}\bigg)\\
+& = B^{*}\bigg(rT^{k}+T^{k-\ell+1}\sum_{i=1}^{\ell-1}T^{i}\bigg)\\
+& < B^{*}\Big(rT^{k}+\frac{T^{k+1}}{T-1}\Big)\\
+& \leq (r+2)B^{*}T^{k},
+\end{align*}
+όπου χρησιμοποιήθηκαν τα εξής: 
+$$C_{k-\ell}T^{k-\ell}<TT^{k-\ell}=T^{k-\ell+1}\leq B^{*}T^{k-\ell+1}$$ καθώς $C_{k-\ell}<T$ και $B^{*}\geq 1$,
+$$\sum_{i=0}^{\ell-1}B_{i,\ell}T^{k-i}\sum_{j=1}^{r}x_{j,\ell}^{2i}= B_{0,\ell}T^{k}\sum_{j=1}^{r}1 + \sum_{i=1}^{\ell-1}B_{i,\ell}T^{k-i}\sum_{j=1}^{r}x_{j,\ell}^{2i}
+\leq B^{*}rT^{k}+B^{*}\sum_{i=1}^{\ell-1}T^{k-i+1}$$ αφού $\sum_{j=1}^{r}x_{j,\ell}^{2i} < T$ και τέλος 
+$T/(T-1) \leq 2$ όταν $Τ \geq 2$.
+Έστω $$C_k=D_1=0.$$
+Έχουμε
+$$\sum_{\ell=1}^{k-1}(C_{k-\ell}T^{k-\ell}+D_{k-\ell+1}T^{k-\ell+1})=\sum_{\ell=1}^{k}(C_{\ell}+D_{\ell})T^{\ell}=\sum(k)$$
+και 
+$$0 \leq \sum_{\ell=1}^{k}(C_{\ell}+D_{\ell})T^{\ell}
+<(k-1)(r+2)B^{*}T^k=E^{*}T^k,$$
+όπου ο ακέραιος 
+$$E^{*}=(k-1)(r+2)B^{*}$$
+καθορίζεται από τον $k$ και είναι ανεξάρτητος του $T$. 
+Αν διαλέξουμε $$T \geq E^{*},$$
+έπεται 
+$$0 \leq \sum_{\ell=1}^{k}(C_{\ell}+D_{\ell})T^{\ell}
+< Ε^{*}T < T^{k+1},$$
+και έτσι ο $ \sum_{\ell=1}^{k}(C_{\ell}+D_{\ell})T^{\ell}$ μπορεί να γραφεί στην μορφή
+\begin{equation}\label{eq:3.12}
+\sum_{\ell=1}^{k}(C_{\ell}+D_{\ell})T^{\ell} =
+E_1T+\cdots+E_{k-1}T^{k-1}+E_kT^k,\end{equation}
+με $$0 \leq E_i<T$$ για $i=1,\dots,k-1$ και $$0 \leq E_k<E^{*}$$
+Με αυτόν τον τρόπο, δείξαμε ότι για κάθε επιλογή μιας 
+$(k-1)$-άδας $(C_1,\dots,C_{k-1})$ ακεραίων ανάμεσα στους $\{0,1,\dots,T-1\}$ καθορίζει μια άλλη $(k-1)$-άδα
+$(E_1,\dots,E_{k-1})$ ακεραίων ανάμεσα στους $\{0,1,\dots,T-1\}$. Θα αποδείξουμε ότι αυτή η απεικόνιση είναι $1-1$ και επί.
+
+Αρκεί να αποδείξουμε ότι είναι επί. Προς τούτο έστω 
+$(E_1,\dots,E_{k-1})$ μια $(k-1)$-άδα ακεραίων ανάμεσα στους $\{0,1,\dots,T-1\}$. Υπάρχει ένας απλός αλγόριθμος
+που παράγει ακεραίους $C_1,C_2,\dots,C_{k-1}\in \{0,1,\dots,T-1\}$ τέτοιους ώστε η ~\eqref{eq:3.12} ικανοποιείται για κάποιον μη αρνητικό ακέραιο
+$E_k<E^{*}$. Έστω $C_1=E_1$ και $I_2=0$. Καθώς 
+$D_1=0$, έχουμε 
+$$(C_1+D_1)T=E_1T+I_2T^2.$$
+Ο ακέραιος $C_1$ καθορίζει τον ακέραιο $D_2$. Διαλέγουμε στην συνέχεια  $C_2\in \{0,1,\dots,T-1\}$ τέτοιον ώστε
+$$C_2+D_2+I_2 \equiv E_2(modT).$$
+Συνεπώς 
+$$C_2+D_2+I_2=E_2+I_3T$$
+για κάποιον ακέραιο $I_3$, και
+$$\sum_{\ell=1}^{2}(C_{\ell}+D_{\ell})T^{\ell}=\sum_{\ell=1}^{2}E_{\ell}T^{\ell}+I_3T^3.$$
+Aκριβώς με τον ίδιο τρόπο ο ακέραιος $C_2$ καθορίζει τον 
+$D_3$. Όμοια διαλέγουμε $C_3\in \{0,1,\dots,T-1\}$ τέτοιον ώστε
+$$C_3+D_3+I_3 \equiv E_3(modT)$$ και τότε
+$$C_3+D_3+I_3=E_3+I_4T$$
+για κάποιον ακέραιο $I_4$, και
+$$\sum_{\ell=1}^{3}(C_{\ell}+D_{\ell})T^{\ell}=\sum_{\ell=1}^{3}E_{\ell}T^{\ell}+I_4T^4.$$
+Έστω $2 \leq j \leq k-1$, και ας υποθέσουμε ότι έχουμε κατασκευάσει ακέραιους $I_{j}$ και 
+$$C_1,\dots.C_{j-1}\in \{0,1,\dots,T-1\}$$ τέτοιους ώστε
+$$\sum_{\ell=1}^{j-1}(C_{\ell}+D_{\ell})T^{\ell}=\sum_{\ell=1}^{j-1}E_{\ell}T^{\ell}+I_{j}T^{j}.$$
+Υπάρχει ένας μοναδικός ακέραιος $C_j\in \{0,1,\dots,T-1\}$ τέτοιος ώστε
+$$C_j+D_j+I_j \equiv E_j(modT)$$
+Έτσι 
+$$C_j+D_j+I_j=E_j+I_{j+1}T$$
+για κάποιον ακέραιο $I_{j+1}$, και
+$$\sum_{\ell=1}^{j}(C_{\ell}+D_{\ell})T^{\ell}=\sum_{\ell=1}^{j}E_{\ell}T^{\ell}+I_{j+1}T^{j+1}.$$
+Επαγωγικά, η διαδικασία αυτή παράγει μια μοναδική ακολουθία ακεραίων $C_1,C_2,\dots,C_{k-1}\in \{0,1,\dots,T-1\}$ τέτοια ώστε
+$$\sum_{\ell=1}^{k-1}(C_{\ell}+D_{\ell})T^{\ell}=\sum_{\ell=1}^{k-1}E_{\ell}T^{\ell}+I_{k}T^{k}.$$
+Αφού $C_k=0$ και ο ακέραιος $C_{k-1}$ καθορίζει τον 
+$D_k$, προκύπτει ότι
+$$ 0 \leq \sum_{\ell=1}^{k}(C_{\ell}+D_{\ell})T^{\ell}
+=\sum_{\ell=1}^{k-1}E_{\ell}T^{\ell}+(D_{k}+I_{k})T^{k}
+=\sum_{\ell=1}^{k}E_{\ell}T^{\ell} <E^{*}T^{k},$$
+όπου $D_k+I_k=E_k$. Καθώς $$0 \leq \sum_{\ell=1}^{k-1}E_{\ell}T^{\ell}<T^k,$$ και $$0 \leq E_k<E^{*}$$ προκύπτει ότι
+\begin{equation}\label{eq:3.13}\sum_{\ell=1}^{k-1}E_{\ell}T^{\ell}+E^{*}T^k< (1+E^{*})T^k \leq 2E^{*}T^k.
+\end{equation}
+Προηγουμένως δείξαμε ότι 
+$$\sum_{\ell=1}^{k}E_{\ell}T^{\ell}=\sum_{\ell=1}^{k}(C_{\ell}+D_{\ell})T^{\ell}=\sum(k).$$
+Ο $E^{*}$ εξαρτάται μόνο από τον $k$ και όχι από τον $T$
+, και έτσι συμπεραίνουμε ότι 
+$$(E^{*}-E_k)T^K=\sum(k),$$
+και συνεπώς
+\begin{equation}\label{eq:3.14}\sum_{\ell=1}^{k-1}E_{\ell}T^{\ell}+E^{*}T^k=\sum(k)
+\end{equation}
+για κάθε $(k-1)$-άδα ακεραίων $(E_1,\dots,E_{k-1})$  ανάμεσα στους $\{0,1,\dots,T-1\}$. Καθώς η 
+$\bigg(\frac{T+1}{T}\bigg)^{k}$ συγκλίνει στο $1$ καθώς $T$ τείνει στο άπειρο μπορούμε να διαλέξουμε ακέραιο
+$T_0>5E^{*}$ με 
+$$4(T+1)^{k} \leq 5T^{k}$$
+για κάθε $T \geq T_0$.
+Θα δείξουμε ότι εάν $T \geq T_0$ και εάν $(F_0,F_1,\dots,F_{k-1})$ είναι μια $k$-άδα ακεραίων στο 
+$\{0,1,\dots,T-1\}$, τότε 
+$$F_0+F_1T+\cdots+F_{k-1}T^{k-1}+4E^{*}T^k=\sum(k).$$
+Θα χρησιμοποιήσουμε το ακόλουθο τέχνασμα. Έστω 
+$E'_0 \in \{0,1,\dots,T-1\}.$ Εφαρμόζοντας την
+~\eqref{eq:3.13} με $T+1$ στη θέση του $T$, παίρνουμε
+\begin{equation}\label{eq:3.15}
+E'_0(T+1)+E^{*}(T+1)^k<(T+1)^2+E^{*}(T+1)^k \leq (1+E^{*})(T+1)^k \leq 2E^{*}(T+1)^k.
+\end{equation}
+Ακόμα, εφαρμόζοντας την ~\eqref{eq:3.14} με $T+1$ στην θέση του $T$ , έχουμε
+\begin{equation}\label{eq:3.16}
+E'_0(T+1)+E^{*}(T+1)^k=\sum(k)
+\end{equation}
+Προσθέτοντας τώρα τις ~\eqref{eq:3.14} και 
+~\eqref{eq:3.16}, βλέπουμε ότι για κάθε επιλογή $k$ το πλήθος ακεραίων 
+$$E'_0,E_1,\dots,E_{k-1}\in \{0,1,\dots,T-1\},$$
+έχουμε
+\begin{align*}
+F^{*}&= \Big(E_1T+\cdots+E_{k-1}T^{k-1}+E^{*}T^k\Big) 
++\Big(E'_0(T+1)+E^{*}(T+1)^k\Big)\\
+&= (E'_0+E^{*})+(E_1+E'_0+kE^{*})T +\sum_{\ell=2}^{k-1}\bigg(E_{\ell}+\binom{k}{\ell}E^{*}\bigg)T^{\ell}+2E^{*}T^k\\
+&= \sum(k).
+\end{align*}
+Επιπλέον, από τις ~\eqref{eq:3.13} και ~\eqref{eq:3.15} προκύπτει ότι
+$$0 \leq F^{*}< 2E^{*}T^k+2E^{*}(T+1)^k<4E^{*}(T+1)^k \leq 5E^{*}T^k<T^{k+1}$$ 
+καθώς $4(T+1)^{k} \leq 5T^{k}$ και $T \geq T_0>5E^{*}$.
+Δοθέντων $k$ ακεραίων μπορούμε να εφαρμόσουμε πάλι τον αλγόριθμο για να βρούμε ακεραίους $F_k$ και
+$$E'_0,,E_1,\dots,E_{k-1}\in \{0,1,\dots,T-1\},$$
+τέτοιους ώστε
+\begin{align*}
+& F_0+F_1T+\cdots+F_{k-1}T^{k-1}+F_{k}T^k\\
+&= E_1T+\cdots+E_{k-1}T^{k-1}+E^{*}T^k 
++E'_0(T+1)+E^{*}(T+1)^k\\
+&= \sum(k),
+\end{align*}
+όπου ο $F_k$ είναι ένας ακέραιος που ικανοποιεί την ανισότητα 
+$$0 \leq F_k < 5E^{*}.$$
+Μετά και την πρόσθεση του $(5E^{*}-F_k)T^k=\sum(k)$, έχουμε ότι 
+$$ F_0+F_1T+\cdots+F_{k-1}T^{k-1}+5Ε^{*}T^k=\sum(k)$$
+για όλα τα $T \geq T_0$ και για κάθε επιλογή 
+$F_0,F_1,\dots,F_{k-1}\in \{0,1,\dots,T-1\}$. Αυτό αποδεικνύει ότι $n=\sum(k)$ αν $T \geq T_0$ και 
+$$5E^{*}T^k \leq n < (5E^{*}+1)T^k.$$
+Υπάρχει ένας ακέραιος $T_1 \geq T_0$ με 
+$$5E^{*}(T+1)^k  < (5E^{*}+1)T^k$$
+για κάθε $T \geq T_1$. Έτσι δείξαμε ότι $n=\sum(k)$
+αν $T \geq T_1$ και 
+\begin{equation}\label{eq:3.17}
+5E^{*}T^k \leq n < 5E^{*}(T+1)^k.
+\end{equation}
+Καθώς κάθε ακέραιος $n \geq 5E^{*}T_{1}^k$ ικανοποιεί την ανισότητα ~\eqref{eq:3.17} για κάποιον $T \geq T_1$, συμπεραίνουμε ότι 
+$$n=\sum(k)$$
+για όλα τα $n$ με $n \geq 5E^{*}T_{1}^k$.
+Το τελικό συμπέρασμα τώρα προκύπτει άμεσα από το λήμμα 3.9.
+
+
+
+
+
+
+
+
+
+
+
+\end{proof}
+
+\end{document}

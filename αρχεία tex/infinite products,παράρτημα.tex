@@ -1,0 +1,347 @@
+\documentclass[10pt,a4paper,leqno,twoside]{book}
+%----------------------------------------------------
+% Set the Languages you want to use. (The last one is set to be the default)
+\usepackage[greek,english]{babel}  %This one if you want Greek by default
+\usepackage[iso-8859-7]{inputenc}
+\usepackage[greek]{babel}
+\usepackage[iso-8859-7]{inputenc}
+\usepackage[active]{srcltx}
+
+\RequirePackage{latexsym} \RequirePackage{amsthm}
+\RequirePackage{amsmath}
+
+\RequirePackage{amssymb} \RequirePackage{makeidx}
+\pagestyle{myheadings}
+%\usepackage{grmath} %If you want Greek names for functions (Example \sin x will look like ημ x)
+%----------------------------------------------------
+% Greek Keyboard Shortcuts
+\newcommand {\gt}{\greektext} %Set the language from now on
+\newcommand {\lt}{\latintext}
+\newcommand {\tg}{\textgreek} %Next argument will be the language you set.
+\newcommand {\tl}{\textlatin}
+%----------------------------------------------------
+\newcommand{\Lip}{\mathrm{Lip}}
+\newcommand{\vol }{{\rm vol}}
+
+
+\newcommand{\bbar}{{\rm bar}}
+\newcommand{\Cov}{{\rm Cov}}
+\newcommand{\conv}{{\rm conv}}
+
+
+%%%hyperref%%%%
+\usepackage{hyperref}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%%%%diagrams%%%%
+\usepackage{tikz-cd}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing,positioning,calc}
+
+\usepackage{dsfont}
+\usepackage{wrapfig}
+
+%-----------------------------------------------------
+%Set the printable area
+%\pagestyle{headings}
+\topmargin=1in \oddsidemargin=0.3in \evensidemargin=0.3in
+\textwidth=5.3in \textheight=7in \footskip=0.7in \headsep=0.3in
+%-----------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%% Fancy Headers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{fancyhdr} \pagestyle{fancy}
+\renewcommand{\headrulewidth}{\iftopfloat{0pt}{0.6pt}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{} \fancyhead[LE]{\scshape\thepage\ $\cdot$\
+\nouppercase{\leftmark}}
+\fancyhead[RO]{\scshape\nouppercase{\rightmark}\ $\cdot$\
+\thepage}
+\fancypagestyle{plain}{%
+    \fancyhead{} %
+    \renewcommand{\headrulewidth}{0pt}}
+    \fancyhfoffset[L]{0.0001cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------
+%Enumerate lists the way I like!
+%\renewcommand{\labelenumi}{\roman{enumi)}}
+\setcounter{section}{0}
+%----------------------------------------------------
+
+%%%%%%%%% enumerate customization %%%%%%%%%%%%%%%%%
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{{\rm(\theenumi)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%% Clear empty pages from headers %%%%%%%%%%%
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}
+  \vspace*{\fill}
+  \begin{center}
+  %  \textlatin{This page intentionally contains only this sentence.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%bibliography in toc%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[nottoc]{tocbibind}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% subsection customization %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\thesubsection}{\thesection\alph{subsection}}              %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% enumerate customization %%%%%%%%%%%%%%%%%
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{{\rm(\theenumi)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%% Clear empty pages from headers %%%%%%%%%%%
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}
+  \vspace*{\fill}
+  \begin{center}
+  %  \textlatin{This page intentionally contains only this sentence.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% number equations as (*.*.*) %%%%%
+\numberwithin{equation}{section}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ls}{\leqslant}
+\newcommand{\gr}{\geqslant}
+\newcommand{\rank}{\mathop{\operator@font rank}}
+%\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\set}[1]{\left\lbrace#1\right\rbrace}
+%\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\tr}[1]{\trace\left(#1\right)}
+\newcommand{\dt}[1]{\determinant\left(#1\right)}
+\newcommand{\diag}[1]{\diagonal\left(#1\right)}
+\newcommand{\prend}{$\quad \hfill \Box$}
+\newcommand{\stend}{$\quad\hfill \diamond$ \medskip}
+\newcommand{\e}{{\varepsilon}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%% New theorems %%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{Θεώρημα}[section]
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{application}[theorem]{Εφαρμογή}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{exercise}[theorem]{’σκηση}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{examples}[theorem]{Παραδείγματα}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem{remark}[theorem]{Παρατήρηση}
+\newtheorem{note}[theorem]{Σημείωση}
+\newtheorem{remarks}[theorem]{Παρατηρήσεις}
+\newtheorem{claim}[theorem]{Ισχυρισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem{comment}[theorem]{Σχόλιο}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{dsfont}
+\usepackage{mathrsfs} %%kalligrafika
+
+%%%%%%%%%%%%%%xrwmata%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+%%%hyperref%%%%
+\usepackage{hyperref}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.3mm}}
+
+%%%%%%%%eikones%%%%%%%%%%%%%%%
+%\usepackage{wrapfig}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{sidecap}
+
+%%%%%%%%%%%%%epikefalides%%%%%%%%%%%%%%
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\bfseries\Huge}
+  {\filright\MakeUppercase{\Large\chaptertitlename} \Huge\thechapter}
+  {1ex}
+  {\titlerule\vspace{1ex}\filleft}
+  [\vspace{1ex}\titlerule]
+
+%%%%%%%%%%%%%%%%%index%%%%%%%%%%%%%%%%%%%%
+\usepackage{makeidx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Turchi preamble Beta %%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage{cleveref}
+\usepackage{bbm}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+%
+\DeclarePairedDelimiter{\fences}{(}{)}
+\newcommand{\V}{V_n\fences}
+\renewcommand{\Pr}{\operatorname{\mathbb{P}}\fences}
+\DeclareMathOperator{\Ex}{\mathbb{E} }
+\newcommand{\Exval}{\Ex\fences}
+%
+%\newcommand{\ls}{\leqslant}
+%\newcommand{\gr}{\grslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+%
+\newcommand*{\numberset}{\mathbb}
+\newcommand*{\N}{\numberset{N}}
+\newcommand*{\R}{\numberset{R}}
+\newcommand*\de{\mathop{}\!\mathrm{d}}
+\newcommand*{\rec}[1]{\frac{1}{#1}}
+\newcommand*{\indic}[1]{\mathbbm{1}_{#1}}
+\newcommand{\cdf}{\mathrm{F}}
+\newcommand{\B}{B}
+%
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\theta}{\vartheta}
+\renewcommand{\phi}{\varphi}
+\newcommand{\vball}{\kappa}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% smaller size section titles %%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\bfseries}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\endinput
+%%%%%%%%%%%%%%%%%%%%%%%% File ends %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% Make index %%%%%%%%%%%%%%%%%%%
+\makeindex
+\usepackage[nottoc]{tocbibind}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-----------------------------------------------------
+\linespread{1.15} %(changes linespacing. Default 1, one and a half 1.3, double 1.6)
+%-----------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%% Document starts %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Document starts %%%%%%%%%%%%
+\begin{document}
+\selectlanguage{greek}
+\section{Άπειρα γινόμενα}
+
+Αυτή είναι μια σύντομη εισαγωγή στα άπειρα γινόμενα και τα γινόμενα \tl{Euler}.
+
+Έστω $\alpha_1,\alpha_2,\dots,\alpha_n,\dots$ μια ακολουθία μιγαδικών αριθμών. To \textit{$n$-οστό μερικό γινόμενο} αυτής της ακολουθίας είναι ο αριθμός
+$$p_n=\alpha_1\cdots\alpha_n=\prod_{k=1}^{n}\alpha_k$$ 
+Αν το $n$ τείνει στο άπειρο, η ακολουθία των $n$-οστών μερικών γινομένων συγκλίνει σε ένα όριο $\alpha$ διαφορετικό του μηδενός, τότε λέμε ότι το άπειρο γινόμενο $\prod_{k=1}^{n}\alpha_k$ συγκλίνει και 
+$$\prod_{k=1}^{\infty}\alpha_k=\lim_{n \to \infty}p_n=\lim_{n \to \infty}\prod_{k=1}^{n}\alpha_k=\alpha$$
+Λέμε ότι το άπειρο γινόμενο \textit{αποκλίνει} αν το όριο της ακολουθίας των μερικών γινομένων δεν υπάρχει ή υπάρχει αλλά είναι ίσο με μηδέν. Στην τελευταία περίπτωση λέμε ότι το άπειρο γινόμενο \textit{αποκλίνει στο μηδέν.}
+
+Έστω $$\alpha_k=1+a_k.$$ Αν το άπειρο γινόμενο $\prod_{k=1}^{\infty}(a_k+1)$ αποκλίνει ,τότε $a_k\neq -1$ για όλα τα $k$. Επιπλέον,
+$$\lim_{k \to \infty}(1+a_k)=\lim_{k \to \infty}\frac{p_k}{p_{k-1}}=1,$$
+και έτσι
+$$\lim_{k \to \infty}a_k=0.$$
+
+\begin{theorem}
+Έστω $a_k\geq 0$ για όλα τα $k$ . Το άπειρο γινόμενο 
+$\prod_{k=1}^{\infty}(a_k+1)$ συγκλίνει αν και μόνο αν η σειρά $\sum_{k=1}^{\infty}a_k$ συγκλίνει.
+\end{theorem}
+
+\begin{proof}
+Έστω $s_n=\sum_{k=1}^{n}a_k$  το $n$-οστό μερικό άθροισμα και έστω $p_n=\prod_{k=1}^{n}(a_k+1)$ το $n$-οστό μερικό γινόμενο. Καθώς $a_n\geq 0$, οι ακολουθίες $\{s_n\}$ και $\{p_n\}$ είναι και οι δύο αύξουσες ,και $p_n\geq 1$ για κάθε $n$. Επειδή
+$$1+x\leq e^x$$
+για όλους τους πραγματικούς $x$, προκύπτει 
+$$0 \leq \sum_{k=1}^{n}<\prod_{k=1}^{n}(1+a_k)\leq \prod_{k=1}^{n}e^{a_k}=e^{\sum_{k=1}^{n}a_k},$$ και συνεπώς
+$$0\leq s_n < p_n\leq e^{s_n}.$$
+Η ανισότητα αυτή δείχνει ότι η ακολουθία $\{p_n\}$ συγκλίνει αν και μόνο αν η ακολουθία $\{s_n\}$ συγκλίνει. Αυτό ολοκληρώνρι και την απόδειξη.
+\end{proof}
+
+Λέμε ότι το άπειρο γινόμενο $\prod_{k=1}^{\infty}(1+a_k)$ \textit{συγκλίνει απόλυτα} αν το άπειρο γινόμενο 
+$$\prod_{k=1}^{\infty}(1+|a_k|)$$ συκλίνει.
+
+\begin{theorem}
+Αν το άπειρο γινόμενο  $\prod_{k=1}^{\infty}(1+a_k)$ συγκλίνει απόλυτα, τότε συγκλίνει.
+\end{theorem}
+
+\begin{proof}
+Έστω $$p_n=\prod_{k=1}^{n}(1+a_k)$$ και έστω $$P_n=\prod_{k=1}^{n}(1+|a_k|).$$
+Αν το άπειρο γινόμενο συγκλίνει απόλυτα, τίτε η ακολουθία των μερικών γινομένων ${P_n}$ συγκλίνει και συνεπώς η σειρά
+$$\sum_{n=2}^{\infty}(P_n-P_{n-1})$$ συγκλίνει. Καθώς
+$$0\leq |p_n-p_{n-1}|=|a_np_{n-1}|=\bigg|a_n\prod_{k=1}^{n-1}(1+a_k)\bigg|\leq |a_n|\prod_{k=1}^{n-1}(1+|a_k|)=|a_n|P_{n-1}=P_n-P_{n-1},$$ 
+προκύπτει ότι 
+$$\sum_{k=2}^{\infty}|p_n-p_{n-1}|$$ συγκλίνει, και άρα 
+$$\sum_{k=2}^{\infty}(p_n-p_{n-1})=\lim_{n \to \infty}\sum_{k=2}^{n}(p_k-p_{k-1})=\lim_{n \to \infty}(p_n-p_1)$$ συγκλίνει. Έτσι, η ακολουθία των μερικών γινομένων $\{p_n\}$ συγκλίνει σε κάποιο πεπερασμένο όριο.
+
+Πρέπει να αποδείξουμε ότι το όριο αυτό είναι διάφορο του μηδενός. Αφού το άπειρο γινόμενο $\prod_{k=1}^{\infty}(1+a_k)$ συγκλίνει απόλυτα, έπεται από το προηγούμενο θεώρημα ότι η σειρά $\sum_{k=1}^{\infty}|a_k|$ συγκλίνει, και έτσι οι αριθμοί $a_k$ συγκλίνουν στο $0$. Συνεπώς, για όλους τους αρκετά μεγάλους $k$, $$|1+a_k|\geq 1/2$$ και $$\bigg|\frac{-a_k}{1+a_k}\bigg|\leq 2|a_k|.$$
+Προκύπτει με αυτόν τον τρόπο ότι η σειρά 
+$$\sum_{k=1}^{\infty}\bigg|\frac{-a_k}{1+a_k}\bigg|$$
+συγκλίνει και άρα το άπειρο γινόμενο 
+$$\prod_{k=1}^{\infty}\bigg(1-\frac{a_k}{1+a_k}\bigg)$$
+συγκλίνει απόλυτα. Από αυτό έπεται ότι η ακολουθία των $n$-οστών μερικών γινομένων 
+$$\prod_{k=1}^{n}\bigg(1-\frac{a_k}{1+a_k}\bigg)=\prod_{k=1}^{n}\frac{1}{1+a_k}=\frac{1}{\prod_{k=1}^{n}(1+a_k)}=\frac{1}{p_n}$$ συγκλίνει σε ένα πεπερασμένο όριο και άρα το όριο της ακολουθίας $\{p_n\}$ είναι μη μηδενικό. Συμπεραίνουμε λοιπόν ότι το άπειρο γινόμενο $\prod_{k=1}^{\infty}(1+a_k)$ συγκλίνει.
+\end{proof}
+
+Ένα \textit{γινόμενο \tl{euler}} είναι ένα άπειρο γινόμενο που εκτείνεται στους πρώτους αριθμούς. Συμβολίζουμε τα αθροίσματα και τα γινόμενα πάνω στους πρώτους με $\sum_p$ και $\prod_p$ , αντίστοιχα.
+
+\begin{theorem}
+Έστω $f(n)$ μια πολλαπλασιαστική συνάρτηση που δεν είναι ταυτοτικά η μηδενική. Αν η σειρά $$\sum_{n=1}^{\infty}f(n)$$ συγκλίνει απόλυτα, τότε
+$$\sum_{n=1}^{\infty}f(n)=\prod_{p}\big(1+f(p)+f(p^2)+\cdots\big)=\prod_{p}\bigg(1+\sum_{k=1}^{\infty}f(p^k)\bigg).$$
+Αν η $f(n)$ είναι πλήρως πολλαπλασιαστική, τότε
+$$\sum_{n=1}^{\infty}f(n)=\prod_{p}\big(1-f(p))^{-1}.$$
+\end{theorem}
+
+\begin{proof}
+Αν η $\sum_{n=1}^{\infty}f(n)$ συγκλίνει απόλυτα, τότε η σειρά $$a_p=\sum_{k=1}^{\infty}f(p^k)$$ συγκλίνει απόλυτα για κάθε πρώτο $p$. Επίσης η σειρά 
+$$\sum_{p}|a_p|=\sum_{p}\bigg|\sum_{k=1}^{\infty}f(p^k)\bigg|\leq \sum_{p}\sum_{k=1}^{\infty}|f(p^k)|<\sum_{n=1}^{\infty}|f(n)|$$ συγκλίνει και έτσι προκύπτει ότι το άπειρο γινόμενο
+$$\prod_{p}(1+a_p)=\prod_{p}\bigg(1+\sum_{k=1}^{\infty}f(p^k)\bigg)$$ συγκλίνει απόλυτα. Από το παραπάνω θεώρημα προκύπτει ότι συγκλίνει.
+
+Έστω $\varepsilon>0$ ,και διαλέγουμε ακέραιο $N_0$ τέτοιον ώστε $$\sum_{n>N_0}|f(n)|<\varepsilon.$$
+Για κάθε θετικό ακέραιο $n$ , έστω $P(n)$ ο μέγαλύτερος πρώτος παράγοντας του $n$. Τότε με $\sum_{P(n)\geq N}$ συμβολίζουμε το άθροισμα πάνω σε όλους τους ακεραίους οι οποίοι έχουν τουλάχιστον έναν πρώτο παράγοντα γνήσια μεγαλύτερο του $N$. Αφού η σειρά $\sum_{k=0}^{\infty}f(p^k)$ συγκλίνει απόλυτα για κάθε πρώτο αριθμό $p$, κάθε πεπερασμένο πλήθος αυτών των σειρών μπορεί να πολλαπλασιαστεί μαζί όρο προς όρο. Έστω $N\geq N_0$. Προκύπτει από την μοναδικότητα της παραγοντοποίησης των ακεραίων  σε γινόμενο πρώτων ότι
+$$\prod_{p\leq N}\bigg(1+\sum_{k=1}^{\infty}f(p^k)\bigg)=\sum_{P(n)\geq N}f(n)$$
+και άρα
+\begin{align*}
+&\bigg|\sum_{n=1}^{\infty}f(n)-\prod_{p\leq N}\bigg(1+\sum_{k=1}^{\infty}f(p^k)\bigg)\bigg|=\bigg|\sum_{n=1}^{\infty}f(n)-\sum_{P(n)\geq N}f(n) \bigg|\\
+&=\bigg|\sum_{P(n)> N}f(n) \bigg| \leq \sum_{P(n)> N}|f(n)|\leq
+\sum_{n> N}|f(n)|\leq \sum_{n> N_0}|f(n)|<\varepsilon.\\
+\end{align*}
+Έπεται ότι 
+$$\sum_{n=1}^{\infty}f(n)=\lim_{N \to \infty}\prod_{p\leq N}\bigg(1+\sum_{k=1}^{\infty}f(p^k)\bigg)=\prod_{p}\bigg(1+\sum_{k=1}^{\infty}f(p^k)\bigg).$$
+
+Αν $f(n)$ είναι πλήρως πολλαπλασιαστική, τότε $f(p^k)=f(p)^k$ για όλους τους πρώτους $p$ και όλους τους μη αρνητικούς ακεραίους $k$. Εφόσον το $f(p^k)$ τείνει στο άπειρο όταν το $k$ τείνει στο άπειρο, έχουμε ότι $|f(p)|<1$. Αθροίζοντας την γεωμετρική πρόοδο έχουμε 
+$$\bigg(1+\sum_{k=1}^{\infty}f(p^k)\bigg)=\bigg(1+\sum_{k=1}^{\infty}f(p)^k\bigg)=\frac{1}{1-f(p)},$$
+συνεπώς $$\prod_{p}\bigg(1+\sum_{k=1}^{\infty}f(p^k)\bigg)=\prod_{p}(1-f(p))^{-1}$$
+και η απόδειξη είναι πλήρης.
+
+\end{proof}
+\end{document}

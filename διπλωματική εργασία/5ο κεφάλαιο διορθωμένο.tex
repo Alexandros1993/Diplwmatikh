@@ -1,0 +1,1151 @@
+\documentclass[10pt,a4paper,leqno,twoside]{book}
+%----------------------------------------------------
+% Set the Languages you want to use. (The last one is set to be the default)
+\usepackage[greek,english]{babel}  %This one if you want Greek by default
+\usepackage[iso-8859-7]{inputenc}
+\usepackage[greek]{babel}
+\usepackage[iso-8859-7]{inputenc}
+\usepackage[active]{srcltx}
+
+\RequirePackage{latexsym} \RequirePackage{amsthm}
+\RequirePackage{amsmath}
+
+\RequirePackage{amssymb} \RequirePackage{makeidx}
+\pagestyle{myheadings}
+%\usepackage{grmath} %If you want Greek names for functions (Example \sin x will look like ημ x)
+%----------------------------------------------------
+% Greek Keyboard Shortcuts
+\newcommand {\gt}{\greektext} %Set the language from now on
+\newcommand {\lt}{\latintext}
+\newcommand {\tg}{\textgreek} %Next argument will be the language you set.
+\newcommand {\tl}{\textlatin}
+%----------------------------------------------------
+\newcommand{\Lip}{\mathrm{Lip}}
+\newcommand{\vol }{{\rm vol}}
+
+
+\newcommand{\bbar}{{\rm bar}}
+\newcommand{\Cov}{{\rm Cov}}
+\newcommand{\conv}{{\rm conv}}
+
+
+%%%hyperref%%%%
+\usepackage{hyperref}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%%%%diagrams%%%%
+\usepackage{tikz-cd}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing,positioning,calc}
+
+\usepackage{dsfont}
+\usepackage{wrapfig}
+
+%-----------------------------------------------------
+%Set the printable area
+%\pagestyle{headings}
+\topmargin=1in \oddsidemargin=0.3in \evensidemargin=0.3in
+\textwidth=5.3in \textheight=7in \footskip=0.7in \headsep=0.3in
+%-----------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%% Fancy Headers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{fancyhdr} \pagestyle{fancy}
+\renewcommand{\headrulewidth}{\iftopfloat{0pt}{0.6pt}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{} \fancyhead[LE]{\scshape\thepage\ $\cdot$\
+\nouppercase{\leftmark}}
+\fancyhead[RO]{\scshape\nouppercase{\rightmark}\ $\cdot$\
+\thepage}
+\fancypagestyle{plain}{%
+    \fancyhead{} %
+    \renewcommand{\headrulewidth}{0pt}}
+    \fancyhfoffset[L]{0.0001cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------
+%Enumerate lists the way I like!
+%\renewcommand{\labelenumi}{\roman{enumi)}}
+\setcounter{section}{0}
+%----------------------------------------------------
+
+%%%%%%%%% enumerate customization %%%%%%%%%%%%%%%%%
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{{\rm(\theenumi)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%% Clear empty pages from headers %%%%%%%%%%%
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}
+  \vspace*{\fill}
+  \begin{center}
+  %  \textlatin{This page intentionally contains only this sentence.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%bibliography in toc%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[nottoc]{tocbibind}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% subsection customization %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\thesubsection}{\thesection\alph{subsection}}              %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% enumerate customization %%%%%%%%%%%%%%%%%
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{{\rm(\theenumi)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%% Clear empty pages from headers %%%%%%%%%%%
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}
+  \vspace*{\fill}
+  \begin{center}
+  %  \textlatin{This page intentionally contains only this sentence.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% number equations as (*.*.*) %%%%%
+\numberwithin{equation}{section}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ls}{\leqslant}
+\newcommand{\gr}{\geqslant}
+\newcommand{\rank}{\mathop{\operator@font rank}}
+%\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\set}[1]{\left\lbrace#1\right\rbrace}
+%\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\tr}[1]{\trace\left(#1\right)}
+\newcommand{\dt}[1]{\determinant\left(#1\right)}
+\newcommand{\diag}[1]{\diagonal\left(#1\right)}
+\newcommand{\prend}{$\quad \hfill \Box$}
+\newcommand{\stend}{$\quad\hfill \diamond$ \medskip}
+\newcommand{\e}{{\varepsilon}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%% New theorems %%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{Θεώρημα}[section]
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{application}[theorem]{Εφαρμογή}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{exercise}[theorem]{’σκηση}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{examples}[theorem]{Παραδείγματα}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem{remark}[theorem]{Παρατήρηση}
+\newtheorem{note}[theorem]{Σημείωση}
+\newtheorem{remarks}[theorem]{Παρατηρήσεις}
+\newtheorem{claim}[theorem]{Ισχυρισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem{comment}[theorem]{Σχόλιο}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{dsfont}
+\usepackage{mathrsfs} %%kalligrafika
+
+%%%%%%%%%%%%%%xrwmata%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+%%%hyperref%%%%
+\usepackage{hyperref}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.3mm}}
+
+%%%%%%%%eikones%%%%%%%%%%%%%%%
+%\usepackage{wrapfig}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{sidecap}
+
+%%%%%%%%%%%%%epikefalides%%%%%%%%%%%%%%
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\bfseries\Huge}
+  {\filright\MakeUppercase{\Large\chaptertitlename} \Huge\thechapter}
+  {1ex}
+  {\titlerule\vspace{1ex}\filleft}
+  [\vspace{1ex}\titlerule]
+
+%%%%%%%%%%%%%%%%%index%%%%%%%%%%%%%%%%%%%%
+\usepackage{makeidx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Turchi preamble Beta %%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage{cleveref}
+\usepackage{bbm}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+%
+\DeclarePairedDelimiter{\fences}{(}{)}
+\newcommand{\V}{V_n\fences}
+\renewcommand{\Pr}{\operatorname{\mathbb{P}}\fences}
+\DeclareMathOperator{\Ex}{\mathbb{E} }
+\newcommand{\Exval}{\Ex\fences}
+%
+%\newcommand{\ls}{\leqslant}
+%\newcommand{\gr}{\grslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+%
+\newcommand*{\numberset}{\mathbb}
+\newcommand*{\N}{\numberset{N}}
+\newcommand*{\R}{\numberset{R}}
+\newcommand*\de{\mathop{}\!\mathrm{d}}
+\newcommand*{\rec}[1]{\frac{1}{#1}}
+\newcommand*{\indic}[1]{\mathbbm{1}_{#1}}
+\newcommand{\cdf}{\mathrm{F}}
+\newcommand{\B}{B}
+%
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\theta}{\vartheta}
+\renewcommand{\phi}{\varphi}
+\newcommand{\vball}{\kappa}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% smaller size section titles %%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\bfseries}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\endinput
+%%%%%%%%%%%%%%%%%%%%%%%% File ends %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% Make index %%%%%%%%%%%%%%%%%%%
+\makeindex
+\usepackage[nottoc]{tocbibind}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-----------------------------------------------------
+\linespread{1.15} %(changes linespacing. Default 1, one and a half 1.3, double 1.6)
+%-----------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%% Document starts %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Document starts %%%%%%%%%%%%
+\begin{document}
+\selectlanguage{greek}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Ο ασυμπτωτικός τύπος των \tl{Hardy-Littlewood}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Η μέθοδος του κύκλου}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Έστω $k$ και $s$ φυσικοί αριθμοί. Συμβολίζουμε με $r_{k,s}(N)$ το πλήθος των αναπαραστάσεων του $N$
+ως αθροίσματος $s$ θετικών $k$-οστών δυνάμεων, δηλαδή το πλήθος των $s$-άδων $(x_1,\ldots ,x_s)$ φυσικών
+αριθμών με
+$$N=x_1^k+\cdots +x_s^k.$$
+Το πρόβλημα του \tl{Waring} είναι το ερώτημα αν κάθε μη αρνητικός ακέραιος είναι το άθροισμα φραγμένου
+πλήθους $k$-οστών δυνάμεων. Αφού ο $1=1^k$ είναι $k$-οστή δύναμη, το πρόβλημα είναι ισοδύναμο με
+το να δείξουμε ότι
+$$r_{k,s}(N)>0$$
+για κάποιον $s$ και για όλους τους αρκετά μεγάλους φυσικούς $N$. Ο \tl{Hilbert} έδωσε πρώτος θετική
+απάντηση στο πρόβλημα του \tl{Waring} το 1909. Δέκα χρόνια αργότερα, οι \tl{Hardy} και \tl{Littlewood}
+κατόρθωσαν να βρουν έναν πολύ όμορφο ασυμπτωτικό τύπο για τον $r_{k,s}(N)$. Απέδειξαν ότι, για $s\gr s_0(k)$,
+υπάρχει $\delta =\delta (s,k)>0$ τέτοιος ώστε
+\begin{equation}\label{eq:5.1}r_{k,s}(N)={\cal G}(N)\Gamma\Big(1+\frac{1}{k}\Big)^s\Gamma\Big(\frac{s}{k}\Big)^{-1}N^{\frac{s}{k}-1}+
+O(N^{\frac{s}{k}-1-\delta }),\end{equation}
+όπου $\Gamma (x)$ είναι η συνάρτηση Γάμμα και ${\cal G}(N)$ είναι η λεγόμενη ((ιδιάζουσα σειρά)),
+μια αριθμητική συνάρτηση που είναι ομοιόμορφα φραγμένη, από πάνω και από κάτω, από θετικές σταθερές
+που εξαρτώνται μόνο από τους $k$ και $s$. Θα αποδείξουμε ότι ο ασυμπτωτικός τύπος ~\eqref{eq:5.1}
+ισχύει για τον $s_0(k)=2^k+1$.
+
+Οι \tl{Hardy} και \tl{Littlewood} χρησιμοποίησαν τη ((μέθοδο του κύκλου)) για να αποδείξουν αυτό
+το θεώρημα. Η βασική ιδέα της μεθόδου του κύκλου είναι απλή. Έστω $A$ τυχόν σύνολο μη αρνητικών
+ακεραίων. Η γεννήτρια συνάρτηση για το $A$ είναι η
+$$f(z)=\sum_{a\in A}z^a.$$
+Μπορούμε να θεωρήσουμε την $f(z)$ είτε ως τυπική δυναμοσειρά ως προς $z$ είτε ως τη σειρά \tl{Taylor}
+μιας αναλυτικής συνάρτησης που συγκλίνει στον ανοικτό μοναδιαίο δίσκο $|z|<1$. Τόσο στην πρώτη όσο και
+στην δεύτερη περίπτωση, έχουμε
+$$f(z)^s=\sum_{N=0}^{\infty }r_{A,s}(N)z^N,$$
+όπου $r_{A,s}(N)$ είναι το πλήθος των αναπαραστάσεων του $N$ ως αθροίσματος $s$ στοιχείων του $A$, δηλαδή,
+το πλήθος των λύσεων της εξίσωσης
+$$N=a_1+a_2+\cdots +a_s$$
+με
+$$a_1,a_2,\ldots ,a_s\in A.$$
+Από το θεώρρημα του \tl{Cauchy}, μπορούμε να δώσουμε μια έκφραση για τον $r_{k,s}(N)$ ολοκληρώνοντας: έχουμε
+$$r_{A,s}(N)=\frac{1}{2\pi i}\int_{|z|=\varrho}\frac{f(z)^s}{z^{N+1}}\,dz$$
+για κάθε $\varrho\in (0,1)$.
+
+Αυτή είναι η αρχική μορφή της ((μεθόδου του κύκλου)), η οποία εισήχθη από τους \tl{Hardy, Littlewood}
+και \tl{Ramanujan} το 1918--20. Υπολόγισαν αυτό το ολοκλήρωμα χωρίζοντας τον κύκλο πάνω στον οποίο γίνεται
+η ολοκλήρωση σε δύο ξένα σύνολα, τα ((μείζονα τόξα)) και τα ((ελλάσσονα τόξα)). Στις κλασικές εφαρμογές
+για το πρόβλημα του \tl{Waring}, το ολοκλήρωμα πάνω από τα ελλάσσονα τόξα είναι αμελητέο, και τοολοκλήρωμα πάνω από
+τα μείζονα τόξα δίνει τον βασικό όρο στην εκτίμηση για τον $r_{A,s}(N)$.
+
+Ο \tl{Vinogradov} απλούστευσε και βελτίωσε σε μεγάλο βαθμό τη μέθοδο του κύκλου. Παρατήρησε ότι για
+τη μελέτη του $r_{A,s}(N)$, μπορούμε να αντικαταστήσουμε τη δυναμοσειρά $f(z)$ με το πολυώνυμο
+$$p(z)=\sum_{{a\in A}\atop{a\ls N}}z^a.$$
+Τότε,
+$$p(z)^s=\sum_{m=0}^{sN}r_{A,s}^{(N)}(m)z^m,$$
+όπου $r_{A,s}^{(N)}(m)$ είναι το πλήθος των αναπαραστάσεων του $m$ ως αθροίσματος $s$ στοιχείων του $A$
+που δεν ξεπερνούν τον $N$. Ειδικότερα, αφού τα στοιχεία του $A$ είναι μη αρνητικά, έχουμε
+$r_{A,s}^{(N)}(m)=r_{A,s}(m)$ για $m\ls N$ και $r_{A,s}^{(N)}(m)=0$ για $m>sN$. Αν θέσουμε
+$$z=e(\alpha )=e^{2\pi i\alpha },$$
+τότε παίρνουμε το τριγωνομετρικό πολυώνυμο
+$$F(\alpha )=p(e(\alpha ))=\sum_{{a\in A}\atop{a\ls N}}e(a\alpha )$$
+και
+$$F(\alpha )^s=\sum_{m=0}^{sN}r_{A,s}^{(N)}(m)e(m\alpha ).$$
+Χρησιμοποιώντας το γεγονός ότι οι συναρτήσεις $e(n\alpha )$ σχηματίζουν ορθοκανονικό σύστημα, παίρνουμε
+$$r_{A,s}(N)=\int_0^1F(\alpha )^se(-N\alpha )\,d\alpha .$$
+Στις εφαρμογές, το δύσκολο μέρος του επιχειρήματος είναι φυσικά το να δοθούν εκτιμήσεις για το ολοκλήρωμα.
+
+Για να εφαρμόσουμε τη μέθοδο του κύκλου στο πρόβλημα του κύκλου, θεωρούμε $k\gr 2$ και το σύνολο $A$
+των $k$-οστών δυνάμεων. Έστω $r_{k,s}(N)$ το πλήθος των αναπαραστάσεων του $N$ ως αθροίσματος $s$
+θετικών $k$-οστών δυνάμεων. Θέτουμε
+$$P=\lfloor N^{1/k}\rfloor .$$
+Τότε,
+$$F(\alpha )=\sum_{{a\in A}\atop{a\ls N}}e(a\alpha )=\sum_{n=1}^Pe(\alpha n^k)$$
+και
+$$r_{k,s}(N)=\int_0^1F(\alpha )^se(-\alpha N)\,d\alpha .$$
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Το πρόβλημα του \tl{Waring} για $k=1$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Στην περίπτωση $k=1$, το θεώρημα που ακολουθεί δίνει ακριβή τύπο για τον $r_{1,s}(N)$.
+
+\begin{theorem}\label{th:5.1}Έστω $s\gr 1$. Τότε,
+$$r_{1,s}(N)=\binom{N-1}{s-1}=\frac{N^{s-1}}{(s-1)!}+O(N^{s-2})$$
+για κάθε $N\in {\mathbb N}$.
+\end{theorem}
+
+\begin{proof}Έστω $N\gr s$. Παρατηρούμε ότι έχουμε αναπαράσταση
+$$N=a_1+\cdots+a_s$$
+του $N$ ως αθροίσματος $s$ φυσικών αριθμών αν και μόνο αν έχουμε αναπαράσταση
+$$N-s=(a_1-1)+\cdots +(a_s-1)$$
+του $N-s$ ως αθροίσματος $s$ μη αρνητικών ακεραίων. Συνεπώς,
+$$r_{1,s}(N)=R_{1,s}(N-s),$$
+όπου $R_{1,s}(N)$ είναι το πλήθος των αναπαραστάσεων του $N$ ως αθροίσματος $s$ μη αρνητικών ακεραίων.
+
+Θα δώσουμε δύο αποδείξεις του θεωρήματος. Η πρώτη είναι συνδυαστική. Αρχικά υπολογίζουμε τον $R_{1,s}(N)$ για κάθε
+μη αρνητικό ακέραιο $N$. Έστω $N=a_1+\cdots +a_s$ μια διαμέριση σε μη αρνητικούς ακεραίους. Είναι σαν να έχουμε
+$N+s-1$ κουτιά, να χρωματίζουμε τα πρώτα $a_1$ κόκκινα, το επόμενο γαλάζιο, τα επόμενα $a_2$ κόκκινα, το επόμενο
+γαλάζιο, και ούτω καθεξής. Θα υπάρχουν ακριβώς $s-1$ γαλάζια κουτιά. Αντίστροφα, αν επιλέξουμε $s-1$ από τα $N+s-1$
+κουτιά και τα χρωματίσουμε γαλάζια, και αν χρωματίσουμε τα υπόλοιπα κουτιά κόκκινα, παίρνουμε μια διαμέριση του $N$ σε
+$s$ μη αρνητικά μέρη ως εξής. Ορίζουμε $a_1$ το πλήθος των κόκκινων κουτιών πριν από το πρώτο γαλάζιο, $a_2$ το
+πλήθος των κόκκινων κουτιών ανάμεσα στο πρώτο και το δεύτερο γαλάζιο κουτί, και γενικά, για $j=2,\ldots ,s-1$
+ορίζουμε $a_j$ το πλήθος των κόκκινων κουτιών ανάμεσα στο $(j-1)$-οστό και το $j$-οστό γαλάζιο κουτί. Τέλος,
+ορίζουμε $a_s$ να είναι το πλήθος των κόκκινων κουτιών που βρίσκονται μετά από το τελευταίο γαλάζιο. Με αυτόν
+τον τρόπο έχουμε μια 1-1 αντιστοιχία ανάμεσα στα υποσύνολα του $\{1,\ldots ,N+s-1\}$ που έχουν $s-1$ στοιχεία
+(τις επιλογές των κουτιών που χρωματίζουμε γαλάζια) και τις αναπαραστάσεις του $N$ ως αθροίσματος $s$ μη αρνητικών
+ακεραίων. Έπεται ότι το πλήθος αυτών των αναπαραστάσεων ισούται με $\binom{N+s-1}{s-1}$, άρα
+$$r_{1,s}(N)=R_{1,s}(N-s)=\binom{N-1}{s-1}.$$
+Αυτή είναι η πρώτη απόδειξη του θεωρήματος.
+
+Υπάρχει επίσης μια απλή αναλυτική απόδειξη. Η σειρά
+$$f(z)=\sum_{N=0}^{\infty }z^N=\frac{1}{1-z}$$
+συγκλίνει αν $|z|<1$, και
+$$f(z)^s=\sum_{N=0}^{\infty }R_{1,s}(N)z^N.$$
+Επίσης έχουμε
+\begin{align*}
+f(z)^s &= \frac{1}{(1-z)^s}\\
+&= \frac{1}{(s-1)!}\,\frac{d^{s-1}}{dz^{s-1}}\Big(\frac{1}{1-z}\Big)\\
+&= \frac{1}{(s-1)!}\,\frac{d^{s-1}}{dz^{s-1}}\Big(\sum_{N=0}^{\infty }z^N\Big)\\
+&= \sum_{N=s-1}^{\infty }\frac{N(N-1)\cdots (N-s+2)}{(s-1)!}\,z^{N-s+1}\\
+&= \sum_{N=s-1}^{\infty }\binom{N}{s-1}z^{N-s+1}\\
+&= \sum_{N=0}^{\infty }\binom{N+s-1}{s-1}\,z^N.
+\end{align*}
+Συνεπώς,
+$$R_{1,s}(N)=\binom{N+s-1}{s-1},$$
+όπως ισχυρίζεται το θεώρημα. \end{proof}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Η διάσπαση \tl{Hardy-Littlewood}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Όταν $k\gr 2$, δεν είναι εύκολο να υπολογίσουμε - ή ακόμα και να εκτιμήσουμε - τον $r_{k,s}(N)$ για μεγάλα $N$.
+Οι \tl{Hardy} και \tl{Littlewood} κατόρθωσαν να αποδείξουν έναν ασυμππτωτικό τύπο για τον $r_{k,s}(N)$ για κάθε
+$k\gr 2$ και $s\gr s_0(k)$. Σε αυτό το κεφάλαιο αποδεικνύουμε τον ασυμπτωτικό τύπο των \tl{Hardy-Littlewood}
+για $s\gr 2^k+1$. Για $N\gr 2^k$ θέτουμε
+\begin{equation}\label{eq:5.2}P=\lfloor N^{1/k}\rfloor \end{equation}
+και
+\begin{equation}\label{eq:5.3} F(\alpha )=\sum_{m=1}^Pe(\alpha m^k).\end{equation}
+Το τριγωνομετρικό πολυώνυμο $F(\alpha )$ είναι η γεννήτρια συνάρτηση για την αναπαράσταση του $N$ ως αθροίσματος
+$k$-οστών δυνάμεων. Η βάση για τη μέθοδο του κύκλου είναι ο απλός τύπος
+\begin{equation}\label{eq:5.4} r_{k,s}(N)=\int_0^1F(\alpha )^se(-N\alpha )\,d\alpha .\end{equation}
+Δεν μπορούμε να υπολογίσουμε αυτό το ολοκλήρωμα ακριβώς μέσω στοιχειωδών συναρτήσεων. Εξετάζοντας το όμως
+προσεκτικά, θα αποδείξουμε τον ασυμπτωτικό τύπο των \tl{Hardy-Littlewood}.
+
+Το πρώτο βήμα είναι να χωρίσουμε το μοναδιαίο διάστημα $[0,1]$ σε δύο ξένα σύνολα, τα {\it μείζονα τόξα} ${\cal M}$
+και τα {\it ελλάσσονα τόξα} ${\cal m}$, και να εκτιμήσουμε το ολοκλήρωμα χωριστά πάνω από αυτά τα δύο σύνολα.
+Τα μείζονα τόξα αποτελούνται από όλους τους πραγματικούς αριθμούς $\alpha\in [0,1]$ οι οποίοι προσεγγίζονται,
+με μία έννοια, καλά από ρητούς αριθμούς, και τα ελλάσσονα τόξα αποτελούνται από τους αριθμούς $\alpha\in [0,1]$ που
+δεν προσεγγίζονται καλά από ρητούς. Παρόλο που το μεγαλύτερο μέρος του μοναδιαίου διαστήματος περιέχεται στα
+ελλάσσονα τόξα, από την ανισότητα του \tl{Weyl} και το λήμμα του \tl{Hua} μπορούμε να συμπεράνουμε ότι το
+ολοκλήρωμα της $F(\alpha )^se(-N\alpha )$ στα ελλάσσονα τόξα είναι αμελητέο. Το ολοκλήρωμα στα μείζονα τόξα
+παραγοντοποιείται στο γινόμενο δύο όρων: του ((ιδιάζοντος ολοκληρώματος)) $J(N)$ και της ((ιδιάζουσας σειράς))
+${\cal G}(N)$. Το ιδιάζον ολοκλήρωμα υπολογίζεται μέσω της συνάρτησης Γάμμα, και για την ιδιάζουσα σειρά δίνουμε
+εκτιμήσεις χρησιμοποιώντας στοιχειώδη θεωρία αριθμών.
+
+Τα μείζονα και ελλάσσονα τόξα κατασκευάζονται ως εξής. Έστω $N\gr 2^k$. Τότε, $\lfloor N^{1/k}\rfloor \gr 2$.
+Επιλέγουμε
+$$0<\nu <1/5.$$
+Για
+$$1\ls q\ls P^{\nu },\quad 0\ls a\ls q,\quad (a,q)=1,$$
+θέτουμε
+$${\cal M}(q,a)=\Big\{\alpha\in[0,1]:\Big|\alpha -\frac{a}{q}\Big|\ls\frac{1}{P^{k-\nu }}\Big\}$$
+και
+$${\cal M}=\bigcup_{1\ls q\ls P^{\nu }}\bigcup_{{a=0}\atop{(a,q)=1}}^q{\cal M}(q,a).$$
+Το διάστημα ${\cal M}(q,a)$ λέγεται {\it μείζον τόξο}, και το ${\cal M}$ είναι το σύνολο όλων των μειζόνων
+τόξων. Βλέπουμε ότι
+$${\cal M}(1,0)=\Big[0,\frac{1}{P^{k-\nu }}\Big],$$
+$${\cal M}(1,1)=\Big[1-\frac{1}{P^{k-\nu }},1],$$
+και
+$${\cal M}(q,a)=\Big[\frac{a}{q}-\frac{1}{P^{k-\nu }},\frac{a}{q}+\frac{1}{P^{k-\nu }}\Big]$$
+για $q\gr 2$. Τα μείζονα τόξα αποτελούνται από όλους τους πραγματικούς αριθμούς $\alpha\in [0,1]$ που
+προσεγγίζονται καλά από ρητούς με την έννοια ότι είναι κοντά, σε απόσταση $P^{\nu -k}$, από κάποιον
+ρητό αριθμό με παρονομαστή το πολύ ίσο με $P^{\nu }$.
+
+Αν $\alpha\in {\cal M}(q,a)\cap {\cal M}(q^{\prime },a^{\prime })$ και $a/q\neq a^{\prime }/q^{\prime }$, τότε
+$|aq^{\prime }-a^{\prime }q|\gr 1$ και
+\begin{align*}
+\frac{1}{P^{2\nu }} &\ls \frac{1}{qq^{\prime }}\\
+&\ls\frac{|aq^{\prime }-a^{\prime }q|}{qq^{\prime }}\\
+&=\Big|\frac{a}{q}-\frac{a^{\prime }}{q^{\prime }}\Big|\\
+&\ls \Big|\alpha -\frac{a}{q}\Big|+\Big|\alpha -\frac{a^{\prime }}{q^{\prime }}\Big|\\
+&\ls \frac{2}{P^{k-\nu }},
+\end{align*}
+και έτσι προκύπτει $P^{k-3\nu}\leq 2$ το οποίο δεν μπορεί να ισχύει για $P\gr 2$ και $k\gr 2$. Συνεπώς, τα μείζονα τόξα ${\cal M}(q,a)$ είναι ξένα
+ανά δύο.
+
+Το μέτρο του συνόλου ${\cal M}(1,0)\cup {\cal M}(1,1)$ είναι $2P^{\nu -k}$, και, για κάθε $q\gr 2$ με $(a,q)=1$,
+το μέτρο του μείζονος τόξου ${\cal M}(q,a)$ είναι $2P^{\nu -k}$. Για κάθε $q\gr 2$ υπάρχουν ακριβώς $\phi (q)$
+θετικοί ακέραιοι $a$ τέτοιοι ώστε $1\ls a\ls q$ και $(q,a)=1$. Έπεται ότι το μέτρο του συνόλου ${\cal M}$
+των μειζόνων τόξων είναι
+\begin{equation}\label{eq:5.5}\mu ({\cal M})=\frac{2}{P^{k-\nu }}\sum_{1\ls q\ls P^{\nu }}\phi (q)\ls \frac{2}{P^{k-\nu }}\sum_{1\ls q\ls P^{\nu }}q
+\ls\frac{2}{P^{k-\nu }}\frac{P^{\nu }(P^{\nu }+1)}{2}\ls\frac{2}{P^{k-3\nu }},\end{equation}
+που τείνει στο $0$ όταν το $P$ τείνει στο άπειρο.
+
+Το σύνολο
+$${\cal m}=[0,1]\setminus {\cal M}$$
+είναι το σύνολο των {\it ελλασσόνων τόξων}. Αυτό το σύνολο είναι πεπερασμένη ένωση ανοικτών διαστημάτων
+και αποτελείται από όλους τους $\alpha\in [0,1]$ που δεν προσεγγίζονται καλά από ρητούς. Το μέτρο του συνόλου
+των ελλασσόνων τόξων είναι
+$$\mu ({\cal m})=1-\mu ({\cal M})>1-\frac{2}{P^{k-3\nu }}.$$
+Αν και το μέτρο του συνόλου ${\cal m}$ είναι μεγάλο με την έννοια ότι τείνει στο $1$ όταν το $P$ τείνει στο
+άπειρο, στην επόμενη παράγραφο θα δείξουμε ότι το ολοκλήρωμα πάνω από τα ελλάσσονα τόξα συνεισφέρει μόνο
+αμελητέο ποσοστό στο $r_{k,s}(N)$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Τα ελάσσονα τόξα}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Αποδεικνύουμε εδώ ότι το ολοκλήρωμα πάνω από τα ελλάσσονα τόξα είναι μικρό.
+
+\begin{theorem}\label{th:5.2}Έστω $k\gr 2$ και $s\gr 2^k+1$. Υπάρχει $\delta_1>0$ τέτοιος ώστε
+$$\int_{{\mathcal M}}F(\alpha )^se(-N\alpha )\,d\alpha =O(P^{s-k-\delta_1}),$$
+με την σταθερά (στο $O$) να εξαρτάται μόνο από τους $k$ και $s$.
+\end{theorem}
+
+\begin{proof}Εφαρμόζοντας το Θεώρημα~\ref{th:4.1} (θεώρημα του \tl{Dirichlet}) με $Q=P^{k-\nu }$, για κάθε πραγματικό
+αριθμό $\alpha $ μπορούμε να βρούμε ρητό $a/q$ τέτοιον ώστε
+$$1\ls q\ls P^{k-\nu },\qquad (a,q)=1,$$
+και
+$$\Big |\alpha -\frac{a}{q}\Big|\ls \frac{1}{qP^{k-\nu }}\ls\min\Big\{ \frac{1}{P^{k-\nu }},\frac{1}{q^2}\Big\}.$$
+Αν $\alpha\in \mathcal{m}$, τότε $\alpha\notin {\mathcal M}(1,0)\cup{\mathcal M}(1,1)$, άρα
+$$\frac{1}{P^{k-\nu }}<\alpha <1-\frac{1}{P^{k-\nu }}.$$ 
+Επίσης από την αρχική ανισότητα έπεται
+$$\Big|\alpha -\frac{a}{q}\Big|\ls\frac{1}{P^{k-\nu }}$$
+και συνεπώς
+$$\alpha -\frac{a}{q}\geq -\frac{1}{P^{k-\nu }},$$
+δηλαδή  $$\frac{a}{q}\leq \alpha+\frac{1}{P^{k-\nu }}<1$$
+και άρα $1\ls a\ls q-1$. Αν $q\ls P^{\nu }$, τότε πάλι από την
+$$\Big|\alpha -\frac{a}{q}\Big|\ls\frac{1}{P^{k-\nu }}$$
+συμπεραίνουμε ότι
+$$\alpha\in {\mathcal M}(q,a)\subseteq {\mathcal M}=[0,1]\setminus \mathcal{m},$$
+το οποίο είναι άτοπο. Συνεπώς,
+$$P^{\nu }<q\ls P^{k-\nu }.$$
+Θέτουμε
+\begin{equation}\label{eq:5.6}K=2^{k-1}.\end{equation}
+Από την ανισότητα του \tl{Weyl} (Θεώρημα~\ref{th:4.3}) για την $f(x)=\alpha x^k$ έπεται ότι
+\begin{align*}F(\alpha ) &\ll P^{1+\epsilon }(P^{-1}+q^{-1}+P^{-k}q)^{1/K}\ll P^{1+\epsilon }(P^{-1}+P^{-\nu }+P^{-k}P^{k-\nu })^{1/K}\\
+&\ll P^{1+\epsilon -\nu /K}.
+\end{align*}
+Εφαρμόζοντας το λήμμα του \tl{Hua} (Θεώρημα~\ref{th:4.6}) παίρνουμε
+\begin{align*}\Big|\int_{\mathcal{m}}F(\alpha )^se(-n\alpha )\,d\alpha\Big| &=\Big|\int_{\mathcal{m}}F(\alpha )^{s-2^k}F(\alpha )^{2^k}e(-n\alpha )\,d\alpha\Big|\\
+&\ls \int_{\mathcal{m}}|F(\alpha )|^{s-2^k}|F(\alpha )|^{2^k}d\alpha \\
+&\ls \max_{\alpha\in \mathcal{m}}|F(\alpha )|^{s-2^k}\int_0^1|F(\alpha )|^{2^k}d\alpha \\
+&\ll (P^{1+\epsilon -\nu /K})^{s-2^k}P^{2^k-k+\epsilon }\\
+&= P^{s-k-\delta_1},
+\end{align*}
+όπου
+$$\delta_1=\frac{\nu (s-2^k)}{K}-(s-2^k+1)\epsilon >0$$
+αν το $\epsilon >0$ επιλεγεί αρκετά μικρό. Αυτό ολοκληρώνει την απόδειξη.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Τα μείζονα τόξα}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Ορίζουμε τις βοηθητικές συναρτήσεις
+$$v(\beta )=\sum_{m=1}^N\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m)$$
+και
+$$S(q,a)=\sum_{r=1}^qe(ar^k/q).$$
+Θα δείξουμε ότι αν ο $\alpha $ βρίσκεται στο μείζον τόξο ${\cal M}(q,a)$ τότε ο $F(\alpha )$ είναι
+το γινόμενο των $S(q,a)/q$ και $v(\alpha -a/q)$ συν κάποιο μικρό όρο σφάλματος. Αρχικά θα δώσουμε
+εκτιμήσεις γι' αυτές τις συναρτήσεις.
+
+Η ανισότητα $|S(q,a)|\ls q$ είναι απλή. Από την ανισότητα του \tl{Weyl} (θεώρημα~\ref{th:4.4}) έχουμε
+$$S(q,a)\ll q^{1-\frac{1}{K}+\epsilon }$$
+άρα
+\begin{equation}\label{eq:5.7}\frac{S(q,a)}{q}\ll q^{-\frac{1}{K}+\epsilon },\end{equation}
+με την σταθερά που υπεισέρχεται σε αυτήν την ανισότητα να εξαρτάται μόνο από το $\epsilon $.
+
+
+\begin{lemma}\label{lem:5.1}Αν $|\beta |\ls 1/2$, τότε
+$$v(\beta )\ll \min\{P,|\beta |^{-1/k}\}.$$
+\end{lemma}
+
+\begin{proof}Η συνάρτηση $f(x)=\frac{1}{k}x^{\frac{1}{k}-1}$ είναι θετική, συνεχής και φθίνουσα στο $[1,\infty )$. Από
+το Λήμμα~\ref{lem:A.2} έπεται ότι
+\begin{align*}
+|v(\beta )| &\ls \sum_{m=1}^N\frac{1}{k}m^{\frac{1}{k}-1}\ls \int_1^N\frac{1}{k}x^{\frac{1}{k}-1}dx+f(1)=N^{\frac{1}{k}}-1+\frac{1}{k}\\
+&< N^{\frac{1}{k}}\ls 2\lfloor N^{\frac{1}{k}}\rfloor = 2P.
+\end{align*}
+Αν $|\beta |\ls 1/N$ τότε $P\ls N^{\frac{1}{k}}\ls |\beta |^{-\frac{1}{k}}$ και
+$$v(\beta )\ll \min\{ P.|\beta |^{-\frac{1}{k}}\}.$$
+Υποθέτουμε τώρα ότι $1/N<|\beta |\ls 1/2$. Τότε, $|\beta |^{-\frac{1}{k}}\ll P$. Θέτουμε $M=\lfloor |\beta |^{-1}\rfloor $. Τότε,
+$$M\ls\frac{1}{|\beta |}<M+1\ls N.$$
+Ορίζουμε $U(t)=\sum_{m\ls t}e(\beta m)$. Από το Λήμμα~\ref{lem:4.7} έχουμε $U(t)\ls \|\beta\|^{-1}=|\beta |^{-1}$.
+Αθροίζοντας κατά μέρη (Θεώρημα~\ref{th:A.4}) βλέπουμε ότι
+$$\sum_{m=M+1}^N\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m) = f(N)U(N)-f(M)U(M)-\int_M^NU(t)f^{\prime }(t)\,dt.$$
+Έχουμε $$|f(N)U(N)|=|\frac{1}{k}N^{\frac{1}{k}-1}U(N)|\ls \frac{1}{k}N^{\frac{1}{k}-1}|\beta |^{-1}\ls \frac{1}{k}\frac{M^{\frac{1}{k}-1}}{|\beta |}\ls \frac{1}{k}|\beta |^{-\frac{1}{k}}$$
+Ομοίως συνάγουμε ότι $$|f(M)U(M)|\ls  \frac{1}{k}\frac{M^{\frac{1}{k}-1}}{|\beta |}\ls \frac{1}{k}|\beta |^{-\frac{1}{k}}.$$
+Επίσης, 
+\begin{align*}
+\bigg|\int_M^NU(t)f^{\prime }(t)\,dt\bigg| &\ls \int_M^N|U(t)f^{\prime }(t)|\,dt \ls|\beta |^{-1}\int_M^N|f^{\prime }(t)|\,dt\\
+&=|\beta |^{-1}\frac{1}{k}\big(M^{\frac{1}{k}-1}-N^{\frac{1}{k}-1}\big)\ls 
+\frac{1}{k}\frac{M^{\frac{1}{k}-1}}{|\beta|}\ls \frac{1}{k}|\beta |^{-\frac{1}{k}}
+\end{align*}
+Δείξαμε λοιπόν ότι $$\bigg|\sum_{m=M+1}^N\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m)\bigg|\ls \frac{3}{k}|\beta |^{-\frac{1}{k}}$$
+Χρησιμοποιώντας πάλι την μονοτονία της $f$ συμπεραίνουμε όπως πριν ότι $$\bigg|\sum_{m=1}^Μ\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m)\bigg| \ls \sum_{m=1}^M\frac{1}{k}m^{\frac{1}{k}-1}\ls \int_1^M\frac{1}{k}x^{\frac{1}{k}-1}dx+f(1)<M^{\frac{1}{k}}\ls |\beta |^{-\frac{1}{k}} $$
+Συνεπώς, με χρήση της τριγωνικής ανισότητας προκύπτει ότι
+\begin{align*}
+|v(\beta ) |&=|\sum_{m=1}^M\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m)+\sum_{m=M+1}^N\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m)|\\
+&\ls \bigg|\sum_{m=M+1}^N\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m)\bigg|+\bigg|\sum_{m=1}^Μ\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m)\bigg|\\
+&\ls \Big(1+\frac{3}{k}\Big)|\beta |^{-\frac{1}{k}}
+.
+\end{align*}
+Αυτό αποδεικνύει το λήμμα. \end{proof}
+
+
+\begin{lemma}\label{lem:5.2}Έστω $q$ και $\alpha $ ακέραιοι τέτοιοι ώστε $1\ls q\ls P^{\nu }$, $0\ls\alpha\ls q$, και
+$(a,q)=1$. Αν $\alpha\in {\cal M}(q,a)$, τότε
+$$F(\alpha )=\Big(\frac{S(q,\alpha )}{q}\Big)v\Big(\alpha -\frac{p}{q}\Big)+O(P^{2\nu }).$$
+\end{lemma}
+
+\begin{proof}Θέτουμε $\beta =\alpha -a/q$. Τότε $|\beta |\ls P^{\nu -k}$ καθώς $ \alpha\in {\cal M}(q,a)$ και
+\begin{align*}
+F(\alpha )-\frac{S(q,a)}{q}v(\beta ) &= \sum_{m=1}^Pe(\alpha m^k)-\frac{S(q,a)}{q}\sum_{m=1}^N\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m)\\
+&= \sum_{m=1}^Pe\Big(\frac{am^k}{q}\Big)e(\beta m^k)-\frac{S(q,a)}{q}\sum_{m=1}^N\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m)\\
+&= \sum_{m=1}^Nu(m)e(\beta m),
+\end{align*}
+όπου
+$$u(m)=e(am/q)-\frac{S(q,a)}{q}\frac{1}{k}m^{\frac{1}{k}-1}\quad\hbox{αν ο}\;m\;\hbox{είναι}\;k-\hbox{οστή δύναμη}$$
+και
+$$u(m)=-\frac{S(q,a)}{q}\frac{1}{k}m^{\frac{1}{k}-1}\;\;\hbox{αλλιώς}.$$
+Θα εκτιμήσουμε το τελευταίο άθροισμα.
+Κάνουμε την εξής παρατήρηση, εάν $m=lq+r$ για $l,r$ ακεραίους έπεται  ότι
+$$e(am^k/q)=e\big(a(lq+r)^k/q\big)=e(\ell+ar^k/q)=e(\ell)e(ar^k/q)=e(ar^k/q),$$ καθώς $$\ell=\frac{a\sum_{n=1}^{k} \binom{k}{n}(lq)^{n}r^{k-n}}{q} \in\mathbb{Z}.$$
+ Έστω $y\gr 1$. Από την προηγούμενη παρατήρηση και αφού $|S(q,a)|\ls q$, έχουμε
+\begin{align*}
+\sum_{1\ls m\ls y}e(am^k/q) &= \sum_{r=1}^qe(ar^k/q)\sum_{{1\ls m\ls y}\atop{m\equiv r\,({\rm mod}\;\;q)}}{\mathbf 1}\\
+&= S(q,a)\Big(\frac{y}{q}+O(1)\Big )\\
+&= y\cdot\frac{S(q,a)}{q}+O(q).
+\end{align*}
+Από την μονοτονία της $f$ έχουμε $$\sum_{k=1}^{t}f(k)-\int_{1}^{t}f(k)\,dk\ls max(f(1),f(t))=f(1)=\frac{1}{k}$$
+και άρα $$\sum_{1\ls m\ls t}\frac{1}{k}m^{\frac{1}{k}-1}\ls t^k-1+\frac{1}{k}$$
+Έστω $t\gr 1$. Από τα παραπάνω έχουμε
+\begin{align*}
+U(t) &= \sum_{1\ls m\ls t}u(m)\\
+&= \sum_{1\ls m\ls t^{1/k}}e(am^k/q)-\frac{S(q,a)}{q}\sum_{1\ls m\ls t}\frac{1}{k}m^{\frac{1}{k}-1}\\
+&= t^{1/k}\,\frac{S(q,a)}{q}+O(q)-\frac{S(q,a)}{q}(t^{1/k}+O(1))\\
+&= O(q).
+\end{align*}
+Αθροίζοντας κατά μέρη παίρνουμε
+\begin{align*}
+\sum_{m=1}^Nu(m)e(\beta m) &= e(\beta N)U(N)-2\pi i\beta\int_1^Ne(\beta t)U(t)\,dt\\
+&= O(q)-2\pi i\beta \int_1^Ne(\beta t)O(q)\,dt\\
+&\ll q+|\beta |Nq\\
+&\ll (1+|\beta |N)q\\
+&\ll (1+P^{\nu -k}P^k)P^{\nu }\\
+&\ll P^{2\nu }.,
+\end{align*}
+και έχουμε το ζητούμενο. \end{proof}
+
+
+\begin{theorem}\label{th:5.3}Έστω
+$${\cal G}(N,Q)=\sum_{1\ls q\ls Q}\sum_{{a=1}\atop{(a,q)=1}}^q\Big(\frac{S(q,a)}{q}\Big)^se(-Na/q)$$
+και
+$$J^{\ast }(N)=\int_{P^{\nu -k}}^{P^{\nu -k}}v(\beta )^se(-N\beta )\,d\beta .$$
+Έστω ${\cal M}$ το σύνολο των μειζόνων τόξων. Τότε,
+$$\int_{{\cal M}}F(\alpha )^se(-N\alpha )\,d\alpha ={\cal G}(N,P^{\nu })J^{\ast }(N)+O(P^{s-k-\delta_2}),$$
+όπου $\delta_2=(1-5\nu )>0$.
+\end{theorem}
+
+\begin{proof}Έστω $\alpha\in {\mathcal M}(q,a)$ και
+$$\beta =\alpha -\frac{a}{q}.$$
+Θέτουμε
+$$V=V(\alpha ,q,a)=\frac{S(q,a)}{q}v(\alpha -a/q)=\frac{S(q,a)}{q}v(\beta ).$$
+Αφού $|S(q,a)|\ls q$, έχουμε $|V|\ll |v(\beta )|\ll P$ από το Λήμμα~\ref{lem:5.1}. Θέτουμε $F=F(\alpha )$.
+Τότε, $|F|\ls P$. Αφού $F-V=O(P^{2\nu })$ από το Λήμμα~\ref{lem:5.2}, έπεται ότι
+\begin{align*}
+F^s-V^s &= (F-V)(F^{s-1}+F^{s-2}V+\cdots +V^{s-1})\\
+&\ll P^{2\nu }P^{s-1}\\
+&= P^{s-1+2\nu }.
+\end{align*}
+Αφού $\mu ({\cal M})\ll P^{3\nu -k}$ από την \eqref{eq:5.5}, έπεται ότι
+$$\bigg|\int_{{\cal M}}F(\alpha)^s-V(\alpha)^se(-N\alpha)\,d\alpha\bigg|\ls\int_{{\cal M}}|F^s-V^s|\,d\alpha \ll P^{3\nu -k}P^{s-1+2\nu }=P^{s-k-\delta_2},$$
+όπου $\delta_2=1-5\nu >0$. Συνεπώς,
+\begin{align*}
+\int_{{\cal M}}F(\alpha )^se(-N\alpha )\,d\alpha &=\int_{{\cal M}}V(\alpha ,q,a)^se(-N\alpha )\,d\alpha +O(P^{s-k-\delta_2})\\
+&= \sum_{1\ls q\ls P^{\nu }}\sum_{{a=0}\atop{(a,q)=1}}^q\int_{{\cal M}(q,a)}V(\alpha ,q,a)^se(-N\alpha )\,d\alpha +O(P^{s-k-\delta_2}).
+\end{align*}
+Για $q\gr 2$ έχουμε
+\begin{align*}
+\int_{{\cal M}(q,a)}V(\alpha ,q,a)^se(-N\alpha )\,d\alpha
+&= \int_{a/q-P^{\nu -k}}^{a/q+P^{\nu -k}}V(\alpha ,q,a)^se(-N\alpha )\,d\alpha \\
+&= \int_{-P^{\nu -k}}^{P^{\nu -k}}V(\beta +a/q.q,a)^se(-N(\beta +a/q))\,d\beta \\
+&= \Big(\frac{S(q,a)}{q}\Big)^se(-Na/q)\int_{-P^{\nu -k}}^{P^{\nu -k}}v(\beta )^se(-N\beta )\,d\beta \\
+&= \Big(\frac{S(q,a)}{q}\Big)^se(-Na/q)J^{\ast }(N).
+\end{align*}
+Για $q=1$ έχουμε $V(\alpha ,1,0)=v(\alpha )$ και $V(\alpha ,1,1)=v(\alpha -1)$. ’ρα,
+\begin{align*}
+& \int_{{\cal M}(1,0)}V(\alpha ,q,a)^se(-N\alpha )\,d\alpha +\int_{{\cal M}(1,1)}V(\alpha ,q,a)^se(-N\alpha )\,d\alpha \\
+&\hspace*{2cm} =\int_0^{P^{\nu -k}}v(\alpha )^se(-N\alpha )\,d\alpha +\int_{1-P^{\nu -k}}^1v(\alpha -1)^se(-N\alpha )\,d\alpha \\
+&\hspace*{2cm} = \int_0^{P^{\nu -k}}v(\beta )^se(-N\beta )\,d\beta +\int_{-P^{\nu -k}}^0v(\beta )^se(-N\beta )\,d\beta \\
+&\hspace*{2cm} =J^{\ast }(N).
+\end{align*}
+Συνεπώς,
+\begin{align*}
+\int_{{\cal M}}F(\alpha )^se(-N\alpha )\,d\alpha &= \sum_{1\ls q\ls P^{\nu }}\sum_{{a=1}\atop{(a,q)=1}}^q\Big(\frac{S(q,a)}{q}\Big)^se(-Na/q)J^{\ast }(N)
++O(P^{s-k-\delta_2})\\
+&= {\cal G}(N,P^{\nu })J^{\ast }(N)+O(P^{s-k-\delta_2}),
+\end{align*}
+και έχουμε το θεώρημα. \end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Το ιδιάζον ολοκλήρωμα}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Στη συνέχεια θεωρούμε το ολοκλήρωμα
+\begin{equation}\label{eq:5.8}J(N)=\int_{-1/2}^{1/2}v(\beta )^se(-\beta N)\,d\beta .\end{equation}
+Αυτό είναι το {\it ιδιάζον ολοκλήρωμα} για το πρόβλημα του \tl{Waring}.
+
+
+
+\begin{theorem}\label{th:5.4}Υπάρχει σταθερά $\delta_3>0$ τέτοια ώστε
+$$J(N)\ll P^{s-k}$$
+και
+$$J^{\ast }(N)=J(N)+O(P^{s-k-\delta_3}).$$
+\end{theorem}
+
+\begin{proof}
+Αρχικά παρατηρούμε ότι η συνάρτηση $g(\beta)=\min\{ P.|\beta |^{-1/k}\}^s\geq 0$ είναι άρτια, συνεπώς έχουμε 
+$$\int_{-1/2}^{1/2}\min\{ P.|\beta |^{-1/k}\}^s\,d\beta=2\int_0^{1/2}\min\{ P.|\beta |^{-1/k}\}^s\,d\beta$$
+Από αυτό σε συνδυασμό με το Λήμμα~\ref{lem:5.1} έχουμε
+\begin{align*}
+J(N) &\ll \int_0^{1/2}\min\{ P.|\beta |^{-1/k}\}^s\,d\beta \\
+&= \int_0^{1/N}\min\{P,|\beta |^{-1/k}\}^s\,d\beta +\int_{1/N}^{1/2}\min\{P,|\beta |^{-1/k}\}^s\,d\beta \\
+&= \int_0^{1/N}P^s\,d\beta +\int_{1/N}^{1/2}\beta^{-s/k}d\beta \\
+\end{align*}
+Υπολογίζοντας τα ολοκληρώματα έχουμε $$\int_0^{1/N}P^s\,d\beta=\frac{P^s}{N}=\frac{P^s}{(N^{1/k})^k}\ls \frac{P^s}{P^k}=P^{s-k}  $$
+και 
+$$\bigg|\int_{1/N}^{1/2}\beta^{-s/k}\,d\beta\bigg|=\bigg|\frac{2^{\frac{s}{k}-1}-N^{\frac{s}{k}-1}}{-\frac{s}{k}+1}\bigg|=\frac{s-k}{k}(N^{\frac{s}{k}-1}-2^{\frac{s}{k}-1})\ls\frac{s-k}{k}(N^{\frac{s-k}{k}})\ll P^{s-k}.$$
+Από τα παραπάνω έπεται ότι 
+$$J(N)\ll P^{s-k}.$$ Επιπλέον έχουμε
+\begin{align*}
+J(N)-J^{\ast }(N) &= \int_{P^{\nu -k}\ls |\beta |\ls 1/2}v(\beta )^se(-N\beta )\,d\beta \\
+&\ll \int_{P^{\nu -k}}^{1/2}|v(\beta )|^sd\beta \\
+&\ll \int_{P^{\nu -k}}^{1/2}\beta^{-s/k}d\beta \\
+&\ll P^{(k-\nu )(s/k-1)}\\
+&= P^{s-k-\delta_3},
+\end{align*}
+όπου $\delta_3=\nu (s/k-1)>0$. \end{proof}
+
+
+\begin{lemma}\label{lem:5.3}Έστω $\alpha $ και $\beta $ πραγματικοί αριθμοί τέτοιοι ώστε $0<\beta <1$ και
+$\alpha\gr\beta $. Τότε,
+$$\sum_{m=1}^{N-1}m^{\beta -1}(N-m)^{\alpha -1}=N^{\alpha +\beta -1}\frac{\Gamma (\alpha )\Gamma (\beta )}{\Gamma (\alpha +\beta )}
++O(N^{\alpha -1}),$$
+με την σταθερά (στο $O$) να εξαρτάται μόνο από το $\beta $.
+\end{lemma}
+
+\begin{proof}Η συνάρτηση
+$$g(x)=x^{\beta -1}(N-x)^{\alpha -1}$$
+είναι θετική και συνεχής στο $(0,N)$, ολοκληρώσιμη στο $[0,N]$, και
+\begin{align*}
+\int_0^Ng(x)\,dx &= \int_0^Nx^{\beta -1}(N-x)^{\alpha -1}dx\\
+&= N^{\alpha +\beta -1}\int_0^1t^{\beta -1}(1-t)^{\alpha -1}dt\\
+&= N^{\alpha +\beta -1}B(\alpha ,\beta )\\
+&= N^{\alpha +\beta -1}\frac{\Gamma (\alpha )\Gamma (\beta )}{\Gamma (\alpha +\beta )},
+\end{align*}
+όπου $B(\alpha ,\beta )$ είναι η συνάρτηση Βήτα και $\Gamma (\alpha )$ είναι η συνάρτηση Γάμμα.
+
+Αν $\alpha\gr 1$, τότε
+$$g^{\prime }(x) =g(x)\Big(\frac{\beta -1}{x}-\frac{\alpha -1}{N-x}\Big )<0,$$
+άρα η $g(x)$ είναι φθίνουσα στο $(0,N)$ και
+$$\int_1^Ng(x)\,dx<\sum_{m=1}^{N-1}g(m)<\int_0^{N-1}g(x)\,dx.$$
+Συνεπώς,
+\begin{align*}
+0&< \int_{N-1}^Ng(x)\,dx+\bigg(\int_0^{N-1}g(x)\,dx-\sum_{m=1}^{N-1}g(m)\bigg)\\
+&= \int_0^Ng(x)\,dx -\sum_{m=1}^{N-1}g(m)\\
+&=  \int_0^1g(x)\,dx+\bigg(\int_1^Ng(x)\,dx-\sum_{m=1}^{N-1}g(m)\bigg)\\
+&< \int_0^1g(x)\,dx\\
+&= \int_0^1x^{\beta -1}(N-x)^{\alpha -1}dx\\
+&\ls N^{\alpha -1}\int_0^1x^{\beta -1}dx\\
+&= \frac{N^{\alpha -1}}{\beta }.
+\end{align*}
+Αν $0<\beta \ls\alpha <1$, τότε $0<\alpha +\beta <2$ και είναι έυκολο να ελέγξουμε ότι η $g(x)$ έχει τοπικό ελάχιστο στο
+$$c=\frac{(1-\beta )N}{2-\alpha -\beta }\in [N/2,N).$$
+Αφού η $g(x)$ είναι γνησίως φθίνουσα στο $(0,c)$, έπεται ότι
+$$\sum_{m=1}^{\lfloor c\rfloor }g(m)<\int_0^{\lfloor c\rfloor }g(x)\,dx<\int_0^cg(x)\,dx $$
+και
+\begin{align*}
+\sum_{m=1}^{\lfloor c\rfloor }g(m)&=\sum_{m=1}^{\lfloor c\rfloor -1}g(m)+g(\lfloor c\rfloor )\\
+&\gr \int_1^{\lfloor c\rfloor }g(x)\,dx +g(\lfloor c\rfloor )\\
+&\gr \int_1^{\lfloor c\rfloor +1}g(x)\,dx \\
+&> \int_1^cg(x)\,dx\\
+&> \int_0^cg(x)\,dx -\frac{N^{\alpha -1}}{\beta }.
+\end{align*}
+όπου στην τελευταία ανισότητα χρησιμοποιήσαμε την σχέση $$\int_0^1g(x)\,dx<\frac{N^{\alpha -1}}{\beta }.$$
+Όμοια, αφού η $g(x)$ είναι αύξουσα στο $(c,N)$, έπεται ότι
+$$\sum_{m=\lfloor c\rfloor +1}^{N-1}g(m)\ls \int_{\lfloor c\rfloor+1}^Ng(x)\,dx <\int_c^Ng(x)\,dx$$και
+\begin{align*}
+\sum_{m=\lfloor c\rfloor +1}^{N-1}g(m) &\gr \int_{\lfloor c\rfloor +1}^{N-1}g(x)\,dx +g(\lfloor c\rfloor +1)\\
+&\gr \int_{\lfloor c\rfloor +1}^{N-1}g(x)\,dx +\int_{c}^{\lfloor c\rfloor +1}g(x)\,dx\\
+&= \int_c^{N-1}g(x)\,dx\\
+&=\int_c^Ng(x)\,dx-\int_{N-1}^Ng(x)\,dx\\
+&> \int_c^Ng(x)\,dx -\frac{N^{\beta -1}}{\alpha },
+\end{align*}
+όπου η τελευταία ανισότητα προκύπτει από το ότι
+$$\int_{N-1}^Ng(x)\,dx=\int_{N-1}^Nx^{\beta -1}(N-x)^{\alpha -1}dx=\int_{0}^{1}(N-t)^{\beta -1}t^{\alpha -1}dt$$
+Συνεπώς,
+$$0<\int_0^Ng(x)\,dx -\sum_{m=1}^{N-1}g(m)<\frac{N^{\alpha -1}}{\beta }+\frac{N^{\beta -1}}{\alpha }
+\ls\frac{2N^{\alpha -1}}{\beta },$$
+όπως θέλαμε. \end{proof}
+
+
+
+\begin{theorem}\label{th:5.5}Αν $s\gr 2$ τότε
+$$J(N)=\Gamma\Big(1+\frac{1}{k}\Big)^s\Gamma\Big(\frac{s}{k}\Big)^{-1}N^{s/k-1}+O(N^{(s-1)/k-1}).$$
+\end{theorem}
+
+\begin{proof}Ορίζουμε
+$$J_s(N)=\int_{-1/2}^{1/2}v(\beta )^se(-N\beta )\,d\beta $$
+για $s\gr 1$. Θα υπολογίσουμε αυτό το ολοκλήρωμα με επαγωγή ως προς $s$. Από την
+$$v(\beta )=\sum_{m=1}^N\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m)$$
+βλέπουμε ότι
+$$v(\beta )^s=\frac{1}{k^s}\sum_{m_1=1}^N\cdots\sum_{m_s=1}^N(m_1\cdots m_s)^{\frac{1}{k}-1}e((m_1+\cdots +m_s)\beta ),$$
+άρα
+\begin{align*}
+J_s(N) &= \frac{1}{k^s}\sum_{m_1=1}^N\cdots\sum_{m_s=1}^N(m_1\cdots m_s)^{\frac{1}{k}-1}\int_{-1/2}^{1/2}e((m_1+\cdots +m_s-N)\beta )\,d\beta \\
+&= \frac{1}{k^s}\sum_{{m_1+\cdots +m_s=N}\atop{1\ls m_i\ls N}}(m_1\cdots m_s)^{\frac{1}{k}-1}.
+\end{align*}
+Ειδικότερα, για $s=2$, εφαρμόζουμε το Λήμμα~\ref{lem:5.3} με $\alpha =\beta =1/k$ και παίρνουμε
+\begin{align*}
+J_2(N) &= \frac{1}{k^2}\sum_{m=1}^{N-1}m^{\frac{1}{k}-1}(N-m)^{\frac{1}{k}-1}\\
+&= \frac{1}{k^2}\frac{\Gamma (1/k)^2}{\Gamma (2/k)}N^{\frac{2}{k}-1}+O(N^{\frac{1}{k}-1})\\
+&= \frac{\Gamma (1+1/k)^2}{\Gamma (2/k)}N^{\frac{2}{k}-1}+O(N^{\frac{1}{k}-1}).
+\end{align*}
+Έτσι έχουμε το ζητούμενο στην περίπτωση $s=2$.
+
+Αν $s\gr 2$ και το θεώρημα ισχύει για τον $s$, γράφουμε
+\begin{align*}
+J_{s+1}(N) &= \int_{-1/2}^{1/2}v(\beta )^{s+1}e(-N\beta )\,d\beta \\
+&= \int_{-1/2}^{1/2}v(\beta )v(\beta )^se(-N\beta )\,d\beta \\
+&= \int_{-1/2}^{1/2}\sum_{k=1}^N\frac{1}{k}m^{\frac{1}{k}-1}e(\beta m)v(\beta )^se(-N\beta )\,d\beta \\
+&= \sum_{m=1}^N\frac{1}{k}m^{\frac{1}{k}-1}\int_{-1/2}^{1/2}v(\beta )^se(-(N-m)\beta )\,d\beta \\
+&= \sum_{m=1}^N\frac{1}{k}m^{\frac{1}{k}-1}J_s(N-m)\\
+&= \frac{\Gamma (1+1/k)^s}{\Gamma (s/k)}\sum_{m=1}^{N-1}\frac{1}{k}m^{\frac{1}{k}-1}(N-m)^{\frac{s}{k}-1}\\
+&\hspace*{1cm} +O\Big (\sum_{m=1}^{N-1}\frac{1}{k}m^{\frac{1}{k}-1}(N-m)^{\frac{s-1}{k}-1}\Big ).
+\end{align*}
+Εφαρμόζοντας το Λήμμα~\ref{lem:5.3} στον κύριο όρο (με $\alpha =s/k$ και $\beta =1/k$) και στο σφάλμα (με $\alpha =(s-1)/k$ και
+$\beta =1/k$), παίρνουμε
+$$\sum_{m=1}^{N-1}\frac{1}{k}m^{\frac{1}{k}-1}(N-m)^{\frac{s}{k}-1}=\frac{1}{k}\frac{\Gamma (1/k)\Gamma (s/k)}{\Gamma ((s+1)/k)}N^{\frac{s+1}{k}-1}
++O(N^{\frac{s}{k}-1})$$
+και
+$$\sum_{m=1}^{N-1}\frac{1}{k}m^{\frac{1}{k}-1}(N-m)^{\frac{s-1}{k}-1}=\frac{1}{k}\frac{\Gamma (1/k)\Gamma ((s-1)/k)}{\Gamma (s/k)}N^{\frac{s}{k}-1}
++O(N^{\frac{s-1}{k}-1})=O(N^{\frac{s}{k}-1}).$$
+’ρα,
+\begin{align*}
+J_{s+1}(N) &= \frac{1}{k}\frac{\Gamma (1/k)\Gamma (s/k)}{\Gamma ((s+1)/k)}\frac{\Gamma (1+1/k)^s}{\Gamma (s/k)}N^{\frac{s+1}{k}-1}+O(N^{\frac{s}{k}-1})\\
+&= \frac{\Gamma (1+1/k)^{s+1}}{\Gamma ((s+1)/k)}N^{\frac{s+1}{k}-1}+O(N^{\frac{s}{k}-1}),
+\end{align*}
+και έχουμε ολοκληρώσει το επαγωγικό βήμα.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Η ιδιάζουσα σειρά και το θεώρημα των \tl{Hardy} και \tl{Littlewood}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Στο Θεώρημα~\ref{th:5.3} ορίσαμε την συνάρτηση
+$${\cal G}(N,Q)=\sum_{1\ls q\ls Q}A_N(q),$$
+όπου
+$$A_N(q)=\sum_{{a=1}\atop{(a,q)=1}}^q\Big(\frac{S(q,a)}{q}\Big)^se(-Na/q).$$
+Ορίζουμε τώρα την {\it ιδιάζουσα σειρά} για το πρόβλημα του \tl{Waring}: είναι η αριθμητική συνάρτηση
+$${\cal G}(N)=\sum_{q=1}^{\infty }A_N(q).$$
+Για κάθε $0<\epsilon <\frac{1}{sK}$, από την $s\gr 2^k+1=2K+1$ έχουμε
+$$\frac{s}{K}-1-s\epsilon \gr 1+\frac{1}{K}-s\epsilon =1+\delta_4,$$
+όπου
+$$\delta_4=\frac{1}{K}-s\epsilon >0.$$
+Από την \eqref{eq:5.7} βλέπουμε ότι
+\begin{equation}\label{eq:5.9}A_N(q)\ll \frac{q}{q^{\frac{s}{K}-s\epsilon }}\ls\frac{1}{q^{1+\delta_4}},\end{equation}
+άρα η ιδιάζουσα σειρά $\sum_qA_N(q)$ συγκλίνει απολύτως και ομοιόμορφα ως προς $N$. Ειδικότερα, υπάρχει
+σταθερά $c_2=c_2(k,s)$ τέτοια ώστε
+\begin{equation}\label{eq:5.10}|{\cal G}(N)|<c_2\end{equation}
+για όλους τους φυσικούς $N$. Επιπλέον,
+$${\cal G}(N)-{\cal G}(N,P^{\nu })=\sum_{q>P^{\nu }}A_N(a)\ll \sum_{q>P^{\nu }}\frac{1}{q^{1+\delta_4}}\ll P^{-\nu\delta_4},$$
+διότι $$\sum_{q>P^\nu}\frac{1}{q^{1+\delta_4}}=\sum_{q=1}^{\infty}\frac{1}{q^{1+\delta_4}}-\sum_{q=1}^{P^{\nu}}\frac{1}{q^{1+\delta_4}}\ls c-\frac{P^{\nu}}{{P^{\nu}}^{(1+\delta4)}}=c-P^{-\nu\delta4},$$ όπου $$c=\sum_{q=1}^{\infty}\frac{1}{q^{1+\delta_4}}\in \R$$
+Θα δείξουμε ότι ${\cal G}(N)>0$ για κάθε $N$ και ότι υπάρχει σταθερά $c_1>0$, που εξαρτάται μόνο από τους $k$ και $s$,
+τέτοια ώστε
+$$0<c_1<{\cal G}(N)<c_2$$
+για όλους τους φυσικούς $N$. Αρχίζουμε δείχνοντας ότι η $A_N(q)$ είναι πολλαπλασιαστική συνάρτηση του $q$.
+Η επόμενη απλή παρατήρηση θα φανεί χρήσιμη.
+\begin{lemma}\label{extra5.1}Έστω $(q,r)=1$. Τότε κάθε κλάση ισοτιμίας ${\rm mod}\;\;qr$ γράφεται
+μονοσήμαντα στη μορφή $xr+yq$, όπου $1\ls x\ls q$ και $1\ls y\ls r$.
+\end{lemma}
+\begin{proof}
+Έστω $A$ το σύνολο των κλάσεων ισοτιμίας ${\rm mod}\;\;qr$ και $B=\{xr+yq:1\ls x\ls q,1\ls y\ls r\}$. Ορίζουμε την συνάρτηση $f$ από το $B$ στο $A$ με $$f(xr+yq)=[xr+yq].$$ Θα δείξουμε ότι είναι $1-1$ και επί. Τα σύνολα $A$,$B$ έχουν την ίδια πληθικότητα συνεπώς αρκεί να δείξουμε ότι η $f$ είναι $1-1$. Προς τούτο έστω $xr+yq,x'r+y'q$ με $$f(xr+yq)=f(x'r+y'q.)$$ Δηλαδή $$xr+yq \equiv x'r+y'q \;\;({\rm mod}\;\;qr)$$ και άρα
+$$(x-x')r \equiv (y-y')q \;\;({\rm mod}\;\;qr).$$ Από την σχέση αυτή πολλαπλασιάζοντας με $r$ προκύπτει ότι $$(x-x')r^2 \equiv (y-y')qr \;\;({\rm mod}\;\;qr)$$ το οποίο σημαίνει ότι  ο $q$ διαιρεί τον $(x-x')r^2$ και καθώς $(q,r)=1$ συμπεραίνουμε ότι ο $q$ διαιρεί τον $x-x'$. Έτσι $x=x'$. Με όμοιο τρόπο δείχνουμε ότι $y=y'$. Συνεπώς $xr+yq=x'r+y'q$ και η απόδειξη ολοκληρώθηκε.
+\end{proof}
+
+\begin{lemma}\label{extra5.2}Έστω $(q,r)=1$. Τότε κάθε αντιστρέψιμη κλάση ισοτιμίας $\;\;({\rm mod}\;\;qr)$ γράφεται μονοσήμαντα στην μορφή $ar+bq$, όπου $1\ls a\ls q$, $1\ls b\ls r$ και $(a,q)=(b,r)=1$.
+\end{lemma}
+
+\begin{proof}
+Έστω $C$ το σύνολο των αντιστρέψιμων κλάσεων ισοτιμίας ${\rm mod}\;\;qr$ και $D=\{ar+bq:1\ls a\ls q,1\ls b\ls r, (a,q)=(b,r)=1\}$.  Ορίζουμε την συνάρτηση $g$ από το $D$ στο $C$ με $$g(ar+bq)=[ar+bq].$$ Θα δείξουμε ότι είναι $1-1$ και επί. Αρχικά δείχνουμε ότι η $g$ ορίζεται καλά. Αρκεί να δείξουμε ότι αν $c=ar+bq$ όπου $(a,q)=(b,r)=1$ τότε $(c,qr)=1$. Έστω πρώτος $p$ ο οποίος διαιρεί τον $(c,qr)$. Τότε καθώς $(q,r)=1$ συμπεραίνουμε ότι ο $p$ δεν διαιρεί ταυτόχρονα τους $q$,$r$. Έστω χωρίς βλάβη της γενικότητας ότι $p|q$. Τότε καθώς $p|(ar+bq)=c$ και $p|bq$ προκύπτει ότι $p|ar$. Άρα αφού ο ο $p$ δεν διαιρεί τον $r$ έπεται ότι $p|a$ και συνεπώς $p|(a,q)=1$, άτοπο. Έτσι $(c,qr)=1$.
+Επίσης, $$|C|=\phi(qr)=\phi(q)\phi(r)=|d|,$$ καθώς η συνάστηση $\phi$ του \tl{Euler} είναι πολλαπλασιαστική. όμοια με το προηγούμενο λήμμα η $g$ είναι $1-1$  άρα και επί. Η απόδειξη ολοκληρώθηκε.
+\end{proof}
+
+\begin{lemma}\label{lem:5.4}Έστω $(q,r)=1$. Τότε,
+$$S(qr,ar+bq)=S(q,a)S(r,b).$$
+\end{lemma}
+\begin{proof}Αφού $(q,r)=1$, τα σύνολα $\{xr:1\ls x\ls q\}$ και $\{yq:1\ls y\ls r\}$ είναι πλήρη
+συστήματα υπολοίπων ${\rm mod}\;\;q$ και $r$, αντίστοιχα. Αφού κάθε κλάση ισοτιμίας ${\rm mod}\;\;qr$ γράφεται
+μονοσήμαντα στη μορφή $xr+yq$, όπου $1\ls x\ls q$ και $1\ls y\ls r$, έπεται ότι
+\begin{align*}
+S(qr,ar+bq) &=\sum_{m=1}^{qr}e\Big(\frac{(ar+bq)m^k}{qr}\Big )\\
+&= \sum_{x=1}^q\sum_{y=1}^re\Big(\frac{(ar+bq)(xr+yq)^k}{qr}\Big )\\
+&= \sum_{x=1}^q\sum_{y=1}^re\Big(\frac{ar+bq}{qr}\sum_{\ell =0}^k\binom{k}{\ell }(xr)^{\ell }(yq)^{k-\ell }\Big )\\
+&= \sum_{x=1}^q\sum_{y=1}^re\Big( \frac{ar+bq}{qr}((xr)^k+(yq)^k)\Big)\\
+&= \sum_{x=1}^q\sum_{y=1}^re\Big(\frac{a(xr)^k}{q}\Big)e\Big(\frac{b(yq)^k}{r}\Big)\\
+&= \sum_{x=1}^qe\Big(\frac{ax^k}{q}\Big)\sum_{y=1}^re\Big(\frac{by^k}{r}\Big)\\
+&= S(q,a)S(r,b),
+\end{align*}
+και έχουμε το λήμμα.
+\end{proof}
+
+
+
+\begin{lemma}\label{lem:5.5}Αν $(q,r)=1$, τότε
+$$A_N(qr)=A_N(q)A_N(r).$$
+Δηλαδή, η συνάρτηση $A_N$ είναι πολλαπλασιαστική.
+\end{lemma}
+
+\begin{proof}Αν οι $c$ και $qr$ είναι σχετικώς πρώτοι, τότε ο $c$ είναι ισότιμος ${\rm mod}\;\;qr$ με κάποιον αριθμό
+της μορφής $ar+bq$, όπου $(a,q)=(b,r)=1$. Από το Λήμμα~\ref{lem:5.4} προκύπτει ότι
+\begin{align*}
+A_N(qr) &= \sum_{{c=1}\atop{(c,qr)=1}}^{qr}\Big(\frac{S(qr,c)}{qr}\Big)^se\Big(-\frac{cN}{qr}\Big)\\
+&= \sum_{{a=1}\atop{(a,q)=1}}^q\sum_{{b=1}\atop{(b,q)=1}}^r\Big(\frac{S(qr, ar+bq)}{qr}\Big)^se\big(-\frac{(ar+bq)N}{qr}\Big)\\
+&= \sum_{{a=1}\atop{(a,q)=1}}^q\sum_{{b=1}\atop{(b,q)=1}}^r\Big(\frac{S(q,a)}{q}\Big)^s\Big(\frac{S(r,b)}{r}\Big)^se\Big(-\frac{aN}{q}\Big)e\Big(-\frac{bN}{r}\Big)\\
+&= \sum_{{a=1}\atop{(a,q)=1}}^q\Big(\frac{S(q,a)}{q}\Big)^se\Big(-\frac{aN}{q}\Big)
+\sum_{{b=1}\atop{(b,q)=1}}^r\Big(\frac{S(r,b)}{r}\Big)^s e\Big(-\frac{bN}{r}\Big)\\
+&=A_N(q)A_N(r),
+\end{align*}
+και έχουμε το ζητούμενο.
+\end{proof}
+
+Για κάθε φυσικό αριθμό $q$, συμβολίζουμε με $M_N(q)$ το πλήθος των λύσεων της ισοτιμίας
+$$x_1^k+\cdots +x_s^k\equiv N\;\;({\rm mod}\;\;q)$$
+πάνω από τους ακεραίους $x_i$ που ικανοποιούν την $1\ls x_i\ls q$ για $i=1,\ldots ,q$.
+
+
+
+\begin{lemma}\label{lem:5.6}Έστω $s\gr 2^k+1$. Για κάθε πρώτο $p$, η σειρά
+\begin{equation}\label{eq:5.11}\chi_N(p)=1+\sum_{h=1}^{\infty }A_N(p^h)\end{equation} 
+συγκλίνει, και
+\begin{equation}\label{eq:5.12}\chi_N(p)=\lim_{h\to\infty }\frac{M_N(p^h)}{p^{h(s-1)}}.\end{equation}
+\end{lemma}
+
+\begin{proof}Η σύγκλιση της σειράς \eqref{eq:5.11} είναι άμεση συνέπεια της ανισότητας \eqref{eq:5.9}. Αν $(a,q)=d$ τότε
+\begin{align*}
+S(q,a) &= \sum_{x=1}^qe\Big(\frac{ax^k}{q}\Big) =\sum_{x=1}^qe\Big(\frac{(a/d)x^k}{q/d}\Big)\\
+&= d\sum_{x=1}^{q/d}e\Big(\frac{(a/d)x^k}{q/d}\Big)=dS\Big(\frac{q}{d},\frac{a}{d}\Big).
+\end{align*}
+Αν $m\equiv 0\;\;({\rm mod}\;\;q)$ τότε $$\frac{1}{q}\sum_{a=1}^qe\Big(\frac{am}{q}\Big)=\frac{1}{q}q=1$$ καθώς για κάθε $a$ o αριθμός $\frac{am}{q}$ είναι ακέραιος. Εάν ο $q$ δεν διαιρεί τον $m$ τότε $e\Big(\frac{m}{q}\Big)\neq 1$ και συνεπώς
+$$\sum_{a=1}^qe\Big(\frac{am}{q}\Big)=\sum_{a=0}^q{e\Big(\frac{m}{q}\Big)}^a-{e\Big(\frac{m}{q}\Big)}^0=\frac{{e(m/q)}^{q+1}-1}{{e(m/q)}-1}-1=\frac{{e(m/q)}^{q+1}-e(m/q)}{e(m/q)-1}=0$$ αφού $e(m/q)^{q+1}=e(m/q)$.
+Έπεται δηλαδή ότι το άθροισμα
+$$\frac{1}{q}\sum_{a=1}^qe\Big(\frac{am}{q}\Big)$$
+είναι ίσο με $1$ αν $m\equiv 0\;\;({\rm mod}\;\;q)$ και ίσο με $0$ αλλιώς, βλέπουμε ότι για οποιουσδήποτε ακεραίους $x_1,\ldots ,x_s$
+το άθροισμα
+$$\frac{1}{q}\sum_{a=1}^qe\Big(\frac{a(x_1^k+\cdots +x_s^k-N)}{q}\Big)$$
+είναι ίσο με $1$ αν $x_1^k+\cdots +x_s^k\equiv N\;\;({\rm mod}\;\;q)$ και ίσο με $0$ αλλιώς.
+’ρα,
+\begin{align*}
+M_N(q) &= \sum_{x_1=1}^q\cdots\sum_{x_s=1}^q\frac{1}{q}\sum_{a=1}^qe\Big(\frac{a(x_1^k+\cdots +x_s^k-N)}{q}\Big)\\
+&= \frac{1}{q}\sum_{a=1}^q\sum_{x_1=1}^q\cdots\sum_{x_s=1}^qe\big(\frac{a(x_1^k+\cdots +x_s^k-N)}{q}\Big)\\
+&= \frac{1}{q}\sum_{a=1}^q\sum_{x_1=1}^qe\Big(\frac{ax_1^k}{q}\Big)\cdots \sum_{x_s=1}^qe\big(\frac{ax_s^k}{q}\Big)e\Big(-\frac{aN}{q}\Big)\\
+&= \frac{1}{q}\sum_{a=1}^qS(q,a)^se\big(-\frac{aN}{q}\Big)\\
+&= \frac{1}{q}\sum_{d\mid q}\sum_{{a=1}\atop{(a,q)=d}}^qS(q,a)^se\Big(-\frac{aN}{q}\Big)\\
+&=\frac{1}{q}\sum_{d\mid q}\sum_{{a=1}\atop{(a,q)=d}}^qd^sS\Big(\frac{q}{d},\frac{a}{d}\Big)^se\Big(-\frac{(a/d)N}{q/d}\Big)\\
+&= \frac{1}{q}\sum_{d\mid q}\sum_{{a=1}\atop{(a,q)=d}}^qq^s\Big(\frac{S(q/d,a/d)}{q/d}\Big)^se\Big(-\frac{(a/d)N}{q/d}\Big)\\
+&= q^{s-1}\sum_{d\mid q}A_N(q/d).
+\end{align*}
+Συνεπώς,
+$$\sum_{d\mid q}A_N(q/d)=q^{1-s}M_N(q)$$
+για κάθε $q\gr 1$. Ειδικότερα, για $q=p^h$ παίρνουμε
+$$1+\sum_{j=1}^hA_N(p^j)=\sum_{d\mid p^h}A_N(p^h/d)=p^{h(1-s)}M_N(p^h),$$
+άρα
+$$\chi_N(p)=\lim_{h\to\infty }\Big( 1+\sum_{j=1}^hA_N(p^j)\Big)=\lim_{h\to\infty }p^{h(1-s)}M_N(p^h),$$
+και η απόδειξη είναι πλήρης.
+\end{proof}
+
+
+\begin{lemma}\label{lem:5.7}Αν $s\gr 2^k+1$, τότε
+\begin{equation}\label{eq:5.13}{\cal G}(N)=\prod_p\chi_N(p).\end{equation}
+Επιπλέον, υπάρχει σταθερά $c_2$ που εξαρτάται μόνο από τους $k$ και $s$, τέτοια ώστε
+$$0<{\cal G}(N)<c_2$$
+για κάθε $N$, και υπάρχει πρώτος $p_0$ που εξαρτάται μόνο από τους $k$ και $s$, τέτοιος ώστε
+\begin{equation}\label{eq:5.14}\frac{1}{2}\ls \prod_{p>p_0}\chi_N(p)\ls\frac{3}{2}\end{equation}
+για κάθε $N\gr 1$.
+\end{lemma}
+
+\begin{proof}Έχουμε δείξει ότι αν $s\gr 2^k+1$ τότε
+$$A_N(q)\ll \frac{1}{q^{1+\delta_4}},$$
+όπου ο $\delta_4$ εξαρτάται μόνο από τους $k$ και $s$, άρα η σειρά $\sum_qA_N(q)$ συγκλίνει απολύτως.
+Αφού η συνάρτηση $A_n(q)$ είναι πολλαπλασιαστική, από το \eqref{th:A.28}
+γνωρίζουμε ότι $${\cal G}(N)=\sum_{q=1}^{\infty}A_N(q)=\prod_p\Big(1+\sum_{h=1}^{\infty }A_N(p^h)\Big)=\prod_p\chi_N(p).$$ και άρα και το
+γινόμενο \tl{Euler} \eqref{eq:5.13} συγκλίνει.
+Ειδικότερα, $\chi_N(p)\neq 0$ για κάθε $N$ και $p$. Αφού ο $\chi_N(p)$ είναι μη αρνητικός από την \eqref{eq:5.12},
+συμπεραίνουμε ότι ο $\chi_N(p)$ είναι θετικός πραγματικός αριθμός για κάθε $N$ και $p$, συνεπώς η ιδιάζουσα σειρά
+${\cal G}(N)$ είναι θετική. Πάλι, από την \eqref{eq:5.9},
+$$0<{\cal G}(N)\ls\sum_{q=1}^{\infty }\frac{1}{q^{1+\delta_4}}=c_2<\infty $$
+και
+$$|\chi_N(p)-1|\ls\sum_{h=1}^{\infty }|A_N(p^h)|\ll \sum_{h=1}^{\infty }\frac{1}{p^{h(1+\delta_4)}}\ll \frac{1}{p^{1+\delta_4}}.$$
+Συνεπώς, υπάρχει σταθερά $c$ που εξαρτάται μόνο από τους $k$ και $s$, τέτοια ώστε
+$$1-\frac{c}{p^{1+\delta_4}}\ls\chi_n(p)\ls 1+\frac{c}{p^{1+\delta_4}}$$
+για κάθε $N$ και $p$.
+Τώρα από το θεώρημα \eqref{th:A.26}  η σύγκλιση της σειράς $\sum_p \big(\frac{c}{p^{1+\delta4}}\big)$ συνεπάγεται τη σύγκλιση του άπειρου γινομένου $\prod_p \big(1+\frac{c}{p^{1+\delta4}}\big)$. Άρα υπάρχει θετικός πραγματικός αριθμός $\alpha$ με $$\prod_p \bigg(1+\frac{c}{p^{1+\delta4}}\bigg)=\alpha>1,$$ αφού $1+\frac{c}{p^{1+\delta4}}>1$ για κάθε $p$. Θέτουμε $$\varepsilon=\frac{\alpha}{3}>0.$$ Τότε υπάρχει $p_1$ πρώτος τέτοιος ώστε $$\prod_{p\ls p_1} \bigg(1+\frac{c}{p^{1+\delta4}}\bigg)>\alpha-\frac{\alpha}{3}=\frac{2\alpha}{3}.$$ Έπεται λοιπόν ότι 
+$$\prod_{p>p_1} \bigg(1+\frac{c}{p^{1+\delta4}}\bigg)=\frac{\prod_p \big(1+\frac{c}{p^{1+\delta4}}\big)}{\prod_{p\ls p_1} \big(1+\frac{c}{p^{1+\delta4}}\big)}\ls \frac{3}{2}.$$ ομοίως βρίσκουμε $p_2$ τέτοιον ώστε $$\prod_{p>p_2} \bigg(1-\frac{c}{p^{1+\delta4}}\bigg)\gr \frac{1}{2}.$$ Θέτοντας $p_0=\max(p_1,p_2)$ παίρνουμε τη σχέση \eqref{eq:5.14}.
+\end{proof}
+
+\smallskip
+
+Θέλουμε να δείξουμε ότι ο ${\cal G}(N)$ είναι φραγμένος μακρυά από το $0$ ομοιόμορφα ως προς $N$.
+Από την ανισότητα \eqref{eq:5.14}, αρκεί να δείξουμε, για κάθε πρώτο $p$, ότι ο $\chi_N(p)$ είναι
+ομοιόμορφα φραγμένος μακρυά από το $0$.
+
+Έστω $p$ πρώτος, και έστω
+$$k=p^rk_0,$$
+όπου $r\gr 0$ και $(p,k_0)=1$. Ορίζουμε $\gamma :=r+1$ αν $p>2$ και $\gamma :=r+2$ αν $p=2$.
+
+
+
+\begin{lemma}\label{lem:5.8}
+Έστω $m$ φυσικός που δεν διαιρείται από τον $p$. Αν η ισοτιμία $x^k\equiv m\;({\rm mod}\;\;p^{\gamma })$ έχει λύση,
+τότε η ισοτιμία $y^k\equiv m\;({\rm mod}\;\;p^h)$ έχει λύση για κάθε $h\gr\gamma $.
+\end{lemma}
+
+\begin{proof}Διακρίνουμε δύο περιπτώσεις. Ας υποθέσουμε πρώτα ότι ο $p$ είναι περιττός πρώτος. Για $h\gr \gamma =r+1$,
+έχουμε
+$$(k,\phi (p^h))=(k_0p^r,(p-1)p^{h-1})=(k_0,p-1)p^r=(k,\phi (p^{\gamma })).$$
+Οι κλάσεις ισοτιμίας ${\rm mod}\;\;p^h$ που είναι σχετικώς πρώτες προς τον $p$ σχηματίζουν κυκλική ομάδα τάξης
+$\phi (p^h)=(p-1)p^{h-1}$. Έστω $g$ ένας γεννήτορας αυτής της κυκλικής ομάδας, δηλαδή, μια πρωταρχική ρίζα
+${\rm mod}\;\;p^h$. Τότε, ο $g$ είναι επίσης πρωταρχική ρίζα ${\rm mod}\;\;p^{\gamma }$. Έστω $x^k\equiv m\;\;({\rm mod}\;\;p^{\gamma })$.
+Τότε $(x,p)=1$, και μπορούμε να επιλέξουμε ακεραίους $r$ και $u$ τέτοιους ώστε
+$$x\equiv g^u\;\;({\rm mod}\;\;p^h)$$
+και
+$$m\equiv g^r\;\;({\rm mod}\;\;p^h).$$
+Τότε
+$$ku\equiv r\;\;({\rm mod}\;\;\phi (p^{\gamma })),$$
+άρα
+$$r\equiv 0\;\;({\rm mod}\;\;(k,\phi (p^{\gamma })))$$
+και
+$$r\equiv 0\;\;({\rm mod}\;\;(k,\phi (p^h))).$$
+Συνεπώς, υπάρχει ακέραιος $v$ τέτοιος ώστε
+$$kv\equiv r\;\;({\rm mod}\;\;\phi (p^h)).$$
+Έστω $y=g^v$. Τότε, $y^k\equiv m\;\;({\rm mod}\;\;p^h)$.
+
+Στη δεύτερη περίπτωση, έχουμε $p=2$ άρα οι $m$ και $x$ είναι περιττοί. Αν $r=0$ τότε ο $k$ είναι περιττός.
+Καθώς ο $y$ διατρέχει το σύνολο των περιττών κλάσεων ισοτιμίας ${\rm mod}\;\;2^h$, το ίδιο ισχύει για τον $y^k$,
+και η ισοτιμία $y^k\equiv m\;\;({\rm mod}\;\;2^h)$ έχει λύση για κάθε $h\gr 1$. Αν $r\gr 1$ τότε ο $k$ είναι
+άρτιος και $m\equiv x^k\equiv 1\;\;({\rm mod}\;\;4)$. Επίσης, $x^k=(-x)^k$, άρα μπορούμε να υποθέσουμε
+ότι $x\equiv 1\;\;({\rm mod}\;\;4)$. Οι κλάσεις ισοτιμίας ${\rm mod}\;\;2^h$ που είναι ισότιμες με
+$1\;\;{\rm mod}\;\;4$ σχηματίζουν κυκλική υποομάδα τάξης $2^{h-2}$, και ο $5$ είναι γεννήτορας αυτής
+της υποομάδας. Επιλέγουμε ακεραίους $r$ και $u$ τέτοιους ώστε
+$$m\equiv 5^r\;\;({\rm mmod}\;\;2^h)$$
+και
+$$x\equiv 5^u\;\;({\rm mod}\;\;2^h).$$
+Τότε, η $x^k\equiv m\;\;({\rm mod}\;\;2^{\gamma })$ είναι ισοδύναμη με την
+$$ku\equiv r\;\;({\rm mod}\;\;2^{\gamma -2}),$$
+άρα ο $r$ είναι πολλαπλάσιο του $(k,2^r)=2^r=(k,2^{h-2})$. Έπεται ότι υπάρχει ακέραιος $v$ τέτοιος ώστε
+$$kv\equiv r\;\;({\rm mod}\;\;2^{h-2}).$$
+Έστω $y=5^v$. Τότε, $y^k\equiv m\;\;({\rm mod}\;\;2^h)$, και η απόδειξη είναι πλήρης.
+\end{proof}
+
+
+
+\begin{lemma}\label{lem:5.9}Έστω $p$ πρώτος. Αν υπάρχουν ακέραιοι $a_1,\ldots ,a_s$, που δεν διαιρούνται όλοι
+από τον $p$, τέτοιοι ώστε
+$$a_1^k+\cdots +a_s^k\equiv N\;({\rm mod}\;\;p^{\gamma }),$$
+τότε
+$$\chi_N(p)\gr\frac{1}{p^{\gamma (1-s)}}>0.$$
+\end{lemma}
+
+\begin{proof}Υποθέτουμε ότι $a_1\not\equiv 0\;\;({\rm mod}\;\;p)$. Έστω$h>\gamma $. Για κάθε $i=2,\ldots ,s$ υπάρχουν $p^{h-\gamma }$ ανά δύο
+όχι ισότιμοι ακέραιοι $x_i$ τέτοιοι ώστε
+$$x_i\equiv a_i\;\;({\rm mod}\;\;p^h).$$
+Αφού η ισοτιμία
+$$x_1^k\equiv N-x_1^k-\cdots -x_s^k\;\;({\rm mod}\;\;p^{\gamma })$$
+έχει λύση $x_1=a_1\not\equiv 0\;\;({\rm mod}\;\;p)$, από το Λήμμα~\ref{lem:5.8} βλέπουμε ότι η
+$$x_1^k\equiv N-x_1^k-\cdots -x_s^k\;\;({\rm mod}\;\;p^h)$$
+έχει λύση. Έπεται ότι
+$$M_N(p^h)\gr p^{(h-\gamma )(s-1)},$$
+άρα
+$$\chi_N(p)=\lim_{h\to \infty }\frac{M_N(p^h)}{p^{h(s-1)}}\gr \frac{1}{p^{\gamma (s-1)}}>0.$$
+\end{proof}
+
+
+\begin{lemma}\label{lem:5.10}Αν $s\gr 2k$ για περιττό $k$ ή $s\gr 4k$ για άρτιο $k$, τότε
+$$\chi_N(p)\gr p^{\gamma (1-s)}>0.$$
+\end{lemma}
+
+\begin{proof}Από το Λήμμα~\ref{lem:5.9} αρκεί να αποδείξουμε ότι η ισοτιμία
+\begin{equation}\label{eq:5.15}a_1^k+\cdots +a_{s-1}^k+1^k\equiv N\;\;({\rm mod}\;\;p^{\gamma })\end{equation}
+έχει λύση στους ακεραίους. Ισοδύναμα, αρκεί να λύσουμε την ισοτιμία
+$$a_1^k+\cdots +a_{s-1}^k\equiv N-1\;\;({\rm mod}\;\;p^{\gamma }).$$
+Σε αυτήν την περίπτωση έχουμε $(N-1,p)=1$. Αρκεί λοιπόν να δείξουμε ότι αν $(N,p)=1$ τότε η ισοτιμία \eqref{eq:5.15} έχει
+λύση στους ακεραίους για $s\gr 2k-1$ αν ο $p$ είναι περιττός και για $s\gr 4k-1$ αν ο $p$ είναι άρτιος.
+
+Έστω $p$ περιττός πρώτος και $g$ μια πρωταρχική ρίζα ${\rm mod}\;\;p^{\gamma }$. Η τάξη της $g$ είναι
+$$\phi (p^{\gamma })=(p-1)p^{\gamma -1}=(p-1)p^r.$$
+Έστω $(m,p)=1$. Ο ακέραιος $m$ είναι υπόλοιπο $k$-οστής δύναμης ${\rm mod}\;\;p^{\gamma }$ αν και μόνο αν
+υπάρχει ακέραιος $x$ τέτοιος ώστε
+$$x^k\equiv m\;\;({\rm mod}\;\;p^{\gamma }).$$
+Έστω $m\equiv g^r\;\;({\rm mod}\;\;p^{\gamma })$. Τότε, ο $m$ είναι υπόλοιπο $k$-οστής δύναμης αν και μόνο αν
+υπάρχει ακέραιος $v$ τέτοιος ώστε $x\equiv g^v\;\;({\rm mod}\;\;p^{\gamma })$ και
+$$kv\equiv r\;\;({\rm mod}\;\;(p-1)p^r).$$
+Αφού $k=k_0p^r$ με $(k_0,p)=1$, έπεται ότι η ισοτιμία έχει λύση αν και μόνο αν
+$$r\equiv 0\;\;({\rm mod}\;\;(k_0,(p-1)p^r),$$
+υνεπώς υπάρχουν
+$$\frac{\phi (p^{\gamma })}{(k_0,p-1)p^r}=\frac{p-1}{(k_0,p-1)}$$
+διακεκριμένα υπόλοιπα $k$-οστών δυνάμεων ${\rm mod}\;\;p^{\gamma }$. Έστω $s(N)$ ο μικρότερος φυσικός $s$ για
+τον οποίο η \eqref{eq:5.15} έχει λύση, και $C(j)$ το σύνολο όλων των κλάσεων ισοτιμίας $N\;\;{\rm mod}\;\;p^{\gamma }$ για
+τις οποίες $(N,p)=1$ και $s(N)=j$. Ειδικότερα, το $C(1)$ αποτελείται ακριβώς από τα υπόλοιπα
+$k$-οστώ δυνάμεων ${\rm mod}\;\;p^{\gamma }$. Αν $(m,p)=1$ και $N^{\prime }=m^kN$, τότε $s(N^{\prime })=s(N)$. Έπεται
+ότι τα σύνολα $C(j)$ είναι κλειστά ως προς πολλαπλασιασμό με υπόλοιπα $k$-οστών δυνάμεων, άρα,
+αν το $C(j)$ είναι μη κενό τότε $|C(j)|\gr (p-1)/(k_0,p-1)$. Έστω $n$ ο μεγαλύτερος φυσικός για τον
+οποίο το σύνολο $C(n)$ είναι μη κενό. Έστω $j<n$ και έστω $N$ ο μικρότερος φυσικός για τον οποίο $(N,p)=1$
+και $s(N)>j$. Αφού ο $p$ είναι περιττός πρώτος, έπεται ότι ο $N-i$ είναι πρώτος προς τον $p$ για $i=1$ ή $2$,
+και $s(N-i)\ls j$. Αφού $N=(N-1)+1^k$ και $N=(N-2)+1^k+1^k$, έπεται ότι
+$$j+1\ls(N)\ls s(N-i)+2\ls j+2$$
+άρα $s(N-i)=j$ ή $j-1$. Αυτό σημαίνει ότι δεν υπάρχουν διαδοχικά μη κενά σύβολα $C(j)$ για
+$j=1,2,\ldots ,n$, άρα το πλήθος των μη κενών συνόλων $C(j)$ είναι τουλάχιστον $\frac{n+1}{2}$. Αφού τα σύνολα $C(j)$ είναι
+ξένα ανά δύο, έπεται ότι
+$$(p-1)p^r=\phi (p^{\gamma })=\sum_{{j=1}\atop{C(j)\neq\emptyset}}^n|C(j)|\gr\frac{n+1}{2}\frac{p-1}{(k_0,p-1)},$$
+άρα
+$$n\ls 2(k_0,p-1)p^r-1\ls 2k-1.$$
+’ρα, $s(N)\ls 2k-1$ αν ο $p$ είνα περιττός πρώτος και ο $N$ είναι πρώτος προς τον $p$.
+
+Έστω $p=2$. Αν ο $k$ είναι περιττός, τότε κάθε περιττός ακέραιος είναι υπόλοιπο $k$-οστής δύναμης ${\rm mod}\;\;2^{\gamma }$,
+άρα $s(N)=1$ για όλους τους περιττούς ακεραίους $N$. Αν ο $k$ είναι άρτιος, τότε $k=2^rk_0$ με $r\gr 1$ και
+$\gamma =r+2$. Μπορούμε να υποθέσουμε ότι $1\ls N\ls 2^{\gamma }-1$. Αν
+$$s=2^{\gamma }-1=4\cdot 2^r-1\ls 4k-1,$$
+τότε η ισοτιμία \eqref{eq:5.15} λύνεται πάντα αν επιλέξουμε $a_i=1$ για $i=1,\ldots ,N$ και $a_i=0$ για
+$i=N+1,\ldots ,s$. Συνεπώς, $s(N)\ls 4k-1$ για όλους τους περιττούς $N$. Έτσι, ολοκληρώνεται η απόδειξη.
+\end{proof}
+
+\begin{theorem}\label{th:5.6}
+Υπάρχουν θετικές σταθερές $c_1=c_1(k,s)$ και $c_2=c_2(k,s)$ τέτοιες ώστε
+$$c_1<{\cal G}(N)<c_2.$$
+Επιπλέον, για αρκετά μεγάλους φυσικούς $N$,
+$${\cal G}(N,P^{\nu })={\cal G}(N)+O(P^{-\nu\delta_4}).$$
+\end{theorem}
+
+\begin{proof}Ο μόνος ισχυρισμός του θεωρήματος που δεν έχουμε αποδείξει ως τώρα είναι το κάτω φράγμα για την
+${\cal G}(N)$. Έχουμε όμως δείξει ότι υπάρχει πρώτος $p_0=p_0(k,s)$ τέτοιος ώστε
+$$\frac{1}{2}\ls \prod_{p>p_0}\chi_N(p)\ls\frac{3}{2}$$
+για κάθε $N\gr 1$. Αφού
+$$\chi_N(p)\gr p^{\gamma (1-s)}>0$$
+για κάθε πρώτο $p$ και κάθε $N$, έπεται ότι
+$${\cal G}(N)=\prod_p\chi_N(p)>\frac{1}{2}\prod_{p\ls p_0}\chi_N(p)\gr\frac{1}{2}\prod_{p\ls p_0}p^{\gamma (1-s)}=c_1>0,$$
+και έχουμε ολοκληρώσει την απόδειξη του θεωρήματος.
+\end{proof}
+
+\smallskip
+
+Μπορούμε τώρα να αποδείξουμε τον ασυμπτωτικό τύπο των \tl{Hardy} και \tl{Littlewood}.
+
+\begin{theorem}[\tl{Hardy-Littlewood}]\label{th:5.7}Έστω $k\gr 2$ και $s\gr 2^k+1$. Συμβολίζουμε με $r_{k,s}(N)$
+το πλήθος των αναπαραστάσεων του $N$ ως αθροίσματος $s$ το πλήθος $k$-δυνάμεων φυσικών αριθμών. Υπάρχει σταθερά
+$\delta =\delta (k,s)>0$ τέτοια ώστε
+$$r_{k,s}(N)={\cal G}(N)\Gamma\Big(1+\frac{1}{k}\Big)^s\Gamma\Big(\frac{s}{k}\Big)^{-1}N^{(s/k)-1}+O(N^{(s/k)-1-\delta }),$$
+με την σταθερά (στο $O$) να εξαρτάται μόνο από τους $k$ και $s$, και η ${\cal G}(N)$ είναι μια αριθμητική συνάρτηση
+τέτοια ώστε
+$$c_1<{\cal G}(N)<c_2$$
+για κάθε $N$, όπου $c_1$ και $c_2$ είναι θετικές σταθερές που εξαρτώνται μόνο από τους $k$ και $s$.
+\end{theorem}
+
+\begin{proof}Θέτουμε $\delta_0=\min\{1,\delta_1,\delta_2,\delta_3,\nu\delta_4\}$. Από τα Θεωρήματα~\ref{th:5.2} έως \ref{th:5.6} έχουμε
+\begin{align*}
+r_{k,s}(N) &= \int_0^1F(\alpha )^se(-\alpha N)\,d\alpha \\
+&= \int_{{\cal M}}F(\alpha )^se(-\alpha N)\,d\alpha +\int_{{\cal m}}F(\alpha )^se(-\alpha N)\,d\alpha \\
+&= {\cal G}(N,P^{\nu })J^{\ast }(N)+O(P^{s-k-\delta_2})+O(P^{s-k-\delta_1})\\
+&= ({\cal G}(N)+O(P^{-\nu\delta_4}))(J(N)+O(P^{s-k-\delta_3}))+O(P^{s-k-\delta_2})+O(P^{s-k-\delta_1})\\
+&= {\cal G}(N)J(N)+O(P^{s-k-\delta_0})\\
+&= {\cal G}(N)\Gamma\Big(1+\frac{1}{k}\Big)^s\Gamma\Big(\frac{s}{k}\Big)^{-1}N^{\frac{s}{k}-1}+O(N^{\frac{s-1}{k}-1})
++O(N^{\frac{s}{k}-1-\frac{\delta_0}{k}})\\
+&= {\cal G}(N)\Gamma\Big(1+\frac{1}{k}\Big)^s\Gamma\Big(\frac{s}{k}\Big)^{-1}N^{\frac{s}{k}-1}+O(N^{\frac{s}{k}-1-\delta }),
+\end{align*}
+που $\delta =\delta_0/k$.
+\end{proof}
+\end{document}

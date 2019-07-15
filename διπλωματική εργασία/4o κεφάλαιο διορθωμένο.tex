@@ -1,0 +1,956 @@
+\documentclass[10pt,a4paper,leqno,twoside]{book}
+%----------------------------------------------------
+% Set the Languages you want to use. (The last one is set to be the default)
+\usepackage[greek,english]{babel}  %This one if you want Greek by default
+\usepackage[iso-8859-7]{inputenc}
+\usepackage[greek]{babel}
+\usepackage[iso-8859-7]{inputenc}
+\usepackage[active]{srcltx}
+
+\RequirePackage{latexsym} \RequirePackage{amsthm}
+\RequirePackage{amsmath}
+
+\RequirePackage{amssymb} \RequirePackage{makeidx}
+\pagestyle{myheadings}
+%\usepackage{grmath} %If you want Greek names for functions (Example \sin x will look like ημ x)
+%----------------------------------------------------
+% Greek Keyboard Shortcuts
+\newcommand {\gt}{\greektext} %Set the language from now on
+\newcommand {\lt}{\latintext}
+\newcommand {\tg}{\textgreek} %Next argument will be the language you set.
+\newcommand {\tl}{\textlatin}
+%----------------------------------------------------
+\newcommand{\Lip}{\mathrm{Lip}}
+\newcommand{\vol }{{\rm vol}}
+
+
+\newcommand{\bbar}{{\rm bar}}
+\newcommand{\Cov}{{\rm Cov}}
+\newcommand{\conv}{{\rm conv}}
+
+
+%%%hyperref%%%%
+\usepackage{hyperref}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%%%%diagrams%%%%
+\usepackage{tikz-cd}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing,positioning,calc}
+
+\usepackage{dsfont}
+\usepackage{wrapfig}
+
+%-----------------------------------------------------
+%Set the printable area
+%\pagestyle{headings}
+\topmargin=1in \oddsidemargin=0.3in \evensidemargin=0.3in
+\textwidth=5.3in \textheight=7in \footskip=0.7in \headsep=0.3in
+%-----------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%% Fancy Headers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{fancyhdr} \pagestyle{fancy}
+\renewcommand{\headrulewidth}{\iftopfloat{0pt}{0.6pt}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{} \fancyhead[LE]{\scshape\thepage\ $\cdot$\
+\nouppercase{\leftmark}}
+\fancyhead[RO]{\scshape\nouppercase{\rightmark}\ $\cdot$\
+\thepage}
+\fancypagestyle{plain}{%
+    \fancyhead{} %
+    \renewcommand{\headrulewidth}{0pt}}
+    \fancyhfoffset[L]{0.0001cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------
+%Enumerate lists the way I like!
+%\renewcommand{\labelenumi}{\roman{enumi)}}
+\setcounter{section}{0}
+%----------------------------------------------------
+
+%%%%%%%%% enumerate customization %%%%%%%%%%%%%%%%%
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{{\rm(\theenumi)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%% Clear empty pages from headers %%%%%%%%%%%
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}
+  \vspace*{\fill}
+  \begin{center}
+  %  \textlatin{This page intentionally contains only this sentence.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%bibliography in toc%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[nottoc]{tocbibind}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% subsection customization %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\thesubsection}{\thesection\alph{subsection}}              %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% enumerate customization %%%%%%%%%%%%%%%%%
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{{\rm(\theenumi)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%% Clear empty pages from headers %%%%%%%%%%%
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}
+  \vspace*{\fill}
+  \begin{center}
+  %  \textlatin{This page intentionally contains only this sentence.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% number equations as (*.*.*) %%%%%
+\numberwithin{equation}{section}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ls}{\leqslant}
+\newcommand{\gr}{\geqslant}
+\newcommand{\rank}{\mathop{\operator@font rank}}
+%\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\set}[1]{\left\lbrace#1\right\rbrace}
+%\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\tr}[1]{\trace\left(#1\right)}
+\newcommand{\dt}[1]{\determinant\left(#1\right)}
+\newcommand{\diag}[1]{\diagonal\left(#1\right)}
+\newcommand{\prend}{$\quad \hfill \Box$}
+\newcommand{\stend}{$\quad\hfill \diamond$ \medskip}
+\newcommand{\e}{{\varepsilon}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%% New theorems %%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{Θεώρημα}[section]
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{application}[theorem]{Εφαρμογή}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{exercise}[theorem]{’σκηση}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{examples}[theorem]{Παραδείγματα}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem{remark}[theorem]{Παρατήρηση}
+\newtheorem{note}[theorem]{Σημείωση}
+\newtheorem{remarks}[theorem]{Παρατηρήσεις}
+\newtheorem{claim}[theorem]{Ισχυρισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem{comment}[theorem]{Σχόλιο}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{dsfont}
+\usepackage{mathrsfs} %%kalligrafika
+
+%%%%%%%%%%%%%%xrwmata%%%%%%%%%%%%%%%%%
+\usepackage{color}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+%%%hyperref%%%%
+\usepackage{hyperref}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.3mm}}
+
+%%%%%%%%eikones%%%%%%%%%%%%%%%
+%\usepackage{wrapfig}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{sidecap}
+
+%%%%%%%%%%%%%epikefalides%%%%%%%%%%%%%%
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\bfseries\Huge}
+  {\filright\MakeUppercase{\Large\chaptertitlename} \Huge\thechapter}
+  {1ex}
+  {\titlerule\vspace{1ex}\filleft}
+  [\vspace{1ex}\titlerule]
+
+%%%%%%%%%%%%%%%%%index%%%%%%%%%%%%%%%%%%%%
+\usepackage{makeidx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Turchi preamble Beta %%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage{cleveref}
+\usepackage{bbm}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+%
+\DeclarePairedDelimiter{\fences}{(}{)}
+\newcommand{\V}{V_n\fences}
+\renewcommand{\Pr}{\operatorname{\mathbb{P}}\fences}
+\DeclareMathOperator{\Ex}{\mathbb{E} }
+\newcommand{\Exval}{\Ex\fences}
+%
+%\newcommand{\ls}{\leqslant}
+%\newcommand{\gr}{\grslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+%
+\newcommand*{\numberset}{\mathbb}
+\newcommand*{\N}{\numberset{N}}
+\newcommand*{\R}{\numberset{R}}
+\newcommand*\de{\mathop{}\!\mathrm{d}}
+\newcommand*{\rec}[1]{\frac{1}{#1}}
+\newcommand*{\indic}[1]{\mathbbm{1}_{#1}}
+\newcommand{\cdf}{\mathrm{F}}
+\newcommand{\B}{B}
+%
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\theta}{\vartheta}
+\renewcommand{\phi}{\varphi}
+\newcommand{\vball}{\kappa}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% smaller size section titles %%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\bfseries}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\endinput
+%%%%%%%%%%%%%%%%%%%%%%%% File ends %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% Make index %%%%%%%%%%%%%%%%%%%
+\makeindex
+\usepackage[nottoc]{tocbibind}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-----------------------------------------------------
+\linespread{1.15} %(changes linespacing. Default 1, one and a half 1.3, double 1.6)
+%-----------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%% Document starts %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Document starts %%%%%%%%%%%%
+\begin{document}
+\selectlanguage{greek}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Η ανισότητα του \tl{Weyl}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Διοφαντική προσέγγιση}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Σε αυτό το κεφάλαιο αναπτύσσουμε κάποια αναλυτικά εργαλεία τα οποία θα χρειαστούμε για την απόδειξη του
+ασυμπτωτικού τύπου των \tl{Hardy=Littlewood} για το πρόβλημα του \tl{Waring}. Τα πιο σημαντικά από αυτά
+τα εργαλεία είναι δύο ανισότητες για εκθετικά αθροίσματα, η ανισότητα του \tl{Weyl} και το λήμμα του \tl{Hua}.
+Θα χρειαστεί έπίσης να θυμηθούμε την άθροιση κατά μέρη, τα απειρογινόμενα και τα γινόμενα \tl{Euler}.
+
+Αρχίζουμε με το ακόλουθο απλό αποτέλεσμα για την προσέγγιση πραγματικών αριθμών από ρητούς με μικρούς
+παρονομαστές. Συμβολίζουμε με $\lfloor x\rfloor $ το ακέραιο μέρος του πραγματικού αριθμού $x$ και με
+$\{x\}$ το κλασματικό μέρος του $x$, δηλαδή $\{x\}=x-\lfloor x\rfloor $.
+
+\begin{theorem}[\tl{Dirichlet}]\label{th:4.1}Έστω $\alpha $ και $Q\gr 1$ πραγματικοί αριθμοί. Υπάρχουν ακέραιοι
+$a$ και $q$ τέτοιοι ώστε
+$$1\ls q\ls Q,\qquad (a,q)=1,$$
+και
+$$\Big|\alpha -\frac{a}{q}\Big|<\frac{1}{qQ}.$$
+\end{theorem}
+
+\begin{proof}Έστω $N=[Q]$. Αν υποθέσουμε ότι $\lbrace{q\alpha}\rbrace\in[0,1/(N+1))$ για κάποιο θετικό ακέραιο αριθμό $q\leq N$ τότε θέτοντας $a=[q\alpha]$ έχουμε ότι
+$$0\leq\lbrace{q\alpha}\rbrace=q\alpha-[q\alpha]=q\alpha-a<\frac{1}{N+1},$$
+και έτσι $$\Big|\alpha-\frac{a}{q}\Big|<\frac{1}{q(N+1)}<\frac{1}{qQ}\leq\frac{1}{q^2}.$$
+Ομοίως αν $\lbrace{q\alpha}\rbrace\in[N/(N+1),1)$ για κάποιο θετικό ακέραιο αριθμό $q\leq N$ και αν $a=[q\alpha]+1$,τότε καθώς $$ \frac{N}{N+1}\leq\lbrace{q\alpha}\rbrace=q\alpha-a+1<1$$ έυκολα προκύπτει ότι $$|q\alpha-a|\leq\frac{1}{N+1}$$ και έτσι $$\Big|\alpha-\frac{a}{q}\Big|<\frac{1}{q(N+1)}<\frac{1}{qQ}\leq\frac{1}{q^2}.$$
+Αν τώρα $$\lbrace{q\alpha}\rbrace\in\Big[\frac{1}{N+1},\frac{N}{N+1}\Big)$$ για όλους τους $q\in\ [1,N]$, τότε καθένας από  τους $N$ το πλήθος πραγματικούς αριθμούς $\lbrace{q\alpha}\rbrace$ ανήκει σε ένα από τα
+$N-1$ το πλήθος διαστήματα $$\Big[\frac{i}{N+1},\frac{i+1}{N+1}\Big)\qquad i=1,\dots,N-1.$$ Από την Αρχή της Περιστεροφωλιάς, υπάρχουν ακέραιοι $i\in[1,N-1]$ και $q_1,q_2\in[1,N]$ τέτοιοι ώστε $$1\leq q_1<q_2\leq N$$ και
+$$\lbrace{q_1\alpha}\rbrace,\lbrace{q_2\alpha}\rbrace\in
+\Big[\frac{i}{N+1},\frac{i+1}{N+1}\Big).$$
+Θέτουμε $$q=q_2-q_1\in[1,N-1]$$ και $$a=[q_2\alpha]-[q_1\alpha]$$ και έχουμε ότι $$|q\alpha-a|=|(q_2\alpha-[q_2\alpha])-(q_1\alpha-[q_1\alpha])|=|\lbrace{q_2\alpha}\rbrace-\lbrace{q_1\alpha}\rbrace|<\frac{1}{N+1}<\frac{1}{Q}$$ και η απόδειξη ολοκληρώθηκε.
+\end{proof}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Τελεστές διαφορών}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+O {\it τελεστής διαφορών προς τα εμπρός} $\Delta_d$ είναι ο γραμμικός τελεστής που ορίζεται για μια συνάρτηση $f$
+από τον τύπο
+$$\Delta_d(f)(x)=f(x+d)-f(x).$$
+Για $\ell\gr 2$ ορίζουμε τον {\it τελεστή διαδοχικών διαφορών} $\Delta_{d_{\ell },d_{\ell -1},\ldots ,d_1}$ μέσω της
+$$\Delta_{d_{\ell },d_{\ell -1},\ldots ,d_1}=\Delta_{d_{\ell }}\circ \Delta_{d_{\ell -1},\ldots ,d_1}=
+\Delta_{d_{\ell }}\circ \Delta_{d_{\ell -1}}\circ \cdots\circ \Delta_{d_1}.$$
+Για παράδειγμα,
+\begin{align*}\Delta_{d_2,d_1}(f)(x) &= \Delta_{d_2}(\Delta_{d_1}(f))(x)\\
+&= (\Delta_{d_1}(f))(x+d_2)-(\Delta_{d_1}(f))(x)\\
+&= f(x+d_2+d_1)-f(x+d_2)-f(x+d_1)+f(x)
+\end{align*}
+και
+\begin{align*}
+\Delta_{d_3,d_2,d_1}(f)(x) &= f(x+d_3+d_2+d_1)-f(x+d_3+d_2)-f(x+d_3+d_1)-f(x+d_2+d_1)\\
+&\hspace*{1cm} +f(x+d_3)+f(x+d_2)+f(x+d_1)-f(x).
+\end{align*}
+Συμβολίζουμε με $\Delta^{(\ell )}$ τον τελεστή διαδοχικών διαφορών $\Delta_{1,1,\ldots ,1}$ με $d_i=1$ για
+$i=1,\ldots ,\ell $. Τότε,
+$$\Delta^{(2)}(f)(x)=f(x+2)-2f(x+1)+f(x)$$
+και
+$$\Delta^{(3)}(f)(x)=f(x+3)-3f(x+2)+3f(x+1)-f(x).$$
+
+\begin{lemma}\label{lem:4.1}Έστω $\ell\gr 1$. Τότε,
+$$\Delta^{(\ell )}(f)(x)=\sum_{j=0}^{\ell }(-1)^{\ell -j}\binom{\ell }{j}f(x+j).$$
+\end{lemma}
+
+\begin{proof}Η απόδειξη θα γίνει με επαγωγή στο $\ell$.
+Αν το ζητούμενο ισχύει για $\ell$, τότε έχουμε
+\begin{align*}
+&\Delta^{(\ell+1 )}(f)(x)=\Delta(\Delta^{(\ell )}(f)(x)\\
+&=\Delta\bigg(\sum_{j=0}^{\ell}(-1)^{\ell-j}{{\ell}\choose{j}}f(x+j)\bigg)\\
+&=\sum_{j=0}^{\ell }(-1)^{\ell -j}\binom{\ell }{j}\Delta(f)(x+j)\\
+&=\sum_{j=0}^{\ell }(-1)^{\ell -j}\binom{\ell }{j}f(x+j+1)+\sum_{j=0}^{\ell }(-1)^{\ell+1 -j}\binom{\ell }{j}f(x+j)\\
+&=\sum_{j=1}^{\ell+1 }(-1)^{\ell+1 -j}\binom{\ell }{j-1}f(x+j)+\sum_{j=0}^{\ell }(-1)^{\ell+1 -j}\binom{\ell }{j}f(x+j)\\
+&=f(x+\ell+1)+\sum_{j=1}^{\ell}(-1)^{\ell+1-j}\bigg(\binom{\ell}{j-1}+\binom{\ell}{j}\bigg)f(x+j)+(-1)^{\ell+1}f(x)\\
+&=\sum_{j=0}^{\ell+1}(-1)^{(\ell+1)-j}\binom{\ell+1}{j}f(x+j)
+\end{align*}
+όπου στην τελευταία ισότητα χρησιμοποιήθηκε η γνωστη ταυτότητα $\binom{\ell+1}{j}=\binom{\ell}{j-1}+\binom{\ell}{j}$.
+\end{proof}
+
+\smallskip
+
+Στο επόμενο λήμμα υπολογίζουμε το πολυώνυμο που προκύπτει αν εφαρμόσουμε κάποιον τελεστή διαδοχικών
+διαφορών στο μονώνυμο $f(x)=x^k$.
+
+\begin{lemma}\label{lem:4.2}Έστω $k\gr 1$ και $1\ls \ell\ls k$. Έστω $\Delta_{d_{\ell },\ldots ,d_1}$ ένας τελεστής
+διαδοχικών διαφορών. Τότε,
+$$\Delta_{d_{\ell },\ldots ,d_1}(x^k)=\sum_{{j_1+\cdots +j_{\ell }+j=k}\atop{j\gr 0,j_1\gr 1,\ldots ,j_{\ell }\gr 1}}
+\frac{k!}{j!j_1!\cdots j_{\ell }!}d_1^{j_1}\cdots d_{\ell }^{j_{\ell }}x^j=d_1\cdots d_{\ell }p_{k-\ell }(x),$$
+όπου $p_{k-\ell }(x)$ είναι πολυώνυμο βαθμού $k-\ell $ με μεγιστοβάθμιο συντελεστή $k(k-1)\cdots (k-\ell +1)$.
+Αν οι $d_1,\ldots ,d_{\ell }$ είναι ακέραιοι, τότε το $p_{k-\ell }(x)$ έχει ακέραιους συντελεστές.
+\end{lemma}
+
+\begin{proof}Με επαγωγή ως προς $\ell$. Για $\ell=1$ έχουμε
+\begin{align*}
+\Delta_{d_1}(x^k)&=(x+d_1)^k-x^k\\
+&=\sum_{j=0}^{k}\binom{k}{j}d_1^{k-j}x^j-x^k\\
+&=\sum_{j=0}^{k-1}\binom{k}{j}d_1^{k-j}x^j\\
+&=\sum_{j=0}^{k-1}\frac{k!}{j!(k-j)!}d_1^{k-j}x^j\\
+&=\sum_{{j_1+j=k}\atop{j\geq 0,j_1\geq 1}}\frac{k!}{j!j_1!}d_1^{j_1}x^j.
+\end{align*}
+Έστω $1\leq \ell\leq k-1$, και ας υποθέσουμε ότι ο ισχυρισμός αληθέυει για το $\ell$. Τότε
+\begin{align*}
+&\Delta_{d_{\ell+1},d_{\ell},\dots,d_1}(x^k)\\
+&=\Delta_{d_{\ell+1}}\Big(\Delta_{d_{\ell },\ldots ,d_1}(x^k)\Big)\\
+&=\sum_{{j_1+\cdots +j_{\ell }+m=k}\atop{m\gr 0,j_1\gr 1,\ldots ,j_{\ell }\gr 1}}\frac{k!}{m!j_1!\cdots j_{\ell }!}d_1^{j_1}\cdots d_{\ell }^{j_{\ell }}\Delta_{d_{\ell+1}}(x^m)\\
+&=\sum_{{j_1+\cdots +j_{\ell }+m=k}\atop{m\gr 0,j_1\gr 1,\ldots ,j_{\ell }\gr 1}}\frac{k!}{m!j_1!\cdots j_{\ell }!}d_1^{j_1}\cdots d_{\ell }^{j_{\ell }}\sum_{{j_{\ell+1}+j=m}\atop{j\geq 0,j_{\ell+1}\geq 1}}\frac{m!}{j!j_{\ell+1}!}d_{\ell+1}^{j_{\ell+1}}x^j\\
+&=\sum_{{j_1+\cdots +j_{\ell }+m=k}\atop{m\gr 0,j_1\gr 1,\ldots ,j_{\ell }\gr 1}}\sum_{{j_{\ell+1}+j=m}\atop{j\geq 0,j_{\ell+1}\geq 1}}\frac{k!}{j!j_1!\cdots j_{\ell }! j_{\ell+1}!}d_1^{j_1}\cdots d_{\ell }^{j_{\ell }}d_{\ell+1}^{j_{\ell+1}}x^j\\
+&=\sum_{{j_1+\cdots+j_{\ell}+j_{\ell+1}+j=k}\atop{j\geq 0,j_1,\dots,j_{\ell},j_{\ell+1}\geq 1}}\frac{k!}{j!j_1!\cdots j_{\ell}! j_{\ell+1}!}d_1^{j_1}\cdots d_{\ell}^{j_{\ell}}d_{\ell+1}^{j_{\ell+1}}x^j.
+\end{align*}
+όπου στην δεύτερη ισότητα χρησιμοποιήθηκε η γραμμικότητα του τελεστη $\Delta$.
+Καθώς οι διωνυμικοί συντελεστές
+$\frac{k!}{j!j_1!\cdots j_{\ell}!}$ είναι ακέραιοι, προκύπτει ότι οι $d_1,\dots,d_{\ell}$ είναι και αυτοί ακέραιοι αριθμοί και έτσι το πολυώνυμο $p_{k-\ell}(x)$ έχει ακέραιους συντελεστές. Τέλος είναι φανερό ότι ο βαθμός του είναι $k-\ell$ και ο μεγιστοβάθμιος συντελεστής του έιναι ο $\frac{k!}{(k-\ell)!}=k(k-1)\cdots (k-\ell+1)$ ο.ε.δ.
+\end{proof}
+
+
+\begin{lemma}\label{lem:4.3}Έστω $k\gr 2$. Τότε,
+$$\Delta_{d_{k-1},\ldots ,d_1}(x^k)=d_1\cdots d_{k-1}k!\Big( x+\frac{d_1+\cdots +d_{k-1}}{2}\Big).$$
+\end{lemma}
+
+\begin{proof}Από το Λήμμα~\ref{lem:4.2} έχουμε
+$$\Delta_{d_{k-1},\cdots ,d_1}(x^k)=\sum_{{j_1+\cdots+j_{k-1}+j=k}\atop{j_i\geq 1 \forall i,j\geq 0}}\frac{k!}{j!j_1!\cdots j_{k-1}!}d_1^{j_1}\cdots d_{k-1}^{j_{k-1}}x^j.$$
+Για να ισχύει η σχέση $j_1+\cdots+j_{k-1}+j=k$ με $j_1,\dots,j_{k-1}\geq 1$ και $j\geq 0$ πρέπει είτε $j=j_1=\dots=j_{k-1}=1$ είτε $j=0,j_i=2$ για κάποιο $i=1,\dots,{k-1}$ και $j_{\ell}=1$ για κάθε $\ell\neq i$. Συνεπώς η παραπάνω σχεση ισοδύναμα γράφεται
+\begin{align*}
+&\Delta_{d_{k-1},\cdots ,d_1}(x^k)=\frac{k!}{1!1!\cdots 1!}d_1d_2\cdots d_{k-1}x+\sum_{i=1}^{k-1}\frac{k!}{0!2!1!\cdots 1!}d_1\cdots d_i^2\cdots d_{k-1}\\
+&=d_1d_2\cdots d_{k-1}k!\bigg(x+\frac{d_1+\cdots +d_{k-1}}{2}\bigg).
+\end{align*}
+\end{proof}
+
+
+\begin{lemma}\label{lem:4.4}Έστω $\ell\gr 1$ και $\Delta_{d_{\ell },\ldots ,d_1}$ ένας τελεστής
+διαδοχικών διαφορών. Έστω $f(x)=\alpha x^k+\cdots $ πολυώνυμο βαθμού $k$. Τότε,
+$$\Delta_{d_{\ell },\ldots ,d_1}(f)(x)=d_1\cdots d_{\ell }(k(k-1)\cdots (k-\ell +1)\alpha x^{k-\ell }+\cdots )$$
+αν $1\ls \ell\ls k$ και
+$$\Delta_{d_{\ell },\ldots ,d_1}(f)(x)=0$$
+αν $\ell >k$. Ειδικότερα, αν $\ell =k-1$ και $d_1\cdots d_{k-1}\neq 0$, τότε το
+$$\Delta_{d_{\ell },\ldots ,d_1}(f)(x)=d_1\cdots d_{k-1}k!\alpha x+\beta $$
+είναι πολυώνυμο βαθμού $1$.
+\end{lemma}
+
+\begin{proof}Έστω $f(x)=\sum_{j=1}^{k}\alpha_j x^j$, όπου $\alpha_k=\alpha$. Καθώς ο τελεστής διαφορών είναι γραμμικός έχουμε
+$$\Delta_{d_{\ell},\dots,d_1}(f)(x)=\sum_{j=0}^{k}\alpha_j\Delta_{d_{\ell},\dots,d_1}(x^j)=d_1 \cdots d_{\ell}\bigg(\frac{k!}{(k-\ell)!}\alpha x^{k-{\ell}}+\cdots\bigg)$$
+και η απόδειξη του λήμματος είναι πλήρης.
+\end{proof}
+
+
+\begin{lemma}\label{lem:4.5}Έστω $1\ls\ell\ls k$. Αν
+$$-P\ls d_1,\ldots ,d_{\ell },x\ls P,$$
+τότε
+$$\Delta_{d_{\ell },\ldots ,d_1}(x^k)\ll P^k,$$
+με την σταθερά να εξαρτάται μόνο από το $k$.
+\end{lemma}
+
+\begin{proof}Από το Λήμμα \eqref{lem:4.2} και καθώς $-P\ls d_1,\ldots ,d_{\ell },x\ls P$ εύκολα προκύπτει ότι
+\begin{align*}
+|\Delta_{d_{\ell },\ldots ,d_1}(x^k)|&\leq
+\sum_{{j_1+\cdots +j_{\ell}+j=k}\atop{j\geq 0,j_1,\dots,j_{\ell}\geq 1}}\frac{k!}{j!j_1!\cdots j_{\ell}!}P^{j_1+\cdots +j_{\ell}+j}\\
+&\leq \sum_{{j_1+\cdots +j_{\ell}+j=k}\atop{j,j_1,\dots,j_{\ell}\geq 0}}\frac{k!}{j!j_1!\cdots j_{\ell}!}P^k\\
+&=(\ell+1)^kP^k\leq (k+1)^kP^k.
+\end{align*}
+και έτσι η απόδειξη ολοκληρώθηκε.
+\end{proof}
+
+\smallskip
+
+Μπορούμε τώρα να δώσουμε μια απλή εφαρμογή των τελεστών διαφορών. Το πρόβλημα του \tl{Waring} ρωτάει αν κάθε
+μη αρνητικός ακέραιος γράφεται ως άθροισμα φραγμένων το πλήθος $k$-οστών δυνάμεων. Μπορούμε να θέσουμε το
+εξής παρόμοιο ερώτημα: Είναι σωστό ότι κάθε ακέραιος γράφεται ως άθροισμα ή διαφορά φραγμένων το πλήθος
+$k$-οστών δυνάμεων? Αν η απάντηση είναι καταφατική, τότε για κάθε $k$ υπάρχει ελάχιστος ακέραιος $v(k)$ τέτοιος
+ώστε η εξίσωση
+\begin{equation}\label{eq:4.2}n=\pm x_1^k\pm x_2^k\pm \cdots \pm x_{v(k)}^k\end{equation}
+να έχει ακέραιες λύσεις για κάθε ακέραιο $n$. Αυτό το πρόβλημα είναι γνωστό ως το {\it απλό πρόβλημα
+του \tl{Waring}} και είναι πράγματι αρκετά ευκολότερο να αποδείξουμε την ύπαρξη του $v(k)$ από το να
+αποδείξουμε την ύπαρξη του $g(k)$. Παραμένει όμως ανοικτό πρόβλημα ο ακριβής υπολογισμός του $v(k)$ για
+κάθε $k\gr 3$.
+
+\begin{theorem}[απλό θεώρημα \tl{Waring}]\label{th:4.2}Για κάθε $k\gr 2$ ο $v(k)$ υπάρχει, και
+$$v(k)\ls 2^{k-1}+\frac{k!}{2}.$$
+\end{theorem}
+
+\begin{proof}
+Εφαρμόζοντας τον $(k-1)-$οστό τελεστή διαφορών στο πολυώνυμο $f(x)=x^k$ και χρησιμοποιώντας τα Λήμματα
+~\ref{lem:4.1} και ~\ref{lem:4.3} έχουμε
+$$\Delta^{(k-1)}(x^k)=k!x+m=\sum_{\ell=0}^{k-1}(-1)^{k-1-\ell}\binom{k-1}{\ell}(x+\ell)^k,$$
+όπου $m=\frac{1+1+\cdots+1}{2}k!=\frac{k-1}{2}k!=(k-1)!\frac{k(k-1)}{2}=(k-1)!\binom{k}{2}$. Με αυτόν τον τρόπο βλέπουμε ότι κάθε ακέραιος της μορφής $k!x+m$ μπορεί να γραφτεί ως άθροισμα ή διαφορά το πολύ
+$$\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}=(1+1)^{k-1}=2^{k-1}$$ $k$-οστών δυνάμεων ακεραίων. Τώρα είναι εύκολο να δούμε ότι για κάθε ακέραιο $n$ μπορούμε να βρούμε ακέραιους $q$ και $r$ τέτοιους ώστε
+$$n-m=k!q+r,$$ όπου $$-\frac{k!}{2}<r\leq \frac{k!}{2}.$$
+Καθώς ο $r$ είναι το άθροισμα ή η διαφορά ακριβώς $|r|$
+$k$-οστών δυνάμεων $1^k$ συμπεραίνουμε, ότι ο $n$ μπορεί να γραφτεί ως άθροισμα το πολύ $2^{k-1}+k!/2$ ακεραίων της μορφής $\pm x^k$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Κλασματικά μέρη}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Συμβολίζουμε με $\lfloor\alpha\rfloor $ το ακέραιο μέρος του πραγματικού αριθμού $\alpha $ και με $\{\alpha\}$
+το κλασματικό μέρος του $\alpha $. Τότε, $\lfloor\alpha\rfloor\in {\mathbb Z}$, $\{\alpha\}\in [0,1)$, και
+$$\alpha =\lfloor\alpha\rfloor +\{\alpha\}.$$
+Η απόσταση του πραγματικού αριθμού $\alpha $ από τον πλησιέστερο ακέραιο ορίζεται ως εξής:
+$$\|\alpha\|=\min\{|n-\alpha |:n\in {\mathbb Z}\}=\min\{\{\alpha\},1-\{\alpha\}\}.$$
+Τότε, $\|\alpha\|\in [0,1/2]$, και
+$$\alpha =n\pm\|\alpha\|$$
+για κάποιον ακέραιο $n$. Έπεται κάνοντας χρήση των τριγωνομετρικών ταυτοτήτων $$\sin(\alpha\pm\beta)=\sin\alpha\cos\beta\pm \sin\beta\cos\alpha$$ ότι
+$$|\sin \pi\alpha |=\sin \pi\|\alpha\|$$
+για κάθε πραγματικό αριθμό $\alpha $. Η τριγωνική ανισότητα
+\begin{equation}\label{eq:4.3}\|\alpha +\beta\|\ls\|\alpha\| +\|\beta\|\end{equation}
+ισχύει για κάθε ζεύγος πραγματικών αριθμών $\alpha $ και $\beta $ όπως αποδεικνύεται στο ακόλουθh πρόταση.
+\begin{proposition}
+Για οποιουσδήποτε πραγματικούς αριθμούς $\alpha,\beta$ ισχύει η τριγωνική ανισότητα :
+$$||\alpha+\beta|| \leq ||\alpha||+||\beta||.$$
+\end{proposition}
+
+\begin{proof}
+Παρατηρούμε ότι για κάθε πραγματικό αριθμό $\alpha$ έχουμε
+$$ ||x||=\min(|n-x|:n\in \numberset{Z})=\min(\{x\},1-\{x\})=dist(x,\numberset{Z}).$$
+
+Έστω $\alpha,\beta$ πραγματικοί αριθμοί.
+Χωρίς βλάβη της γενικότητας μπορούμε να θεωρήσουμε ότι
+$0 \leq \alpha <1$ και $0 \leq \beta <1$ καθώς είναι προφανές ότι $||x||=||n\pm x||$ για κάθε πραγματικό αριθμό $x$ και κάθε ακέραιο $n$.
+
+Αν τουλάχιστον ένας εκ των $\alpha,\beta$ είναι μικρότερος από το 1/2, έστω χωρίς βλάβη ο $\alpha$, έχουμε
+$$ \Big| ||\alpha+\beta|| - ||\beta||\Big|= 
+\big| dist(\alpha+\beta,\numberset{Z})-dist(\beta,\numberset{Z})\big| \leq |\alpha|= \{\alpha\}=||\alpha||$$
+καθώς η συνάρτηση $dist(x,\numberset{Z})$ είναι \tl{Lipschitz} με σταθερά $1$ και $0\leq \alpha<1/2$. Από αυτό έπεται το ζητούμενο.
+
+Αν και οι δύο είναι μεγαλύτεροι από το 1/2 τότε οι αριθμοί $\gamma=1-\alpha,\delta=1-\beta$ είναι και οι δύο μικρότεροι του 1/2. Εργαζόμαστε με τον ίδιο τρόπο και έχουμε
+$$||\alpha+\beta||=||2-(\alpha+\beta)||=||\gamma+\delta|| \leq ||\gamma||+||\delta||=||1-\alpha||+||1-\beta||=||\alpha||+||\beta||$$ 
+και έτσι βλέπουμε ότι το ζητούμενο ισχύει σε κάθε περίπτωση.
+\end{proof}
+
+
+
+Τα δύο λήμματα που ακολουθούν είναι πολύ βασικά για την απόδειξη της ανισότητας του \tl{Weyl} για εκθετικά
+αθροίσματα. Η ανισότητα του \tl{Weyl}, με τη σειρά της, είναι το κεντρικό εργαλείο για την εφαρμογή της
+μεθόδου του κύκλου στο πρόβλημα του \tl{Waring}. Σε ό,τι ακολουθεί, $\exp (t)=e^t$ και $e(t)=\exp (2\pi it)=e^{2\pi it}$.
+
+
+\begin{lemma}\label{lem:4.6}Αν $0<\alpha <1/2$, τότε
+$$2\alpha <\sin (\pi\alpha )<\pi\alpha .$$
+\end{lemma}
+
+\begin{proof}Θέτουμε $s(\alpha)=\sin(\pi\alpha)-2\alpha$. Τότε $s(0)=s(1/2)=0$. Αν $s(\alpha)=0$ για κάποιον $\alpha\in (0,1/2)$, τότε εφαρμόζοντας το θεώρημα του \tl{Rolle} για την παραγωγίσιμη συνάρτηση  $s$ στα $[0,\alpha]$ και
+$[\alpha,1/2]$, βλέπουμε ότι η συνάρτηση
+$s'(\alpha)=\pi\cos(\pi\alpha)-2$ θα είχε τουλάχιστον δύο ρίζες στο διάστημα $(0,1/2)$. Γνωρίζουμε όμως ότι η συνάρτηση $\cos(x)$ είναι γνησίως φθίνουσα στο διάστημα $(0,\pi/2)$ και συνεπώς η $s'(\alpha)$ είναι γνησίως φθίνουσα στο
+$(0,1/2)$, το οποίο έρχεται σε αντίφαση με τα παραπάνω.
+Έτσι συμπεραίνουμε ότι $s(\alpha)\neq 0$ για κάθε
+$\alpha\in(0,1/2)$. Καθώς τώρα η $s(\alpha)$ είναι συνεχής, διατηρεί πρόσημο στο $(0,1/2)$. Υπολογίζουμε
+$s(1/4)=(\sqrt{2}-1)/2>0$, και έτσι προκύπτει ότι $s(\alpha)>0$ για κάθε $\alpha\in (0,1/2)$. Το άνω φράγμα τώρα προκύπτει από την γνωστή ανισότητα $|\sin(x)|\leq |x|$ για κάθε $x\in \R$ με την ισότητα να ισχύει μόνο για $x=0$.
+\end{proof}
+
+
+\begin{lemma}\label{lem:4.7}Για κάθε πραγματικό αριθμό $\alpha $ και για οποιουσδήποτε φυσικούς $N_1<N_2$,
+$$\sum_{n=N_1+1}^{N_2}e(\alpha n)\ls \min\{N_2-N_1,\|\alpha\|^{-1}\}.$$
+\end{lemma}
+
+\begin{proof}Αφού $|e(\alpha n)|=1$ για όλους τους ακεραίους $n$, έχουμε
+$$\Big|\sum_{n=N_1+1}^{N_2}e(\alpha n)\Big| \ls \sum_{n=N_1+1}^{N_2}\Big|e(\alpha n)\Big|=N_2-N_1.$$
+Αν $\alpha\notin {\mathbb Z}$, τότε $\|\alpha\|>0$ και $e(\alpha )\neq 1$. Αφού το άθροισμα είναι και γεωμετρική
+πρόοδος, έχουμε
+\begin{align*}
+\Big|\sum_{n=N_1+1}^{N_2}e(\alpha n)\Big| &= \Big|e(\alpha (N_1+1))\sum_{n=0}^{N_2-N_1+1}e(\alpha )^n\Big |=\Big|\frac{e(\alpha (N_2-N_1))-1}{e(\alpha )-1}\Big |\\
+&\ls \frac{2}{|e(\alpha )-1|}=\frac{2}{|e(\alpha /2)-e(-\alpha /2)|}\\
+&= \frac{2}{|2i\sin (\pi\alpha )|}=\frac{1}{|\sin (\pi\alpha )|}\\
+&= \frac{1}{\sin (\pi\|\alpha\|)}\ls\frac{1}{2\|\alpha\|}.
+\end{align*}
+Συνδυάζοντας τα δύο άνω φράγματα έχουμε τον ισχυρισμό του λήμματος.
+\end{proof}
+
+
+\begin{lemma}\label{lem:4.8}
+Έστω $\alpha $ πραγματικός αριθμός, και έστω $a$ και $q\gr 1$ ακέραιοι με $(a,q)=1$. Αν
+$$\Big|\alpha -\frac{a}{q}\Big|\ls\frac{1}{q^2},$$
+τότε
+$$\sum_{1\ls r\ls q/2}\frac{1}{\|\alpha r\|}\ll q\log q.$$
+\end{lemma}
+
+\begin{proof}
+Το λήμμα ισχύει για $q=1$, καθώς
+$$\sum_{1\leq r\leq q/2}\frac{1}{\|\alpha r\|}=0.$$
+Συνεπώς, μπορούμε να υποθέσουμε ότι $q\geq 2$. Γνωρίζουμε ότι $\Big\|\frac{ar}{q}\Big\|\in \mathbb{Q}$ και
+$0\leq \Big\|\frac{ar}{q}\Big\|\leq \frac{1}{2}$. Συνεπώς υπάρχουν ακέραιοι αριθμοί $s(r)\in [0,q/2]$ και $m(r)$ τέτοιοι ώστε
+$$\frac{s(r)}{q}=\Big\|\frac{ar}{q}\Big\|=\pm \bigg(\frac{ar}{q}-m(r)\bigg),$$ 
+και έτσι προκύπτει ότι $$\frac{ar}{q}= m(r)\pm \frac{s(r)}{q}$$
+Καθώς $(a,q)=1$ έχουμε
+$$s(r)=0\Leftrightarrow \frac{s(r)}{q}=0\Leftrightarrow
+\Big\|\frac{ar}{q}\Big\|=0\Leftrightarrow \frac{ar}{q}\in
+\mathbb{Z}\Leftrightarrow q|ar\Leftrightarrow r|q\Leftrightarrow r\equiv 0{\rm mod}\;\;q,$$ και έτσι $s(r)\in [1,q/2]$ αν $r\in [1,q/2]$. Αφού $\Big|\alpha -\frac{a}{q}\Big|\ls\frac{1}{q^2}$ συμπεραίνουμε ότι υπάρχει πραγματικός αριθμός $\theta$ τέτοιος ώστε
+$$\alpha-\frac{a}{q}=\frac{\theta}{q^2}$$
+και $-1\leq \theta\leq 1$. Έχουμε
+$$\alpha r=\frac{ar}{q}+\frac{\theta r}{q^2}=\frac{ar}{q}
++\frac{\theta'}{2q},$$
+όπου $$|\theta'|=\Big|\frac{2\theta r}{q}\Big|\leq |\theta|\leq 1$$
+αφού $\Big|\frac{2r}{q}\Big|\leq 1$.
+Τώρα προκύπτει ότι
+\begin{align*}
+\|\alpha r\| &= \Big\|\frac{ar}{q}+\frac{\theta'}{2q}\Big\|\\
+&= \Big\| m(r)\pm \frac{s(r)}{q}+\frac{\theta'}{2q}\Big\|\\
+&=\Big\|\frac{s(r)}{q}\pm \frac{\theta'}{2q}\Big\|\\
+&\gr \Big\|\frac{s(r)}{q}\Big\| -  \Big\|\frac{\theta'}{2q}\Big\|\\
+&\gr \frac{s(r)}{q}-\frac{1}{2q}\\
+&\gr \frac{1}{q}-\frac{1}{2q}\\
+&\gr \frac{1}{2q}
+\end{align*}
+όπου στην πρώτη ανισότητα χρησιμοποιήσαμε την τριγωνική ανισότητα. Στην συνέχεια έστω $1\leq r_1\leq r_2\leq q/2$. Θα αποδείξουμε ότι $s(r_1)=s(r_2)$ αν και μόνο αν  $r_1=r_2$.
+Προς τούτο έχουμε
+$$s(r_1)=s(r_2)\Leftrightarrow \Big\|\frac{ar_1}{q}\Big\|=\Big\|\frac{ar_2}{q}\Big\|\Leftrightarrow \pm \bigg(\frac{ar_1}{q}-m(r_1)\bigg)=\pm \bigg(\frac{ar_2}{q}-m(r_2)\bigg)\Leftrightarrow$$
+$$\Leftrightarrow ar_1\equiv\pm ar_2{\rm mod}\;\;q\Leftrightarrow r_1\equiv\pm r_2 {\rm mod}\;\;q.$$
+όπου στην τελευταία ισοδυναμία χρησιμοποιήσαμε το ότι οι $a$ και $q$ είναι σχετικά πρώτοι μεταξύ τους αριθμοί.
+Αν $r_1=r_2{\rm mod}\;\;q$ τότε καθώς $1\leq r_1\leq r_2\leq q/2$
+είναι φανερό ότι $r_1=r_2$. Αν τώρα $r_1=-r_2{\rm mod}\;\;q$ έχουμε $q|(r_1+r_2)$ και εύκολα βλέπουμε ότι αυτό ισχύει μόνο αν $r_1=r_2=q/2$ και η απόδειξη του ισχυρισμού ολοκληρώθηκε.\\
+Από τα παραπάνω έπεται ότι
+$$\bigg\lbrace\bigg\|\frac{ar}{q}: 1\leq r\leq \frac{q}{2}\bigg\|\bigg\rbrace=\bigg\lbrace\frac{s(r)}{q}:1\leq r\leq \frac{q}{2}\bigg\rbrace=
+\bigg\lbrace\frac{s}{q}:1\leq s\leq \frac{q}{2}\bigg\rbrace.$$
+και έτσι,
+\begin{align*}
+\sum_{1\ls r\ls q/2}\frac{1}{\|\alpha r\|} &\leq
+\sum_{1\ls r\ls q/2}\frac{1}{\frac{s(r)}{q}-\frac{1}{2q}}\\
+&=\sum_{1\ls s\ls q/2}\frac{1}{\frac{s}{q}-\frac{1}{2q}}\\
+&=2q\sum_{1\ls s\ls q/2}\frac{1}{2s-1}\\
+&\ls 2q\sum_{1\ls s\ls q/2}\frac{1}{s}\\
+& \ll q \log q
+\end{align*}
+και η απόδειξη ολοκληρώθηκε.
+\end{proof}
+
+
+\begin{lemma}\label{lem:4.9}Έστω $\alpha $ πραγματικός αριθμός και έστω $a$ και $q\gr 1$ ακέραιοι με $(a,q)=1$ και
+$$\Big|\alpha -\frac{a}{q}\Big|\ls\frac{1}{q^2}.$$
+Τότε, για κάθε μη αρνητικό πραγματικό αριθμό $V$ και κάθε μη αρνητικό ακέραιο $h$, έχουμε
+$$\sum_{r=1}^q\min\Big\{V,\frac{1}{\|\alpha (hq+r)\|}\Big\}\ll V+q\log q.$$
+\end{lemma}
+
+\begin{proof}
+Έστω $$\alpha=\frac{a}{q}+\frac{\theta}{q},$$ όπου
+$$-1\leq \theta \leq 1.$$  Τότε
+\begin{align*}
+\alpha(hq+r)&=ah+\frac{ar}{q}+\frac{\theta h}{q}+\frac{\theta r}{q^2}\\
+&=ah+\frac{ar}{q}+\frac{[\theta h]+\lbrace \theta h\rbrace}{q}+\frac{\theta r}{q^2}\\
+&=ah +\frac{ar+[\theta h]+\delta(r)}{q},
+\end{align*}
+όπου $-1\leq \delta(r)=\lbrace\theta h\rbrace+\frac{\theta r}{q}<2$
+καθώς $0\leq \lbrace\theta h\rbrace< 1$ και $-1\leq \frac{-r}{q}\leq \frac{\theta r}{q}\leq \frac{r}{q} \leq 1.$
+Για κάθε $r=1.\dots,q$ υπάρχει ένας μοναδικός ακέραιος
+$r'$ τέτοιος ώστε
+$$\lbrace{\alpha(hq+r)}\rbrace= \frac{ar+[\theta h]+\delta(r)}{q}-r'.$$
+Έστω $$0\leq t\leq 1-\frac{1}{q}.$$
+Αν $$t\leq \lbrace{\alpha(hq+r)}\rbrace \leq t+\frac{1}{q},$$
+τότε $$qt \leq ar-qr'+[\theta h]+\delta(r) \leq qt+1.$$
+Από αυτό έπεται ότι
+$$ar-qr' \leq qt-[\theta h]+1-\delta(r) \leq qt-[\theta h]+2$$ και
+$$ar-qr' \geq qt-[\theta h]-\delta(r)>qt-[\theta h]-2.$$
+Συνεπώς, ο $ar-qr'$ βρίσκεται στο ημιανοικτό διάστημα $J$  μηκους $4$, όπου
+$$ J=(qt-[\theta h]-2,qt-[\theta h]+2].$$
+Αυτό το διάστημα περιέχει ακριβώς $4$ ακεραίους. Αν
+$1\leq r_1\leq r_2\leq q$ και
+$$ar_1-qr_1'=ar_2-qr_2',$$ τότε
+$$ar_1\equiv ar_2 {\rm mod}\;\;q$$
+και καθώς $(a,q)=1$ προκύπτει ότι $$r_1=r_2.$$
+Έτσι, για κάθε $t\in[0,(q-1)/q]$, υπάρχουν $4$ το πολύ
+ακέραιοι $r\in[1,q]$ τέτοιοι ώστε
+$$\lbrace{\alpha(hq+r)}\rbrace\in[t,t+(1/q)].$$
+Παρατηρούμε ότι $$\| \alpha(hq+r) \|\in[t,t+(1/q)]$$
+αν και μόνο αν
+$$\lbrace{\alpha(hq+r)}\rbrace\in[t,t+(1/q)].$$ ή
+$$1-\lbrace{\alpha(hq+r)}\rbrace\in[t,t+(1/q)].$$
+Η τελευταία περίπτωση είναι ισοδύναμη με
+$$\lbrace{\alpha(hq+r)}\rbrace\in[t',t'+(1/q)],$$ όπου
+$$0\leq t'=1-\frac{1}{q}-t\leq 1-\frac{1}{q}.$$
+Προκύπτει ότι για κάθε $t\in [0,(q-1)/q]$, υπάρχουν το πολύ $8$ ακέραιοι $r\in[1,q]$ με
+$$\| \alpha(hq+r) \|\in[t,t+(1/q)].$$
+Συγκεκριμένα, αν θεωρήσουμε $J(s)=[s/q,(s+1)/q]$ για
+$s=0,1,\dots,$ έχουμε ότι
+$$\| \alpha(hq+r) \|\in J(s)$$ για $8$ το πολύ $r\in[1,q]$.
+Εφαρμόζουμε τώρα αυτό για να εκτιμήσουμε το άθροισμα
+$$\sum_{r=1}^q\min\Big\{V,\frac{1}{\|\alpha (hq+r)\|}\Big\}.$$
+Αν $\| \alpha(hq+r) \|\in J(0)=[0,1/q]$, χρησιμοποιούμε την ανισότητα $$\min\Big\{V,\frac{1}{\|\alpha (hq+r)\|}\Big\}\leq V.$$
+Αν τώρα $\| \alpha(hq+r) \|\in J(s)$ για κάποιον
+$s\geq 1$,χρησιμοποιούμε την ανισότητα
+$$\min\Big\{V,\frac{1}{\|\alpha (hq+r)\|}\Big\}\leq \frac{1}{\| \alpha(hq+r) \|}\leq \frac{q}{s}.$$
+Καθώς $\| \alpha(hq+r) \|\in J(s)$ μόνο για $s<q/2$, αφού
+$0\leq \| \alpha(hq+r) \|\leq 1/2$ , προκύπτει ότι
+$$\sum_{r=1}^q\min\Big\{V,\frac{1}{\|\alpha (hq+r)\|}\Big\}\leq 8V +8\sum_{1\leq s<q/2}\frac{q}{s}\ll V +q\log{q}$$ το οποίο ολοκληρώνει και την απόδειξη του λήμματος.
+\end{proof}
+
+
+\begin{lemma}\label{lem:4.10}
+Έστω $\alpha $ πραγματικός αριθμός, και έστω $a$ και $q\gr 1$ ακέραιοι με $(a,q)=1$ και
+$$\Big|\alpha -\frac{a}{q}\Big|\ls\frac{1}{q^2}.$$
+Τότε, για κάθε πραγματικό αριθμό $U\gr 1$ και κάθε φυσικό $n$, έχουμε
+$$\sum_{k=1}^U\min\Big\{\frac{n}{k},\frac{1}{\|\alpha k\|}\Big\}\ll \Big(\frac{n}{q}+U+q\Big)\log (2qU).$$
+\end{lemma}
+
+\begin{proof}
+Μπορούμε να γράψουμε τον $k$ στην μορφή
+$$k=hq+r,$$
+όπου $$1\leq r\leq q$$ και
+$$0\leq h<\frac{U}{q}.$$
+Τότε $$S=\sum_{k=1}^U\min\Big\{\frac{n}{k},\frac{1}{\|\alpha k\|}\Big\} \leq \sum_{0\leq h< U/q}\sum_{1\leq r \leq q}\min\Big\{\frac{n}{hq+r},\frac{1}{\|\alpha(hq+r)\|}\Big\}.$$
+Αν $h=0$ και $1\leq r\leq q/2$, τότε από το λήμμα 2.3.3 προκύπτει
+$$\sum_{r=1}^{q/2}\min\Big\{\frac{n}{r},\frac{1}{\|\alpha r\|}\Big\}\leq \sum_{r=1}^{q/2}\frac{1}{\|\alpha r\|}\ll q\log q.$$
+Για τους υπόλοιπους όρους, έχουμε
+$$\frac{1}{hq+r}<\frac{2}{(h+1)q},$$
+καθώς είτε $h\geq 1$ και
+$$hq+r>hq\geq \frac{(h+1)q}{2},$$
+είτε $h=0,q/2<r\leq q,$ και
+$$hq+r=r> \frac{q}{2}=\frac{(h+1)q}{2}.$$
+Έτσι, $$S\ll q\log{q} +\sum_{0\leq h< U/q}\sum_{1\leq r \leq q}\min\Big\{\frac{n}{(h+1)q},\frac{1}{\|\alpha(hq+r)\|}\Big\}.$$
+Παρατηρούμε ότι
+$$\frac{U}{q}+1\leq U+q\leq 2\max(q,U)\leq 2qU.$$
+Υπολογίζοντας τώρα το εσωτερικό άθροισμα από το λήμμα 2.3.4 με $V=n/(h+1)q$, παίρνουμε
+\begin{align*}
+S&\ll q\log{q} +\sum_{0\leq h< U/q}\sum_{1\leq r \leq q}\min\Big\{\frac{n}{(h+1)q},\frac{1}{\|\alpha(hq+r)\|}\Big\}\\
+&\ll q\log{q}+ \sum_{0\leq h<U/q}\Big\{\frac{n}{(h+1)q}+q\log{q}\Big\}\\
+&\ll q\log{q}+\frac{n}{q}\sum_{0\leq h<U/q}\frac{1}{h+1}+\bigg(\frac{U}{q}+1\bigg)q\log{q}\\
+&\ll q\log{q}+\frac{n}{q}\log{\bigg(\frac{U}{q}+1\bigg)}+U\log{q}+q\log{q}\\
+&\ll \bigg(\frac{n}{q}+U+q\bigg)\log{2qU}
+\end{align*}
+και η απόδειξη ολοκληρώθηκε.
+\end{proof}
+
+
+
+\begin{lemma}\label{lem:4.11}
+Έστω $\alpha $ πραγματικός αριθμός, και έστω $a$ και $q\gr 1$ ακέραιοι με $(a,q)=1$ και
+$$\Big|\alpha -\frac{a}{q}\Big|\ls\frac{1}{q^2}.$$
+Τότε, για οποιουσδήποτε μη αρμητικούς πραγματικούς αριθμούς $U$ και $n$, έχουμε
+$$\sum_{k=1}^U\min\Big\{n,\frac{1}{\|\alpha k\|}\Big\}\ll \Big(q+U+n+\frac{Un}{q}\Big)\max\{1,\log q\}.$$
+\end{lemma}
+
+\begin{proof}Το επιχείρημα που χρησιμοποιούμε είναι εντελώς ανάλογο με αυτό της απόδειξης του
+Λήμματος~\ref{lem:4.10},
+δηλαδή γράφουμε τον $k$ στην μορφή $$k=hq+r,$$ όπου $0\ls h< \frac{U}{q}$ και $1\ls r\ls q$.
+Τώρα από το λήμμα ~\ref{lem:4.9} έχουμε
+\begin{align*}
+S &= \sum_{1\ls k\ls U}\min\Big\{ n,\frac{1}{\|\alpha k\|}\Big\}\\
+&\ls\sum_{0\ls h< U/q}\sum_{1\ls r\ls q}\min\Big\{ n,\frac{1}{\|\alpha (hq+r)\|}\Big\}\\
+&\ll \sum_{0\ls h<U/q}(n+q\log  q)\\
+&\ll \Big(\frac{U}{q}+1\Big)(n+q\log q)\\
+&\ll q\log q+U\log q+n+\frac{Un}{q}\\
+&\ll \Big( q+U+n+\frac{Un}{q}\Big)\max\{1,\log q\}.
+\end{align*}
+Αυτό ολοκληρώνει την απόδειξη.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Η ανισότητα του \tl{Weyl} και το λήμμα του \tl{Hua}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Σε ό,τι ακολουθεί, συμβολίζουμε με $[M,N]$ το διάστημα των ακεραίων $m$ που ικανοποιούν την $M\ls m\ls N$. Για κάθε
+πραγματικό αριθμό $t$, ο μιγαδικός συζυγής του $e(t)=e^{2\pi it}$ είναι ο $\overline{e(t)}=e(-t)$.
+
+\begin{lemma}\label{lem:4.12}
+Έστω $N_1,N_2$ και $N$ ακέραιοι τέτοιοι ώστε $N_1<N_2$ και $0\ls N_2-N_1\ls N$. Έστω $f(n)$ αριθμητική συνάρτηση
+με πραγματικές τιμές, και έστω
+$$S(f)=\sum_{n=N_1+1}^{N_2}e(f(n)).$$
+Τότε,
+$$|S(f)|^2=\sum_{|d|<N}S_d(f),$$
+όπου
+$$S_d(f)=\sum_{n\in I(d)}e(\Delta_d(f)(n))$$
+και $I(d)$ είναι διάστημα διαδοχικών ακεραίων που περιέχεται στο $[N_1+1,N_2]$.
+\end{lemma}
+
+\begin{proof}Για κάθε ακέραιο $d$ ορίζουμε
+$$I(d)=[N_1+1-d,N_2-d]\cap [N_1+1,N_2].$$
+Υψώνοντας την απόλυτη τιμή του εκθετικού αθροίσματος στο τετράγωνο παίρνουμε
+\begin{align*}
+|S(f)|^2=S(f)\overline{S(f)} &=\sum_{m=N_1+1}^{N_2}e(f(m))\sum_{n=N_1+1}^{N_2}\overline{e(f(n))}\\
+&=\sum_{n=N_1+1}^{N_2}\sum_{m=N_1+1}^{N_2}e(f(m)-f(n))\\
+&= \sum_{n=N_1+1}^{N_2}\sum_{d=N_1+1-n}^{N_2-n}e(f(n+d)-f(n))\\
+&= \sum_{n=N_1+1}^{N_2}\sum_{d=N_1+1-n}^{N_2-n}e(\Delta_d(f)(n))\\
+&= \sum_{d=-(N_2-N_1-1)}^{N_2-N_1-1}\sum_{n\in I(d)}e(\Delta_d(f)(n))\\
+&= \sum_{|d|<N}\sum_{n\in I(d)}e(\Delta_d(f)(n))\\
+&= \sum_{|d|<N}S_d(f).
+\end{align*}
+Αυτός είναι ο ισχυρισμός του λήμματος.
+\end{proof}
+
+
+\begin{lemma}\label{lem:4.13}
+Έστω $N_1,N_2,N$ και $\ell $ ακέραιοι τέτοιοι ώστε $\ell\gr 1$ και $0\ls N_2-N_1\ls N$. Έστω $f(n)$ αριθμητική συνάρτηση
+με πραγματικές τιμές, και έστω
+$$S(f)=\sum_{n=N_1+1}^{N_2}e(f(n)).$$
+Τότε,
+$$|S(f)|^{2\ell }\ls (2N)^{2^{\ell }-\ell -1}\sum_{|d_1|<N}\cdots \sum_{|d_{\ell }|<N}S_{d_{\ell },\ldots ,d_1}(f),$$
+όπου
+\begin{equation}\label{eq:4.5}S_{d_{\ell },\ldots ,d_1}(f)=\sum_{n\in I(d_{\ell },\ldots ,d_1)}e(\Delta_{d_{\ell },\ldots ,d_1}(f)(n))\end{equation}
+και $I(d_{\ell },\ldots ,d_1)$ είναι διάστημα διαδοχικών ακεραίων που περιέχεται στο $[N_1+1,N_2]$.
+\end{lemma}
+
+\begin{proof}Με επαγωγή ως προς $\ell $. Η περίπτωση $\ell =1$ είναι το Λήμμα~\ref{lem:4.12}. Υποθέτουμε ότι
+το αποτέλεσμα ισχύει για κάποιον $\ell\gr 1$. Χρησιμοποιώντας την ανισότητα \tl{Cauchy-Schwarz} παίρνουμε
+\begin{align*}
+|S(f)|^{2^{\ell +1}} &= \Big(|S(f)|^{2^{\ell }}\Big)^2\\
+&\ls \Big( (2N)^{2^{\ell }-\ell -1}\sum_{|d_1|<N}\cdots\sum_{|d_{\ell }|<N}|S_{d_{\ell },\ldots ,d_1}(f)|\Big)^2\\
+&=(2N)^{2^{\ell +1}-2\ell -2}\Big(\sum_{|d_1|<N}\cdots\sum_{|d_{\ell }|<N}|S_{d_{\ell },\ldots ,d_1}(f)|\Big)^2\\
+&\ls (2N)^{2^{\ell +1}-2\ell -2}(2N)^{\ell }\sum_{|d_1|<N}\cdots \sum_{|d_{\ell }|<N}|S_{d_{\ell },\ldots ,d_1}(f)|^2,
+\end{align*}
+όπου $S_{d_{\ell },\ldots ,d_1}(f)$ είναι ένα εκθετικό άθροισμα της μορφής ~\eqref{eq:4.5}. Εφαρμόζοντας  το Λήμμα~\ref{lem:4.12}, για $e(\Delta_{d_{\ell },\ldots ,d_1}(f)(n))$ στην θέση της $f$, έχουμε ότι για κάθε $d_1,\ldots ,d_{\ell }$ υπάρχει κάποιο διάστημα
+$$I(d_{\ell +1},d_{\ell },\ldots ,d_1)\subseteq I(d_{\ell },\ldots ,d_1)\subseteq [N_1+1,N_2]$$
+τέτοιο ώστε
+\begin{align*}
+|S_{d_{\ell },\ldots ,d_1}(f)|^2 &= \Big |\sum_{n\in I(d_1,\ldots ,d_{\ell })}e(\Delta_{d_{\ell },\ldots ,d_1}(f)(n))\Big|^2\\
+&= \sum_{|d_{\ell+1}|<N}\sum_{n\in I(d_{\ell +1},d_{\ell },\ldots ,d_1)}e(\Delta_{d_{\ell +1},d_{\ell },\ldots ,d_1}(f)(n))\\
+&= \sum_{|d_{\ell +1}|<N}S_{d_{\ell +1},d_{\ell },\ldots ,d_1}(f),
+\end{align*}
+άρα
+$$|S(f)|^{2^{\ell +1}}\ls (2N)^{2^{\ell +1}-(\ell +1)-1}\sum_{|d_1|<N}\cdots \sum_{|d_{\ell }|<N}\sum_{|d_{\ell +1}|<N}
+S_{d_{\ell +1},d_{\ell },\ldots ,d_1}(f).$$
+Αυτό ολοκληρώνει την απόδειξη.
+\end{proof}
+
+
+\begin{lemma}\label{lem:4.14}
+Έστω $k\gr 1$, $K=2^{k-1}$, και $\varepsilon >0$. Έστω $f(x)=\alpha x^k+\cdots $ πολυώνυμο βαθμού $k$ με
+πραγματικούς συντελεστές. Αν
+$$S(f)=\sum_{n=1}^Ne(f(n)),$$
+τότε
+$$|S(f)|^K\ll N^{K-1}+N^{K-k+\varepsilon }\sum_{m=1}^{k!N^{k-1}}\min\{N,\|m\alpha\|^{-1}\},$$
+με την σταθερά να εξαρτάται μόνο από τους $k$ και $\varepsilon $.
+\end{lemma}
+
+\begin{proof}Εφαρμόζοντας το Λήμμα~\ref{lem:4.13} με $\ell =k-1$ παίρνουμε
+$$|S(f)|^K\ls (2N)^{K-k}\sum_{|d_1|<N}\cdots\sum_{|d_{k-1}|<N}|S_{d_{k-1},\ldots ,d_1}(f)|,$$
+όπου
+$$S_{d_{k-1},\ldots ,d_1}(f)=\sum_{n\in I(d_{k-1},\ldots ,d_1)}e(\Delta_{d_{k -1},\ldots ,d_1}(f)(n))$$
+και $I(d_{k-1},\ldots ,d_1)$ είναι ένα διάστημα ακεραίων που περιέχεται στο $[1,N]$. Αφού $|e(t)|=1$ για κάθε
+πραγματικό αριθμό $t$, έχουμε το άνω φράγμα
+$$|S_{d_{k-1},\ldots ,d_1}(f)|\ls \sum_{n\in I(d_{k-1},\ldots ,d_1)}|e(\Delta_{d_{k-1},\ldots ,d_1}(f)(n))|= |I(d_{k-1},\ldots ,d_1)|\ls N.$$
+Από το Λήμμα~\ref{lem:4.4}, για οποιουσδήποτε μη μηδενικούς ακεραίους $d_1,\ldots ,d_{k-1}$, ο τελεστής διαφορών
+$\Delta_{d_{k-1},\ldots ,d_1}$ εφαρμοσμένος στο πολυώνυμο $f(x)$ βαθμού $k$ μας δίνει το γραμμικό πολυώνυμο
+$$\Delta_{d_1,\ldots ,d_{k-1}}(f)(x)=d_{k-1}\cdots d_1k!\alpha x+\beta =\lambda x+\beta ,$$
+όπου
+$$\lambda =d_{k-1}\cdots d_1k!\alpha $$
+και $\beta\in {\mathbb R}$. Έστω $I(d_{k-1},\ldots ,d_1)=[N_1+1,N_2]$. Από το Λήμμα~\ref{lem:4.7},
+\begin{align*}
+|S_{d_{k-1},\ldots ,d_1}(f)| &= \Big|\sum_{n\in I(d_{k-1},\ldots ,d_1)}e(\Delta_{d_{k-1},d_{k-2},\ldots ,d_1}(f)(n))\Big |\\
+&=\Big|\sum_{n=N_1+1}^{N_2}e(\lambda n+\beta )\Big|\\
+&=\Big|\sum_{n=N_1+1}^{N_2}e(\lambda n)\Big|\\
+&\ls \frac{1}{\|\lambda\|}\\
+&=\frac{1}{\|d_{k-1}\cdots d_1k!\alpha\|}.
+\end{align*}
+Έπεται ότι
+$$|S_{d_{k-1},\ldots ,d_1}(f)|\ls \min\{N,\|d_1\cdots d_{k-1}k!\alpha\|^{-1}\}.$$
+Συνεπώς,
+\begin{align*}
+|S(f)|^K &\ls (2N)^{K-k}\sum_{|d_1|<N}\cdots\sum_{|d_{k-1}|<N}|S_{d_{k-1},\ldots ,d_1}(f)|\\
+&\ls (2N)^{K-k}\sum_{|d_1|<N}\cdots \sum_{|d_{k-1}|<N}\min\{N,\|d_1\cdots d_{k-1}k!\alpha\|^{-1}\}.
+\end{align*}
+Αφού υπάρχουν λιγότερες από $(k-1)(2N)^{k-2}$ επιλογές για τα $d_1,\ldots ,d_{k-1}$ τέτοιες ώστε $d_1\cdots d_{k-1}=0$, και
+κάθε τέτοια επιλογή προσθέτει έναν όρο $N$ στο άθροισμα, έπεται ότι
+\begin{align*}
+|S(f)|^K &\ls (2N)^{K-k}(k-1)(2N)^{k-2}N+(2N)^{K-k}\sum_{1\ls |d_1|<N}\cdots\sum_{1\ls |d_{k-1}|<N}\min\{N,\|d_1\cdots d_{k-1}k!\alpha\|^{-1}\}\\
+&\ls k(2N)^{K-1}+2^{k-1}N^{K-k}\sum_{1\ls d_1<N}\cdots\sum_{1\ls d_{k-1}<N}\min\{N,\|d_1\cdots d_{k-1}k!\alpha\|^{-1}\}\\
+&\ll N^{K-1}+N^{K-k}\sum_{d_1=1}^N\cdots\sum_{d_{k-1}=1}^N\min\{N,\|d_1\cdots d_{k-1}k!\alpha\|^{-1}\},
+\end{align*}
+με την σταθερά στην ανισότητα να εξαρτάται μόνο από το $k$. Αφού
+$$1\ls d_1\cdots d_{k-1}k!\ls k!N^{k-1}$$
+και η συνάρτηση του πλήθους διαιρετών $d(m)$, από το θεώρημα ~\ref{th:A.11}, ικανοποιεί την $d(m)\ll_{\epsilon }m^{\epsilon }$ για κάθε $\epsilon >0$,
+έπεται ότι το πλήθος των αναπαραστάσεων ενός ακεραίου $m$ στη μορφή $d_1\cdots d_{k-1}k!$ είναι $\ll m^{\epsilon }\ll N^{\epsilon }$.
+Συνεπώς,
+\begin{align*}
+|S(f)|^K &\ll N^{K-1}+N^{K-k}\sum_{d_1=1}^N\cdots\sum_{d_{k-1}=1}^N\min\{N,\|d_{k-1}\cdots d_1k!\alpha\|^{-1}\}\\
+&\ll N^{K-1}+N^{K-k+\epsilon }\sum_{m=1}^{k!N^{k-1}}\min\{N,\|m\alpha\|^{-1}\},
+\end{align*}
+με την σταθερά στην ανισότητα να εξαρτάται από τα $k$ και $\epsilon $. Έτσι, ολοκληρώνεται η απόδειξη.
+\end{proof}
+
+
+\begin{theorem}[ανισότητα του \tl{Weyl}]\label{th:4.3}Έστω $f(x)=\alpha x^k+\cdots $ πολυώνυμο βαθμού $k\gr 2$ με
+πραγματικούς συντελεστές,. Υποθέτουμε ότι ο $\alpha $ έχει ρητή προσέγγιση $a/q$ τέτοια ώστε
+$$\Big|\alpha -\frac{a}{q}\Big|\ls\frac{1}{q^2},$$
+όπου $q\gr 1$ και $(a,q)=1$. Έστω
+$$S(f)=\sum_{n=1}^Ne(f(n)).$$
+Έστω $K=2^{k-1}$ και $\varepsilon >0$. Τότε,
+$$S(f)\ll N^{1+\varepsilon }\Big(\frac{1}{N}+\frac{1}{q}+\frac{q}{N^k}\Big)^{1/K},$$
+με την σταθερά να εξαρτάται μόνο από τους $k$ και $\varepsilon $.
+\end{theorem}
+
+\begin{proof}Αφού $|S(f)|\ls N$, το συμπέρασμα προκύπτει άμεσα αν $q\gr N^k$. Μπορούμε λοιπόν να υποθέσουμε ότι
+$$1\ls q<N^k,$$
+άρα
+$$\log q\ll\log N\ll N^{\epsilon }.$$
+Από το Λήμμα~\ref{lem:4.14} έχουμε
+$$|S(f)|^K\ll N^{K-1}+N^{K-k+\epsilon }\sum_{m=1}^{k!N^{k-1}}\min\{ N,\|m\alpha\|^{-1}\}.$$
+Από το Λήμμα~\ref{lem:4.11} έχουμε
+\begin{align*}
+\sum_{m=1}^{k!N^{k-1}}\min\{ N,\|m\alpha \|^{-1}\} &\ll \Big( q+k!N^{k-1}+N+\frac{k!N^k}{q}\Big)\max\{1,\log q\}\\
+&\ll \Big( q+N^{k-1}+\frac{N^k}{q}\Big)\log N\\
+&\ll N^k(qN^{-k}+N^{-1}+q^{-1})N^{\epsilon }.
+\end{align*}
+Συνεπώς,
+\begin{align*}
+|S(f)|^K &\ll N^{K-1}+N^{K+\epsilon }(qN^{-k}+N^{-1}+q^{-1})\\
+&\ll N^{K+\epsilon }(qN^{-k}+N^{-1}+q^{-1}).
+\end{align*}
+Αυτό ολοκληρώνει την απόδειξη.
+\end{proof}
+
+
+\begin{theorem}\label{th:4.4}Έστω $k\gr 2$, και έστω $a/q$ ρητός αριθμός με $q\gr 1$ και $(a,q)=1$. Τότε,
+$$S(q,a)=\sum_{x=1}^qe(ax^k/q)\ll q^{1-\frac{1}{K}+\varepsilon }.$$
+\end{theorem}
+
+\begin{proof}Εφαρμόζοντας την ανισότητα του \tl{Weyl} με $f(x)=ax^k/q$ και $N=q$ παίρνουμε
+$$S(q,a)\ll q^{1+\epsilon }(q^{-1}+q^{-k+1})^{1/K}\ll q^{1-\frac{1}{K}+\epsilon },$$
+που είναι το συμπέρασμα.
+\end{proof}
+
+
+\begin{theorem}\label{th:4.5}Έστω $k\gr 2$. Υπάρχει σταθερά $\delta >0$ με την ακόλουθη ιδιότητα: Αν $N\gr 2$ και
+$a/q$ είναι ρητός αριθμός τέτοιος ώστε $(a,q)=1$ και
+$$N^{1/2}\ls q\ls N^{k-1/2},$$
+τότε
+$$\sum_{n=1}^Ne(an^k/q)\ll N^{1-\delta }.$$
+\end{theorem}
+
+\begin{proof}Εφαρμόζοντας την ανισότητα του \tl{Weyl} για την $f(x)=ax^k/q$ παίρνουμε
+\begin{align*}
+S(f) &\ll N^{1+\epsilon }(N^{-1}+q^{-1}+N^{-k}q)^{1/K}\ls N^{1+\epsilon }(N^{-1}+N^{-1/2}+N^{-1/2})^{1/K}\\
+&\ls N^{1-\frac{1}{2K}+\epsilon }\ls N^{1-\delta }
+\end{align*}
+για κάθε $\delta <\frac{1}{2K}$. Αυτό ολοκληρώνει την απόδειξη.
+\end{proof}
+
+
+\begin{theorem}[το λήμμα του \tl{Hua}]\label{th:4.6}Για $k\gr 2$ ορίζουμε
+$$T(\alpha )=\sum_{n=1}^Ne(\alpha n^k).$$
+Τότε,
+$$\int_0^1|T(\alpha )|^{2^k}d\alpha \ll N^{2^k-k+\varepsilon }.$$
+\end{theorem}
+
+\begin{proof}Θα αποδείξουμε με επαγωγή ως προς $j$ ότι
+$$\int_0^1|T(\alpha )|^{2^j}d\alpha \ll N^{2^j-j+\epsilon }$$
+για $j=1,\ldots ,k$. Η περίπτωση $j=1$ προκύπτει άμεσα από την
+$$\int_0^1|T(\alpha )|^2d\alpha =\sum_{m=1}^N\sum_{n=1}^N\int_0^1e(\alpha (m^k-n^k))\,d\alpha =N.$$
+Θεωρούμε $1\ls j\ls k-1$ και υποθέτουμε ότι το αποτέλεσμα ισχύει για τον $j$. Έστω $f(x)=\alpha x^k$. Από
+το Λήμμα~\ref{lem:4.2} έχουμε
+$$\Delta_{d_j,\ldots ,d_1}(f)(x)=\alpha d_j\cdots d_1p_{k-j}(x),$$
+όπου $p_{k-j}(x)$ είναι ένα πολυώνυμο βαθμού $k-j$ με ακέραιους συντελεστές. Εφαρμόζοντας το
+Λήμμα~\ref{lem:4.13} με $N_1=0$, $N_2=N$ και $S(f)=T(\alpha )$, παίρνουμε
+\begin{align*}|T(\alpha )|^{2^j} &\ls (2N)^{2^j-j+1}\sum_{|d_1|<N}\cdots\sum_{|d_j|<N}\sum_{n\in I(d_j,\ldots ,d_1)}
+e(\Delta_{d_j,\ldots ,d_1}(f)(n))\\
+&= (2N)^{2^j-j+1}\sum_{|d_1|<N}\cdots\sum_{|d_j|<N}\sum_{n\in I(d_j,\ldots ,d_1)}
+e(\alpha d_j\cdots d_1p_{k-j}(n)),
+\end{align*}
+όπου $I(d_j,\ldots ,d_1)$ είναι ένα διάστημα διαδοχικών ακεραίων που περιέχεται στο $[1,N]$. Έπεται ότι
+\begin{equation}\label{eq:4.6}|T(\alpha )|^{2^j}\ls (2N)^{2^j-j+1}\sum_dr(d)e(\alpha d),\end{equation}
+όπου $r(d)$ είναι το πλήθος των παραγοντοποιήσεων του $d$ στη μορφή
+$$d=d_j\cdots d_1p_{k-j}(n)$$
+με $|d_i|\ls N$ και $n\in I(d_j,\ldots ,d_1)$. Αφού $d\ll N^k$ από το Λήμμα~\ref{th:A.11} έχουμε
+$$r(d)\ll |d|^\frac{\epsilon }{k}\ll N^{\epsilon }$$
+για $d\neq 0$. Αφού το $p_{k-j}(x)$ είναι πολυώνυμο βαθμού $k-j\gr 1$, υπάρχουν το πολύ $k-j$ ακέραιοι $x$
+τέτοιοι ώστε $p_{k-j}(x)=0$, άρα
+$$r(0)\ll N^j.$$
+Όμοια,
+\begin{align*}
+|T(\alpha )|^{2^j} &= T(\alpha )^{2^{j-1}}T(-\alpha )^{2^{j-1}}\\
+&= \Big( \sum_{x=1}^Ne(\alpha x^k)\Big)^{2^{j-1}}\Big(\sum_{y=1}^Ne(-\alpha y^k)\Big)^{2^{j-1}}\\
+&= \sum_{x_1=1}^N\cdots \sum_{x_{2^{j-1}}=1}^N\sum_{y_1=1}^N\cdots\sum_{y_{2^{j-1}}=1}^N
+e\Big(\alpha \Big(\sum_{i=1}^{2^{j-1}}x_i^k-\sum_{i=1}^{2^{j-1}}y_i^k\Big)\Big)\\
+&=\sum_ds(d)e(-\alpha d),
+\end{align*}
+όπου $s(d)$ είναι το πλήθος των αναπαραστάσεων του $d$ στη μορφή
+$$d=\sum_{i=1}^{2^{j-1}}y_i^k-\sum_{i=1}^{2^{j-1}}x_i^k$$
+με $1\ls x_i,y_i\ls N$ για $i=1,\ldots ,j-1$. Συνεπώς,
+$$\sum_ds(d)=|T(0)|^{2^j}=N^{2^j}$$
+και, από την επαγωγική υπόθεση,
+$$s(0)=\int_0^1|T(\alpha )|^{2^j}d\alpha \ll N^{2^j-j+\epsilon }.$$
+Από την \eqref{eq:4.6} έπεται ότι
+\begin{align*}
+\int_0^1|T(\alpha )|^{2^{j+1}}d\alpha &= \int_0^1|T(\alpha )|^{2^j}|T(\alpha )|^{2^j}d\alpha \\
+&\ls N^{2^j-j+1}\int_0^1\sum_{d^{\prime }}r(d^{\prime })e(\alpha d^{\prime })\sum_ds(d)e(-\alpha d)\,d\alpha \\
+&= (2N)^{2^j-j+1}\sum_dr(d)s(d)\\
+&= (2N)^{2^j-j+1}r(0)s(0)+(2N)^{2^j-j+1}\sum_{d\neq 0}r(d)s(d)\\
+&\ll N^{2^j-j+1}N^jN^{2^j-j+\epsilon }+N^{2^j-j+1}N^{\epsilon }\sum_{d\neq 0}s(d)\\
+&\ll N^{2^{j+1}-(j+1)+\epsilon }+N^{2^j-j+1}N^{\epsilon }N^{2^j}\\
+&\ll N^{2^{j+1}-(j+1)+\epsilon },
+\end{align*}
+και έχουμε αποδείξει το θεώρημα.
+\end{proof}
+\end{document}
